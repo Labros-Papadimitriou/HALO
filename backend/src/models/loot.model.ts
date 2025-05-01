@@ -1,39 +1,37 @@
-import sqlite3 from 'sqlite3'
-import { open, Database } from 'sqlite'
-import { LootEntry } from '../types/loot'
+import { Database } from 'sqlite'
 
-let db: Database | null = null
+let db: Database
 
-export async function initDB() {
-  db = await open({
-    filename: './loot-history.db',
-    driver: sqlite3.Database,
-  })
+export function setLootDB(database: Database) {
+  db = database
+}
 
-  await db.exec(`
-    CREATE TABLE IF NOT EXISTS loot (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      raider TEXT,
-      item TEXT,
-      raid TEXT,
-      date TEXT
-    );
+export async function getAllLoot(): Promise<any[]> {
+  return await db.all(`
+    SELECT lh.id, m.name AS raider, i.name AS item, lh.date, lh.raid, lh.notes
+    FROM loot_history lh
+    JOIN members m ON lh.member_id = m.id
+    JOIN items i ON lh.item_id = i.id
+    ORDER BY lh.date DESC
   `)
 }
 
-export async function getAllLoot(): Promise<LootEntry[]> {
-  if (!db) throw new Error('DB not initialized')
-  return await db.all('SELECT * FROM loot ORDER BY date DESC')
-}
-
-export async function addLoot(loot: LootEntry): Promise<number> {
-  if (!db) throw new Error('DB not initialized')
+export async function addLoot(
+  member_id: number,
+  item_id: number,
+  date: string,
+  raid?: string,
+  notes?: string
+): Promise<number> {
   const result = await db.run(
-    'INSERT INTO loot (raider, item, raid, date) VALUES (?, ?, ?, ?)',
-    loot.raider,
-    loot.item,
-    loot.raid,
-    loot.date
+    `INSERT INTO loot_history (member_id, item_id, date, raid, notes)
+     VALUES (?, ?, ?, ?, ?)`,
+    member_id,
+    item_id,
+    date,
+    raid ?? null,
+    notes ?? null
   )
+
   return result.lastID!
 }

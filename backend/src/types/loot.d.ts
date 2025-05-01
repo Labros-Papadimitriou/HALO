@@ -1,8 +1,7 @@
 export interface LootEntry {
-    id?: number
-    raider: string
-    item: string
-    raid: string
-    date: string
-  }
-  
+  member_id: number
+  item_id: number
+  date: string
+  raid?: string
+  notes?: string
+}
