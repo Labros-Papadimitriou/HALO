@@ -22,7 +22,6 @@
       <div class="p-6">
         <ItemTable v-if="activeTab === 'Items Table'" />
         <LootList v-if="activeTab === 'Loot History'" />
-        <AddLootForm v-if="activeTab === 'Add Loot'" />
       </div>
     </div>
   </div>
@@ -31,11 +30,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import LootList from './components/LootList.vue'
-import AddLootForm from './components/AddLootForm.vue'
 import ItemTable from './components/ItemsTable.vue'
 import LandingPage from './components/LandingPage.vue'
 
 const entered = ref(false)
-const tabs = ['Items Table', 'Loot History', 'Add Loot']
+const tabs = ['Items Table', 'Loot History']
 const activeTab = ref('Loot History')
 </script>

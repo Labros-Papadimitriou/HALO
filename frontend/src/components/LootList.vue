@@ -1,13 +1,27 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import { getAllLoot } from '../api/lootApi'
-import type { FullLootRecord } from '../types/loot'
+import { getAllLoot, addLoot } from '../api/lootApi'
+import { getAllMembers } from '../api/memberApi'
+import { getAllItems } from '../api/itemApi'
+import type { FullLootRecord, LootEntry } from '../types/loot'
 import { classColors, rarityColors } from '../constants/colors'
 
 const loot = ref<FullLootRecord[]>([])
+const members = ref<{ id: number, name: string }[]>([])
+const items = ref<{ id: number, name: string }[]>([])
+const showModal = ref(false)
+const form = ref<LootEntry>({
+  member_id: 0,
+  item_id: 0,
+  date: new Date().toISOString().split('T')[0],
+  note: '',
+  council_note: ''
+})
 
 onMounted(async () => {
   loot.value = await getAllLoot()
+  members.value = await getAllMembers()
+  items.value = await getAllItems()
 })
 
 const sortKey = ref<'raider' | 'date' | null>(null)
@@ -26,7 +40,7 @@ const filters = ref({
   raider: '',
   item: '',
   class: '',
-  date: '',
+  date: ''
 })
 
 const uniqueRaiders = computed(() => [...new Set(loot.value.map(l => l.raider))])
@@ -60,7 +74,7 @@ function resetFilters() {
     raider: '',
     item: '',
     class: '',
-    date: '',
+    date: ''
   }
 }
 
@@ -85,69 +99,55 @@ function handleDateClick(event: MouseEvent) {
   event.preventDefault()
   input.showPicker?.()
 }
-</script>
 
+async function submitLoot() {
+  await addLoot(form.value)
+  loot.value = await getAllLoot()
+  showModal.value = false
+}
+</script>
 
 <template>
   <div>
-    <h2 class="text-xl font-bold mb-4">Loot History</h2>
-    <div class="flex flex-wrap gap-4 mb-4 items-center text-sm">
-      <select v-model="filters.raider" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer">
+    <div class="flex justify-between items-center mb-4">
+    <!-- Left: Filters -->
+    <div class="flex flex-wrap gap-2 items-center">
+      <select v-model="filters.raider" class="cursor-pointer bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1">
         <option value="">All Raiders</option>
         <option v-for="name in uniqueRaiders" :key="name" :value="name">{{ name }}</option>
       </select>
 
-      <select v-model="filters.class" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer">
+      <select v-model="filters.class" class="cursor-pointer bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1">
         <option value="">All Classes</option>
         <option v-for="cls in uniqueClasses" :key="cls" :value="cls">{{ cls }}</option>
       </select>
 
-      <input
-        v-model="filters.item"
-        type="text"
-        placeholder="Search Item"
-        class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1"
-      />
+      <input v-model="filters.item" placeholder="Search Item" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1" />
+      
+      <input v-model="filters.date" type="date" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer" @mousedown="handleDateClick" />
 
-      <input
-        v-model="filters.date"
-        type="date"
-        @mousedown="handleDateClick"
-        class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer appearance-none w-44"
-      />
-
-      <button
-        @click="resetFilters"
-        class="bg-[#444] hover:bg-[#555] text-white px-3 py-1 rounded border border-[#666] transition"
-      >
-        Reset Filters
+      <button @click="resetFilters" class="bg-[#444] text-white px-3 py-1 rounded border border-[#666]">
+        Reset
       </button>
-
     </div>
-    <table class="w-full bg-[#2b2d31] text-sm text-gray-200 border border-[#3f4147] rounded overflow-hidden shadow">
-      <thead class="bg-[#3a3b3f] text-gray-300">
+
+    <!-- Right: Add Loot Button -->
+    <button @click="showModal = true" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded">
+      ➕ Add Loot
+    </button>
+  </div>
+
+    <table class="w-full bg-[#2b2d31] text-sm text-gray-200 border border-[#3f4147] rounded shadow">
+      <thead class="bg-[#3a3b3f]">
         <tr>
-          <th
-            @click="sortBy('raider')"
-            class="p-3 text-left border-b border-[#444] cursor-pointer hover:text-white"
-          >
-            Raider
-            <span v-if="sortKey === 'raider'">{{ sortAsc ? '▲' : '▼' }}</span>
-          </th>
-          <th class="p-3 text-left border-b border-[#444]">Class</th>
-          <th class="p-3 text-left border-b border-[#444]">Item</th>
-          <th
-            @click="sortBy('date')"
-            class="p-3 text-left border-b border-[#444] cursor-pointer hover:text-white"
-          >
-            Date
-            <span v-if="sortKey === 'date'">{{ sortAsc ? '▲' : '▼' }}</span>
-          </th>
-          <th class="p-3 text-left border-b border-[#444]">Note</th>
-          <th class="p-3 text-left border-b border-[#444]">Council Note</th>
+          <th @click="sortBy('raider')" class="p-3 text-left cursor-pointer">Raider</th>
+          <th class="p-3 text-left">Class</th>
+          <th class="p-3 text-left">Item</th>
+          <th @click="sortBy('date')" class="p-3 text-left cursor-pointer">Date</th>
+          <th class="p-3 text-left">Note</th>
+          <th class="p-3 text-left">Council Note</th>
         </tr>
       </thead>
-
       <tbody>
         <tr v-for="entry in filteredLoot" :key="entry.id" class="hover:bg-[#383a40]">
           <td
@@ -176,5 +176,48 @@ function handleDateClick(event: MouseEvent) {
         </tr>
       </tbody>
     </table>
+
+    <!-- Modal -->
+    <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      <div class="bg-[#2b2d31] p-6 rounded-lg w-[400px]">
+        <h3 class="text-lg font-semibold mb-4">Add Loot</h3>
+
+        <div class="mb-3">
+          <label class="block text-sm mb-1">Raider</label>
+          <select v-model="form.member_id" class="cursor-pointer w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1">
+            <option value="0" disabled>Select Raider</option>
+            <option v-for="m in members" :value="m.id">{{ m.name }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="block text-sm mb-1">Item</label>
+          <select v-model="form.item_id" class="cursor-pointer w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1">
+            <option value="0" disabled>Select Item</option>
+            <option v-for="i in items" :value="i.id">{{ i.name }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="block text-sm mb-1">Date</label>
+          <input v-model="form.date" type="date" class="cursor-pointer w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1" @mousedown="handleDateClick" />
+        </div>
+
+        <div class="mb-3">
+          <label class="block text-sm mb-1">Note</label>
+          <input v-model="form.note" type="text" class="w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1" />
+        </div>
+
+        <div class="mb-3">
+          <label class="block text-sm mb-1">Council Note</label>
+          <input v-model="form.council_note" type="text" class="w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1" />
+        </div>
+
+        <div class="flex justify-end gap-2 mt-4">
+          <button @click="showModal = false" class="bg-gray-600 px-3 py-1 rounded text-white">Cancel</button>
+          <button @click="submitLoot" class="bg-blue-600 px-3 py-1 rounded text-white">Add</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>

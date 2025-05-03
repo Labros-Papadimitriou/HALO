@@ -11,12 +11,12 @@ export async function addLootHandler(
   req: Request<{}, any, LootEntry>,
   res: Response
 ): Promise<any> {
-  const { member_id, item_id, date, raid, notes } = req.body
+  const { member_id, item_id, date, raid, notes, council_note } = req.body
 
   if (!member_id || !item_id || !date) {
     return res.status(400).json({ error: 'Missing required fields' })
   }
 
-  const id = await addLoot(member_id, item_id, date, raid, notes)
+  const id = await addLoot(member_id, item_id, date, raid, notes, council_note)
   res.json({ id })
 }

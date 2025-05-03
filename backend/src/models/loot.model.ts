@@ -36,16 +36,18 @@ export async function addLoot(
   item_id: number,
   date: string,
   raid?: string,
-  notes?: string
+  notes?: string,
+  council_note?: string
 ): Promise<number> {
   const result = await db.run(
-    `INSERT INTO loot_history (member_id, item_id, date, raid, notes)
-     VALUES (?, ?, ?, ?, ?)`,
+    `INSERT INTO loot_history (member_id, item_id, date, raid, notes, council_note)
+     VALUES (?, ?, ?, ?, ?, ?)`,
     member_id,
     item_id,
     date,
     raid ?? null,
-    notes ?? null
+    notes ?? null,
+    council_note ?? null
   )
 
   return result.lastID!

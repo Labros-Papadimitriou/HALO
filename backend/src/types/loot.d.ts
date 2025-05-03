@@ -4,4 +4,5 @@ export interface LootEntry {
   date: string
   raid?: string
   notes?: string
+  council_note?: string
 }
