@@ -1,13 +1,12 @@
-export interface LootEntry {
+export interface LootHistoryEntry {
   member_id: number
   item_id: number
   date: string
-  raid?: string
-  notes?: string
+  note?: string
   council_note?: string
 }
   
-export interface FullLootRecord {
+export interface FullLootHistoryRecord {
   id: number
   raider: string
   class: string

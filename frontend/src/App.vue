@@ -21,7 +21,7 @@
 
       <div class="p-6">
         <ItemTable v-if="activeTab === 'Items Table'" />
-        <LootList v-if="activeTab === 'Loot History'" />
+        <LootHistory v-if="activeTab === 'Loot History'" />
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import LootList from './components/LootList.vue'
+import LootHistory from './components/LootHistory.vue'
 import ItemTable from './components/ItemsTable.vue'
 import LandingPage from './components/LandingPage.vue'
 

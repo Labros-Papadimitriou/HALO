@@ -13,12 +13,11 @@ export async function getAllMembers(): Promise<Member[]> {
 
 export async function addMember(member: Member): Promise<number> {
   const result = await db.run(
-    `INSERT INTO members (name, class, spec, role, note) VALUES (?, ?, ?, ?, ?)`,
+    `INSERT INTO members (name, class, spec, role) VALUES (?, ?, ?, ?)`,
     member.name,
     member.class,
     member.spec,
     member.role,
-    member.note ?? null
   )
   return result.lastID!
 }

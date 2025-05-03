@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import lootRoutes from './routes/loot.routes'
+import lootRoutes from './routes/lootHistory.routes'
 import { initDB } from './db'
 import memberRoutes from './routes/member.routes'
 import itemRoutes from './routes/item.routes'
@@ -13,7 +13,7 @@ app.use(express.json())
 
 initDB()
 
-app.use('/api/loot', lootRoutes)
+app.use('/api/lootHistory', lootRoutes)
 app.use('/api/members', memberRoutes)
 app.use('/api/items', itemRoutes)
 

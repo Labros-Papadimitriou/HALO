@@ -11,12 +11,12 @@ export async function addMemberHandler(
   req: Request<{}, any, Member>,
   res: Response
 ): Promise<any> {
-  const { name, class: className, spec, role, note } = req.body
+  const { name, class: className, spec, role } = req.body
 
   if (!name || !className || !spec || !role) {
     return res.status(400).json({ error: 'Missing required member fields' })
   }
 
-  const id = await addMember({ name, class: className, spec, role, note })
+  const id = await addMember({ name, class: className, spec, role })
   res.json({ id })
 }

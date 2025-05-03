@@ -2,11 +2,11 @@ import { Database } from 'sqlite'
 
 let db: Database
 
-export function setLootDB(database: Database) {
+export function setLootHistoryDB(database: Database) {
   db = database
 }
 
-export async function getAllLoot(): Promise<any[]> {
+export async function getAllLootHistory(): Promise<any[]> {
   return await db.all(`
     SELECT
       lh.id,
@@ -22,8 +22,8 @@ export async function getAllLoot(): Promise<any[]> {
       i.raid AS raid,
       i.boss AS boss,
       lh.date,
-      m.note,
-      m.council_note
+      lh.note,
+      lh.council_note
     FROM loot_history lh
     JOIN members m ON lh.member_id = m.id
     JOIN items i ON lh.item_id = i.id
@@ -31,22 +31,20 @@ export async function getAllLoot(): Promise<any[]> {
   `)
 }
 
-export async function addLoot(
+export async function addLootHistory(
   member_id: number,
   item_id: number,
   date: string,
-  raid?: string,
-  notes?: string,
+  note?: string,
   council_note?: string
 ): Promise<number> {
   const result = await db.run(
-    `INSERT INTO loot_history (member_id, item_id, date, raid, notes, council_note)
-     VALUES (?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO loot_history (member_id, item_id, date, note, council_note)
+     VALUES (?, ?, ?, ?, ?)`,
     member_id,
     item_id,
     date,
-    raid ?? null,
-    notes ?? null,
+    note ?? null,
     council_note ?? null
   )
 

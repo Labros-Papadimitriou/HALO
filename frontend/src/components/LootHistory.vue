@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import { getAllLoot, addLoot } from '../api/lootApi'
+import { getAllLootHistory, addLootHistory } from '../api/lootHistoryApi'
 import { getAllMembers } from '../api/memberApi'
 import { getAllItems } from '../api/itemApi'
-import type { FullLootRecord, LootEntry } from '../types/loot'
+import type { FullLootHistoryRecord, LootHistoryEntry } from '../types/lootHistory'
 import { classColors, rarityColors } from '../constants/colors'
 
-const loot = ref<FullLootRecord[]>([])
+const loot = ref<FullLootHistoryRecord[]>([])
 const members = ref<{ id: number, name: string }[]>([])
 const items = ref<{ id: number, name: string }[]>([])
 const showModal = ref(false)
-const form = ref<LootEntry>({
+const form = ref<LootHistoryEntry>({
   member_id: 0,
   item_id: 0,
   date: new Date().toISOString().split('T')[0],
@@ -19,7 +19,7 @@ const form = ref<LootEntry>({
 })
 
 onMounted(async () => {
-  loot.value = await getAllLoot()
+  loot.value = await getAllLootHistory()
   members.value = await getAllMembers()
   items.value = await getAllItems()
 })
@@ -78,7 +78,7 @@ function resetFilters() {
   }
 }
 
-function getWowheadHtml(entry: FullLootRecord) {
+function getWowheadHtml(entry: FullLootHistoryRecord) {
   return `
     <a 
       href="https://classic.wowhead.com/item=${entry.wowId}" 
@@ -101,8 +101,8 @@ function handleDateClick(event: MouseEvent) {
 }
 
 async function submitLoot() {
-  await addLoot(form.value)
-  loot.value = await getAllLoot()
+  await addLootHistory(form.value)
+  loot.value = await getAllLootHistory()
   showModal.value = false
 }
 </script>

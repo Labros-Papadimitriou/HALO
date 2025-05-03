@@ -49,22 +49,22 @@ async function main() {
       const itemSubclass = itemData.item_subclass?.name || null
 
       await db.run(
-        `INSERT INTO items (
+        `INSERT OR IGNORE INTO items (
           wow_id, name, icon, quality, inventory_type,
           item_class, item_subclass, raid, boss
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           entry.wowId,
-          name,
+          name.trim(),
           icon,
-          quality,
-          inventoryType,
+          quality?.toLowerCase(),
+          inventoryType?.toLowerCase(),
           itemClass,
           itemSubclass,
           entry.raid,
           entry.boss,
         ]
-      )
+      )      
 
       console.log(`✅ Imported: ${name}`)
     } catch (err: any) {
