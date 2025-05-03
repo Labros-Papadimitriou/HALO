@@ -19,7 +19,8 @@ export async function initDB() {
       class TEXT NOT NULL,
       spec TEXT NOT NULL,
       role TEXT CHECK(role IN ('social', 'raider', 'council', 'master')),
-      note TEXT
+      note TEXT,
+      council_note TEXT
     );
   `)
 

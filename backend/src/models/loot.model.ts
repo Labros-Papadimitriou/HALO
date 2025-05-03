@@ -8,7 +8,14 @@ export function setLootDB(database: Database) {
 
 export async function getAllLoot(): Promise<any[]> {
   return await db.all(`
-    SELECT lh.id, m.name AS raider, i.name AS item, lh.date, lh.raid, lh.notes
+    SELECT
+      lh.id,
+      m.name AS raider,
+      m.class AS class,
+      i.name AS item,
+      lh.date,
+      lh.notes,
+      lh.council_note
     FROM loot_history lh
     JOIN members m ON lh.member_id = m.id
     JOIN items i ON lh.item_id = i.id
