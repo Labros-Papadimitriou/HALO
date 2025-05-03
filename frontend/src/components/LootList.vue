@@ -67,17 +67,18 @@ function resetFilters() {
 function getWowheadHtml(entry: FullLootRecord) {
   return `
     <a 
-      href="https://classic.wowhead.com/item=16914" 
-      data-wowhead="item=16914&domain=classic" 
+      href="https://classic.wowhead.com/item=${entry.wowId}" 
+      data-wowhead="item=${entry.wowId}&domain=classic" 
       target="_blank"
-      style="color: ${rarityColors[entry.rarity?.toLowerCase()] || '#fff'}; display: flex; align-items: center; gap: 0.5rem;"
-      @click.prevent.self
+      style="color: ${rarityColors[entry.quality?.toLowerCase()] || '#fff'}; display: flex; align-items: center; gap: 0.5rem;"
+      onclick="event.stopPropagation();"
     >
       <img src="${entry.icon}" class="w-5 h-5 border border-black" />
       ${entry.item}
     </a>
   `
 }
+
 
 function handleDateClick(event: MouseEvent) {
   const input = event.target as HTMLInputElement

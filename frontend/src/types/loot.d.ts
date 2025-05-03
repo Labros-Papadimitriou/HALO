@@ -9,12 +9,14 @@ export interface LootEntry {
   export interface FullLootRecord {
     id: number
     raider: string
+    class: string
     item: string
-    icon?: string
+    wowId: number
+    icon: string
+    quality: string
     date: string
     note?: string
     council_note?: string
-    class: string,
-    rarity: string,
   }
+  
   
