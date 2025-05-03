@@ -8,7 +8,6 @@ const loot = ref<FullLootRecord[]>([])
 
 onMounted(async () => {
   loot.value = await getAllLoot()
-  console.log(loot.value)
 })
 
 const sortKey = ref<'raider' | 'date' | null>(null)
@@ -64,6 +63,22 @@ function resetFilters() {
     date: '',
   }
 }
+
+function getWowheadHtml(entry: FullLootRecord) {
+  return `
+    <a 
+      href="https://classic.wowhead.com/item=16914" 
+      data-wowhead="item=16914&domain=classic" 
+      target="_blank"
+      style="color: ${rarityColors[entry.rarity?.toLowerCase()] || '#fff'}; display: flex; align-items: center; gap: 0.5rem;"
+      @click.prevent.self
+    >
+      <img src="${entry.icon}" class="w-5 h-5 border border-black" />
+      ${entry.item}
+    </a>
+  `
+}
+
 </script>
 
 
@@ -143,16 +158,8 @@ function resetFilters() {
           </td>
           <td
             class="p-3 border-b border-[#333] flex items-center gap-2 font-medium"
-            :style="{ color: rarityColors[entry.rarity] || '#fff' }"
-          >
-            <img
-              :src="entry.icon"
-              alt="icon"
-              class="w-5 h-5 rounded-sm border border-black"
-              @error="(e) => (e.target as HTMLImageElement).style.display = 'none'"
-            />
-            {{ entry.item }}
-          </td>
+            v-html="getWowheadHtml(entry)"
+          ></td>
           <td class="p-3 border-b border-[#333]">{{ entry.date }}</td>
           <td class="p-3 border-b border-[#333] text-gray-300 italic">
             {{ entry.note || '—' }}
