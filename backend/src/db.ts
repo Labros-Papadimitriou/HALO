@@ -3,6 +3,7 @@ import { open, Database } from 'sqlite'
 import { setLootDB } from './models/loot.model'
 import { setItemDB } from './models/item.model'
 import { setMemberDB } from './models/member.model'
+import path from 'path'
 
 let db: Database | undefined
 
@@ -28,11 +29,8 @@ export async function initDB() {
     CREATE TABLE IF NOT EXISTS items (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
-      class_list TEXT,
-      slot TEXT NOT NULL,
-      boss TEXT NOT NULL,
-      raid TEXT NOT NULL,
-      wowId INTEGER
+      icon TEXT NOT NULL,
+      rarity TEXT CHECK( rarity IN ('common', 'uncommon', 'rare', 'epic', 'legendary') )
     );
   `)
 
@@ -49,9 +47,20 @@ export async function initDB() {
     );
   `)
 
+  // await ensureColumnExists('items', 'rarity', `TEXT CHECK( rarity IN ('common', 'uncommon', 'rare', 'epic', 'legendary') )`);
+
   setMemberDB(db)
   setItemDB(db)
   setLootDB(db)
 
   console.log('📦 SQLite database initialized.')
+}
+
+async function ensureColumnExists(table: string, column: string, definition: string) {
+  const colInfo = await db!.all(`PRAGMA table_info(${table});`)
+  const exists = colInfo.some(c => c.name === column)
+  if (!exists) {
+    await db!.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${definition};`)
+    console.log(`🔧 Added column '${column}' to '${table}'`)
+  }
 }

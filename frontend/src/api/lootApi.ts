@@ -6,6 +6,9 @@ const API_URL = 'http://localhost:3001/api/loot'
 // GET returns the joined records (with item/raider names)
 export const getAllLoot = async (): Promise<FullLootRecord[]> => {
   const res = await axios.get(API_URL)
+  console.log('------------------')
+  console.log(res.data)
+  console.log('------------------')
   return res.data
 }
 

@@ -13,9 +13,11 @@ export async function getAllLoot(): Promise<any[]> {
       m.name AS raider,
       m.class AS class,
       i.name AS item,
+      i.icon AS icon,
+      i.rarity AS rarity,
       lh.date,
-      lh.notes,
-      lh.council_note
+      m.note,
+      m.council_note
     FROM loot_history lh
     JOIN members m ON lh.member_id = m.id
     JOIN items i ON lh.item_id = i.id

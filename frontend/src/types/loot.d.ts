@@ -10,9 +10,11 @@ export interface LootEntry {
     id: number
     raider: string
     item: string
+    icon?: string
     date: string
-    notes?: string
+    note?: string
     council_note?: string
-    class: string
+    class: string,
+    rarity: string,
   }
   
