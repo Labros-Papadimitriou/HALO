@@ -44,8 +44,6 @@ const filteredItems = computed(() =>
 
 <template>
   <div>
-    <h2 class="text-xl font-bold mb-4">Items</h2>
-
     <!-- Filters -->
     <div class="flex flex-wrap gap-3 mb-4 text-sm">
       <input
