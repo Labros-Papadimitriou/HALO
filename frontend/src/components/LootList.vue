@@ -79,6 +79,11 @@ function getWowheadHtml(entry: FullLootRecord) {
   `
 }
 
+function handleDateClick(event: MouseEvent) {
+  const input = event.target as HTMLInputElement
+  event.preventDefault()
+  input.showPicker?.()
+}
 </script>
 
 
@@ -86,16 +91,15 @@ function getWowheadHtml(entry: FullLootRecord) {
   <div>
     <h2 class="text-xl font-bold mb-4">Loot History</h2>
     <div class="flex flex-wrap gap-4 mb-4 items-center text-sm">
-      <select v-model="filters.raider" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1">
+      <select v-model="filters.raider" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer">
         <option value="">All Raiders</option>
         <option v-for="name in uniqueRaiders" :key="name" :value="name">{{ name }}</option>
       </select>
 
-      <select v-model="filters.class" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1">
-      <option value="">All Classes</option>
-      <option v-for="cls in uniqueClasses" :key="cls" :value="cls">{{ cls }}</option>
-    </select>
-
+      <select v-model="filters.class" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer">
+        <option value="">All Classes</option>
+        <option v-for="cls in uniqueClasses" :key="cls" :value="cls">{{ cls }}</option>
+      </select>
 
       <input
         v-model="filters.item"
@@ -107,7 +111,8 @@ function getWowheadHtml(entry: FullLootRecord) {
       <input
         v-model="filters.date"
         type="date"
-        class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1"
+        @mousedown="handleDateClick"
+        class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer appearance-none w-44"
       />
 
       <button
