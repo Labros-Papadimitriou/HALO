@@ -1,10 +1,12 @@
 export interface Item {
-    id?: number
-    name: string
-    class_list: string
-    slot: string
-    boss: string
-    raid: string
-    wowId?: number
-  }
-  
+  id?: number
+  wowId: number
+  name: string
+  icon: string
+  quality: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary'
+  inventory_type: string
+  item_class: string
+  item_subclass: string
+  raid: string
+  boss: string
+}

@@ -13,13 +13,20 @@ export async function getAllItems(): Promise<Item[]> {
 
 export async function addItem(item: Item): Promise<number> {
   const result = await db.run(
-    `INSERT INTO items (name, class_list, slot, boss, raid, wowId) VALUES (?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO items (
+      wow_id, name, icon, quality,
+      inventory_type, item_class, item_subclass,
+      raid, boss
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    item.wowId,
     item.name,
-    item.class_list,
-    item.slot,
-    item.boss,
+    item.icon,
+    item.quality,
+    item.inventory_type,
+    item.item_class,
+    item.item_subclass,
     item.raid,
-    item.wowId ?? null
+    item.boss
   )
   return result.lastID!
 }

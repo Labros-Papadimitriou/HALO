@@ -11,12 +11,33 @@ export async function addItemHandler(
   req: Request<{}, any, Item>,
   res: Response
 ): Promise<any> {
-  const { name, class_list, slot, boss, raid, wowId } = req.body
+  const {
+    wowId,
+    name,
+    icon,
+    quality,
+    inventory_type,
+    item_class,
+    item_subclass,
+    raid,
+    boss
+  } = req.body
 
-  if (!name || !slot || !boss || !raid) {
+  if (!name || !wowId || !icon || !quality || !inventory_type || !item_class || !item_subclass || !raid || !boss) {
     return res.status(400).json({ error: 'Missing required item fields' })
   }
 
-  const id = await addItem({ name, class_list, slot, boss, raid, wowId })
+  const id = await addItem({
+    wowId,
+    name,
+    icon,
+    quality,
+    inventory_type,
+    item_class,
+    item_subclass,
+    raid,
+    boss
+  })
+
   res.json({ id })
 }
