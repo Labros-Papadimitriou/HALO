@@ -5,10 +5,12 @@ import { getAllMembers } from '../api/memberApi'
 import { getAllItems } from '../api/itemApi'
 import type { FullLootHistoryRecord, LootHistoryEntry } from '../types/lootHistory'
 import { classColors, rarityColors } from '../constants/colors'
+import type { Member } from '../types/member'
+import type { Item } from '../types/item'
 
 const loot = ref<FullLootHistoryRecord[]>([])
-const members = ref<{ id: number, name: string }[]>([])
-const items = ref<{ id: number, name: string }[]>([])
+const members = ref<Member[]>([])
+const items = ref<Item[]>([])
 const showModal = ref(false)
 const form = ref<LootHistoryEntry>({
   member_id: 0,
@@ -178,15 +180,22 @@ async function submitLoot() {
     </table>
 
     <!-- Modal -->
-    <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div class="bg-[#2b2d31] p-6 rounded-lg w-[400px]">
+    <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div class="bg-[#2b2d31] p-6 rounded-lg w-[400px] shadow-xl">
         <h3 class="text-lg font-semibold mb-4">Add Loot</h3>
 
         <div class="mb-3">
           <label class="block text-sm mb-1">Raider</label>
           <select v-model="form.member_id" class="cursor-pointer w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1">
             <option value="0" disabled>Select Raider</option>
-            <option v-for="m in members" :value="m.id">{{ m.name }}</option>
+            <option
+              v-for="m in members"
+              :key="m.id"
+              :value="m.id"
+              :style="{ color: classColors[m.class?.replace(' ', '')] || '#ccc' }"
+            >
+              {{ m.name }}
+            </option>
           </select>
         </div>
 
@@ -194,7 +203,14 @@ async function submitLoot() {
           <label class="block text-sm mb-1">Item</label>
           <select v-model="form.item_id" class="cursor-pointer w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1">
             <option value="0" disabled>Select Item</option>
-            <option v-for="i in items" :value="i.id">{{ i.name }}</option>
+            <option
+              v-for="i in items"
+              :key="i.id"
+              :value="i.id"
+              :style="{ color: rarityColors[i.quality.toLowerCase()] || '#ccc' }"
+            >
+              {{ i.name }}
+            </option>
           </select>
         </div>
 

@@ -4,7 +4,5 @@ export interface Member {
     class: string
     spec: string
     role: 'social' | 'raider' | 'council' | 'master'
-    note?: string
-    council_note?: string
   }
   
