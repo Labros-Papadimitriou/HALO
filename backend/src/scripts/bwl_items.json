@@ -1,0 +1,813 @@
+[
+    {
+      "wowId": 16918,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 16926,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 16934,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 16911,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 16904,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 16935,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 16943,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 16951,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 16959,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 19336,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 19337,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 19370,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 19369,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 19335,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 19334,
+      "raid": "Blackwing Lair",
+      "boss": "Razorgore the Untamed"
+    },
+    {
+      "wowId": 16925,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 16818,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 16933,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 16910,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 16903,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 16936,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 16944,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 16952,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 16960,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 19339,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 19340,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 19372,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 19371,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 19348,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 19346,
+      "raid": "Blackwing Lair",
+      "boss": "Vaekstraz the Corrupt"
+    },
+    {
+      "wowId": 16919,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 16912,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 16927,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 16906,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 16898,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 16941,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 16949,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 16957,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 16965,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 19341,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 19342,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 19373,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 19374,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 19350,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 19351,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 20383,
+      "raid": "Blackwing Lair",
+      "boss": "Broodlord Lashlayer"
+    },
+    {
+      "wowId": 16920,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 16913,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 16928,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 16907,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 16899,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 16940,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 16948,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 16956,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 16964,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 19344,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 19343,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 19394,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 19398,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 19399,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 19400,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 19397,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 19396,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 19355,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 19401,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 19395,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 19353,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 19402,
+      "raid": "Blackwing Lair",
+      "boss": "Firemaw"
+    },
+    {
+      "wowId": 16920,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 16913,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 16928,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 16907,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 16899,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 16940,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 16948,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 16956,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 16964,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 19406,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 19395,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 19394,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 19407,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 19396,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 19405,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 19368,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 19353,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 19355,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 19403,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 19397,
+      "raid": "Blackwing Lair",
+      "boss": "Ebonroc"
+    },
+    {
+      "wowId": 16920,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 16913,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 16928,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 16907,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 16899,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 16940,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 16948,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 16956,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 16964,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 19395,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 19431,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 19394,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 19430,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 19396,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 19433,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 19367,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 19353,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 19357,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 19355,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 19432,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 19397,
+      "raid": "Blackwing Lair",
+      "boss": "Flamegor"
+    },
+    {
+      "wowId": 16924,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 16917,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 16932,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 16832,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 16902,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 16937,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 16945,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 16953,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 16961,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 19389,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 19386,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 19390,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 19388,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 19393,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 19392,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 19385,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 19391,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 19387,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 19361,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 19349,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 19347,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 19352,
+      "raid": "Blackwing Lair",
+      "boss": "Chromaggus"
+    },
+    {
+      "wowId": 16923,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 16916,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 16931,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 16905,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 16897,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 16942,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 16950,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 16958,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 16966,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19003,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19360,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19363,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19364,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19356,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19375,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19377,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19378,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19380,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19381,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19376,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19382,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19379,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19436,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19439,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19437,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19438,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19434,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19435,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19362,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19354,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    },
+    {
+      "wowId": 19358,
+      "raid": "Blackwing Lair",
+      "boss": "Nefarian"
+    }
+  ]
+  

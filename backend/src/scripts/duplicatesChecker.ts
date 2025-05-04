@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 // Load the JSON file
-const data = JSON.parse(fs.readFileSync('zg_items.json', 'utf8'));
+const data = JSON.parse(fs.readFileSync('bwl_items.json', 'utf8'));
 
 // Count occurrences of wowId
 const wowIdCounts = {};

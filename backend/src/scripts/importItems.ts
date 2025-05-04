@@ -32,7 +32,7 @@ async function fetchItemMedia(id: number) {
 }
 
 async function main() {
-  const raw = await fs.readFile('zg_items.json', 'utf-8')
+  const raw = await fs.readFile('bwl_items.json', 'utf-8')
   const items = JSON.parse(raw)
 
   const db = await open({ filename: '../../loot-council.db', driver: sqlite3.Database })
