@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import { getAllLootHistory, addLootHistory, deleteLootHistory } from '../api/lootHistoryApi'
+import { getAllLootHistory, addLootHistory, deleteLootHistory, updateLootHistory } from '../api/lootHistoryApi'
 import { getAllMembers } from '../api/memberApi'
 import { getAllItems } from '../api/itemApi'
 import type { FullLootHistoryRecord, LootHistoryEntry } from '../types/lootHistory'
@@ -12,6 +12,7 @@ const loot = ref<FullLootHistoryRecord[]>([])
 const members = ref<Member[]>([])
 const items = ref<Item[]>([])
 const showModal = ref(false)
+const editingId = ref<number | null>(null)
 const form = ref<LootHistoryEntry>({
   member_id: 0,
   item_id: 0,
@@ -102,12 +103,19 @@ function handleDateClick(event: MouseEvent) {
 }
 
 async function submitLoot() {
-  await addLootHistory(form.value)
+  if (editingId.value) {
+    await updateLootHistory(editingId.value, form.value)
+  } else {
+    await addLootHistory(form.value)
+  }
+
   loot.value = await getAllLootHistory()
   showModal.value = false
+  editingId.value = null
 }
 
-function editEntry(entry: FullLootHistoryRecord) {
+function editLoot(entry: FullLootHistoryRecord) {
+  editingId.value = entry.id
   form.value = {
     member_id: members.value.find(m => m.name === entry.raider)?.id || 0,
     item_id: items.value.find(i => i.name === entry.item)?.id || 0,
@@ -118,7 +126,7 @@ function editEntry(entry: FullLootHistoryRecord) {
   showModal.value = true
 }
 
-async function deleteEntry(id: number) {
+async function deleteLoot(id: number) {
   if (confirm('Are you sure you want to delete this loot entry?')) {
     await deleteLootHistory(id)
     loot.value = await getAllLootHistory()
@@ -186,9 +194,9 @@ async function deleteEntry(id: number) {
           <td class="p-3 border-b border-[#333] text-gray-400 italic">
             {{ entry.council_note || '—' }}
           </td>
-          <td class="p-3 border-b border-[#333] flex gap-2">
-            <button @click="editEntry(entry)" class="text-yellow-400 hover:text-yellow-500">✏️</button>
-            <button @click="deleteEntry(entry.id)" class="text-red-500 hover:text-red-600">🗑️</button>
+          <td class="p-3 border-b border-[#333] text-right">
+            <button @click="editLoot(entry)" class="text-yellow-400 hover:text-yellow-500 mr-2">✏️</button>
+            <button @click="deleteLoot(entry.id)" class="text-red-400 hover:text-red-500">🗑️</button>
           </td>
         </tr>
       </tbody>
@@ -198,7 +206,9 @@ async function deleteEntry(id: number) {
     <!-- Modal -->
     <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div class="bg-[#2b2d31] p-6 rounded-lg w-[400px] shadow-xl">
-        <h3 class="text-lg font-semibold mb-4">Add Loot</h3>
+        <h3 class="text-lg font-semibold mb-4">
+          {{ editingId ? 'Edit Loot' : 'Add Loot' }}
+        </h3>
 
         <div class="mb-3">
           <label class="block text-sm mb-1">Raider</label>
@@ -246,8 +256,12 @@ async function deleteEntry(id: number) {
         </div>
 
         <div class="flex justify-end gap-2 mt-4">
-          <button @click="showModal = false" class="bg-gray-600 px-3 py-1 rounded text-white">Cancel</button>
-          <button @click="submitLoot" class="bg-blue-600 px-3 py-1 rounded text-white">Add</button>
+          <button @click="() => { showModal = false; editingId = null }" class="bg-gray-600 px-3 py-1 rounded text-white">
+            Cancel
+          </button>
+          <button @click="submitLoot" class="bg-blue-600 px-3 py-1 rounded text-white">
+            {{ editingId ? 'Save' : 'Add' }}
+          </button>
         </div>
       </div>
     </div>

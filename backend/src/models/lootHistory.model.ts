@@ -55,3 +55,25 @@ export async function deleteLootHistory(id: number): Promise<void> {
   await db.run('DELETE FROM loot_history WHERE id = ?', id);
 }
 
+export async function updateLootHistory(
+  id: number,
+  member_id: number,
+  item_id: number,
+  date: string,
+  note?: string,
+  council_note?: string
+): Promise<void> {
+  await db.run(
+    `UPDATE loot_history
+     SET member_id = ?, item_id = ?, date = ?, note = ?, council_note = ?
+     WHERE id = ?`,
+    member_id,
+    item_id,
+    date,
+    note ?? null,
+    council_note ?? null,
+    id
+  );
+}
+
+

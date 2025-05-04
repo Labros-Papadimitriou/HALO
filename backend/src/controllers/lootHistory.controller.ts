@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { getAllLootHistory, addLootHistory, deleteLootHistory } from '../models/lootHistory.model'
+import { getAllLootHistory, addLootHistory, deleteLootHistory, updateLootHistory } from '../models/lootHistory.model'
 import { LootHistoryEntry } from '../types/lootHistory'
 
 export async function getLootHistoryHandler(_req: Request, res: Response) {
@@ -31,4 +31,17 @@ export async function deleteLootHistoryHandler(req: Request, res: Response): Pro
 
   await deleteLootHistory(Number(id));
   res.status(204).send(); // No content
+}
+
+export async function updateLootHistoryHandler(req: Request, res: Response): Promise<void> {
+  const { id } = req.params;
+  const { member_id, item_id, date, note, council_note } = req.body;
+
+  if (!id || !member_id || !item_id || !date) {
+    res.status(400).json({ error: 'Missing required fields' });
+    return;
+  }
+
+  await updateLootHistory(Number(id), member_id, item_id, date, note, council_note);
+  res.status(200).json({ success: true });
 }

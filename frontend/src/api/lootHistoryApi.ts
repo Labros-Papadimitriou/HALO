@@ -18,3 +18,7 @@ export const addLootHistory = async (entry: LootHistoryEntry): Promise<number> =
 export const deleteLootHistory = async (id: number): Promise<void> => {
   await axios.delete(`http://localhost:3001/api/lootHistory/${id}`);
 };
+
+export const updateLootHistory = async (id: number, entry: LootHistoryEntry): Promise<void> => {
+  await axios.put(`http://localhost:3001/api/lootHistory/${id}`, entry);
+};
