@@ -17,6 +17,17 @@ const filters = ref({
   boss: ''
 })
 
+function resetFilters() {
+  filters.value = {
+    name: '',
+    slot: '',
+    class: '',
+    subclass: '',
+    raid: '',
+    boss: ''
+  }
+}
+
 // Tooltip setup
 onMounted(async () => {
   items.value = await getAllItems()
@@ -69,6 +80,9 @@ const filteredItems = computed(() =>
           <option value="">All Bosses</option>
           <option v-for="b in unique('boss').value" :key="b" :value="b">{{ b }}</option>
         </select>
+        <button @click="resetFilters" class="bg-[#444] text-white px-3 py-1 rounded border border-[#666]">
+          Reset
+        </button>
       </div>
     </div>
 

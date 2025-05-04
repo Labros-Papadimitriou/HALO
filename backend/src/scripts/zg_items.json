@@ -1,0 +1,822 @@
+[
+  {
+    "wowId": 19721,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 19724,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 19723,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 19722,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 19717,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 19716,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 19718,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 19719,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 19720,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 19721,
+    "raid": "Zul'Gurub",
+    "boss": "Hight Priest Venoxis"
+  },
+  {
+    "wowId": 19724,
+    "raid": "Zul'Gurub",
+    "boss": "Hight Priest Venoxis"
+  },
+  {
+    "wowId": 19723,
+    "raid": "Zul'Gurub",
+    "boss": "Hight Priest Venoxis"
+  },
+  {
+    "wowId": 19722,
+    "raid": "Zul'Gurub",
+    "boss": "Hight Priest Venoxis"
+  },
+  {
+    "wowId": 19717,
+    "raid": "Zul'Gurub",
+    "boss": "Hight Priest Venoxis"
+  },
+  {
+    "wowId": 19716,
+    "raid": "Zul'Gurub",
+    "boss": "Hight Priest Venoxis"
+  },
+  {
+    "wowId": 19718,
+    "raid": "Zul'Gurub",
+    "boss": "Hight Priest Venoxis"
+  },
+  {
+    "wowId": 19719,
+    "raid": "Zul'Gurub",
+    "boss": "Hight Priest Venoxis"
+  },
+  {
+    "wowId": 19720,
+    "raid": "Zul'Gurub",
+    "boss": "Hight Priest Venoxis"
+  },
+  {
+    "wowId": 19721,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Mar'li"
+  },
+  {
+    "wowId": 19724,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Mar'li"
+  },
+  {
+    "wowId": 19723,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Mar'li"
+  },
+  {
+    "wowId": 19722,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Mar'li"
+  },
+  {
+    "wowId": 19717,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Mar'li"
+  },
+  {
+    "wowId": 19716,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Mar'li"
+  },
+  {
+    "wowId": 19718,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Mar'li"
+  },
+  {
+    "wowId": 19719,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Mar'li"
+  },
+  {
+    "wowId": 19720,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Mar'li"
+  },
+  {
+    "wowId": 19721,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19724,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19723,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19722,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19717,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19716,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19718,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19719,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19720,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19721,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19724,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19723,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19722,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19717,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19716,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19718,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19719,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19720,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19721,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19724,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19723,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19722,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19717,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19716,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19718,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19719,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19720,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19721,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19724,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19723,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19722,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19717,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19716,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19718,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19719,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19720,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 22637,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 22637,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19918,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 19923,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 19928,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 20262,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 20265,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 19920,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 19915,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Jeklik"
+  },
+  {
+    "wowId": 19904,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Venoxis"
+  },
+  {
+    "wowId": 19903,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Venoxis"
+  },
+  {
+    "wowId": 19907,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Venoxis"
+  },
+  {
+    "wowId": 19906,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Venoxis"
+  },
+  {
+    "wowId": 19905,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Venoxis"
+  },
+  {
+    "wowId": 19900,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Venoxis"
+  },
+  {
+    "wowId": 20032,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Mar'li"
+  },
+  {
+    "wowId": 19927,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Mar'li"
+  },
+  {
+    "wowId": 19871,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Mar'li"
+  },
+  {
+    "wowId": 19925,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Mar'li"
+  },
+  {
+    "wowId": 19930,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Mar'li"
+  },
+  {
+    "wowId": 19872,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 20038,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19867,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19866,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19874,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19878,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19870,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19869,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19895,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19877,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19873,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19863,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19893,
+    "raid": "Zul'Gurub",
+    "boss": "Bloodlord Mandokir"
+  },
+  {
+    "wowId": 19961,
+    "raid": "Zul'Gurub",
+    "boss": "Gri'lek"
+  },
+  {
+    "wowId": 19962,
+    "raid": "Zul'Gurub",
+    "boss": "Gri'lek"
+  },
+  {
+    "wowId": 19939,
+    "raid": "Zul'Gurub",
+    "boss": "Gri'lek"
+  },
+  {
+    "wowId": 19967,
+    "raid": "Zul'Gurub",
+    "boss": "Hazza'rah"
+  },
+  {
+    "wowId": 19968,
+    "raid": "Zul'Gurub",
+    "boss": "Hazza'rah"
+  },
+  {
+    "wowId": 19942,
+    "raid": "Zul'Gurub",
+    "boss": "Hazza'rah"
+  },
+  {
+    "wowId": 19964,
+    "raid": "Zul'Gurub",
+    "boss": "Renataki"
+  },
+  {
+    "wowId": 19963,
+    "raid": "Zul'Gurub",
+    "boss": "Renataki"
+  },
+  {
+    "wowId": 19940,
+    "raid": "Zul'Gurub",
+    "boss": "Renataki"
+  },
+  {
+    "wowId": 19993,
+    "raid": "Zul'Gurub",
+    "boss": "Wushoolay"
+  },
+  {
+    "wowId": 19965,
+    "raid": "Zul'Gurub",
+    "boss": "Wushoolay"
+  },
+  {
+    "wowId": 19941,
+    "raid": "Zul'Gurub",
+    "boss": "Wushoolay"
+  },
+  {
+    "wowId": 19945,
+    "raid": "Zul'Gurub",
+    "boss": "Gahz'ranka"
+  },
+  {
+    "wowId": 19944,
+    "raid": "Zul'Gurub",
+    "boss": "Gahz'ranka"
+  },
+  {
+    "wowId": 19947,
+    "raid": "Zul'Gurub",
+    "boss": "Gahz'ranka"
+  },
+  {
+    "wowId": 19946,
+    "raid": "Zul'Gurub",
+    "boss": "Gahz'ranka"
+  },
+  {
+    "wowId": 22739,
+    "raid": "Zul'Gurub",
+    "boss": "Gahz'ranka"
+  },
+  {
+    "wowId": 19902,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19897,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19896,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19899,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 20260,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 20266,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19898,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19901,
+    "raid": "Zul'Gurub",
+    "boss": "High Priest Thekal"
+  },
+  {
+    "wowId": 19910,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19909,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19913,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19912,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19922,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19914,
+    "raid": "Zul'Gurub",
+    "boss": "High Priestess Arlokk"
+  },
+  {
+    "wowId": 19885,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19891,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19890,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19884,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19886,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19875,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19888,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19929,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19894,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19889,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19887,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19892,
+    "raid": "Zul'Gurub",
+    "boss": "Jin'do the Hexxer"
+  },
+  {
+    "wowId": 19857,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 20257,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 20264,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 19855,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 19802,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 19876,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 19856,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 19861,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 19853,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 19862,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 19864,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 19865,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 19852,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 19859,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 19854,
+    "raid": "Zul'Gurub",
+    "boss": "Hakkar"
+  },
+  {
+    "wowId": 22721,
+    "raid": "Zul'Gurub",
+    "boss": "Shared Loot"
+  },
+  {
+    "wowId": 22722,
+    "raid": "Zul'Gurub",
+    "boss": "Shared Loot"
+  },
+  {
+    "wowId": 22720,
+    "raid": "Zul'Gurub",
+    "boss": "Shared Loot"
+  },
+  {
+    "wowId": 22718,
+    "raid": "Zul'Gurub",
+    "boss": "Shared Loot"
+  },
+  {
+    "wowId": 22711,
+    "raid": "Zul'Gurub",
+    "boss": "Shared Loot"
+  },
+  {
+    "wowId": 22712,
+    "raid": "Zul'Gurub",
+    "boss": "Shared Loot"
+  },
+  {
+    "wowId": 22715,
+    "raid": "Zul'Gurub",
+    "boss": "Shared Loot"
+  },
+  {
+    "wowId": 22714,
+    "raid": "Zul'Gurub",
+    "boss": "Shared Loot"
+  },
+  {
+    "wowId": 22716,
+    "raid": "Zul'Gurub",
+    "boss": "Shared Loot"
+  },
+  {
+    "wowId": 22713,
+    "raid": "Zul'Gurub",
+    "boss": "Shared Loot"
+  }
+]

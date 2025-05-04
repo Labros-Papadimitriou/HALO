@@ -7,7 +7,7 @@ const NAMESPACE = 'static-classic1x-eu'
 const REGION = 'eu'
 const LOCALE = 'en_GB'
 const BASE_URL = `https://${REGION}.api.blizzard.com`
-const TOKEN = 'EU1tlb4U1Lht3688XBoOqvH4uSVxBQ1xVe'
+const TOKEN = 'EURPIlWTqPtPGWgTrvGCRGXZGd2EXEH2qQ'
 
 // ✅ This fetches the main item data (name, quality, class, etc)
 async function fetchItemData(id: number) {
@@ -32,7 +32,7 @@ async function fetchItemMedia(id: number) {
 }
 
 async function main() {
-  const raw = await fs.readFile('items_to_import.json', 'utf-8')
+  const raw = await fs.readFile('zg_items.json', 'utf-8')
   const items = JSON.parse(raw)
 
   const db = await open({ filename: '../../loot-council.db', driver: sqlite3.Database })
