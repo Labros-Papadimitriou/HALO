@@ -14,3 +14,7 @@ export const addLootHistory = async (entry: LootHistoryEntry): Promise<number> =
   const res = await axios.post(API_URL, entry)
   return res.data.id
 }
+
+export const deleteLootHistory = async (id: number): Promise<void> => {
+  await axios.delete(`http://localhost:3001/api/lootHistory/${id}`);
+};

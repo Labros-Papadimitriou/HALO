@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { getAllLootHistory, addLootHistory } from '../models/lootHistory.model'
+import { getAllLootHistory, addLootHistory, deleteLootHistory } from '../models/lootHistory.model'
 import { LootHistoryEntry } from '../types/lootHistory'
 
 export async function getLootHistoryHandler(_req: Request, res: Response) {
@@ -19,4 +19,16 @@ export async function addLootHistoryHandler(
 
   const id = await addLootHistory(member_id, item_id, date, note, council_note)
   res.json({ id })
+}
+
+export async function deleteLootHistoryHandler(req: Request, res: Response): Promise<void> {
+  const { id } = req.params;
+
+  if (!id) {
+    res.status(400).json({ error: 'Missing ID' });
+    return;
+  }
+
+  await deleteLootHistory(Number(id));
+  res.status(204).send(); // No content
 }

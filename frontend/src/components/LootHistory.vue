@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import { getAllLootHistory, addLootHistory } from '../api/lootHistoryApi'
+import { getAllLootHistory, addLootHistory, deleteLootHistory } from '../api/lootHistoryApi'
 import { getAllMembers } from '../api/memberApi'
 import { getAllItems } from '../api/itemApi'
 import type { FullLootHistoryRecord, LootHistoryEntry } from '../types/lootHistory'
@@ -95,7 +95,6 @@ function getWowheadHtml(entry: FullLootHistoryRecord) {
   `
 }
 
-
 function handleDateClick(event: MouseEvent) {
   const input = event.target as HTMLInputElement
   event.preventDefault()
@@ -107,6 +106,25 @@ async function submitLoot() {
   loot.value = await getAllLootHistory()
   showModal.value = false
 }
+
+function editEntry(entry: FullLootHistoryRecord) {
+  form.value = {
+    member_id: members.value.find(m => m.name === entry.raider)?.id || 0,
+    item_id: items.value.find(i => i.name === entry.item)?.id || 0,
+    date: entry.date,
+    note: entry.note || '',
+    council_note: entry.council_note || ''
+  }
+  showModal.value = true
+}
+
+async function deleteEntry(id: number) {
+  if (confirm('Are you sure you want to delete this loot entry?')) {
+    await deleteLootHistory(id)
+    loot.value = await getAllLootHistory()
+  }
+}
+
 </script>
 
 <template>
@@ -135,7 +153,7 @@ async function submitLoot() {
 
     <!-- Right: Add Loot Button -->
     <button @click="showModal = true" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded">
-      ➕ Add Loot
+      Add Loot
     </button>
   </div>
 
@@ -148,26 +166,19 @@ async function submitLoot() {
           <th @click="sortBy('date')" class="p-3 text-left cursor-pointer">Date</th>
           <th class="p-3 text-left">Note</th>
           <th class="p-3 text-left">Council Note</th>
+          <th class="p-3 text-left">Actions</th> <!-- New column -->
         </tr>
       </thead>
+
       <tbody>
         <tr v-for="entry in filteredLoot" :key="entry.id" class="hover:bg-[#383a40]">
-          <td
-            class="p-3 border-b border-[#333] font-semibold"
-            :style="{ color: classColors[entry.class.replace(' ', '')] || '#aaa' }"
-          >
+          <td class="p-3 border-b border-[#333] font-semibold" :style="{ color: classColors[entry.class.replace(' ', '')] || '#aaa' }">
             {{ entry.raider }}
           </td>
-          <td
-            class="p-3 border-b border-[#333] font-semibold"
-            :style="{ color: classColors[entry.class.replace(' ', '')] || '#aaa' }"
-          >
+          <td class="p-3 border-b border-[#333] font-semibold" :style="{ color: classColors[entry.class.replace(' ', '')] || '#aaa' }">
             {{ entry.class }}
           </td>
-          <td
-            class="p-3 border-b border-[#333] flex items-center gap-2 font-medium"
-            v-html="getWowheadHtml(entry)"
-          ></td>
+          <td class="p-3 border-b border-[#333] flex items-center gap-2 font-medium" v-html="getWowheadHtml(entry)"></td>
           <td class="p-3 border-b border-[#333]">{{ entry.date }}</td>
           <td class="p-3 border-b border-[#333] text-gray-300 italic">
             {{ entry.note || '—' }}
@@ -175,8 +186,13 @@ async function submitLoot() {
           <td class="p-3 border-b border-[#333] text-gray-400 italic">
             {{ entry.council_note || '—' }}
           </td>
+          <td class="p-3 border-b border-[#333] flex gap-2">
+            <button @click="editEntry(entry)" class="text-yellow-400 hover:text-yellow-500">✏️</button>
+            <button @click="deleteEntry(entry.id)" class="text-red-500 hover:text-red-600">🗑️</button>
+          </td>
         </tr>
       </tbody>
+
     </table>
 
     <!-- Modal -->

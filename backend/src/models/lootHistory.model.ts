@@ -50,3 +50,8 @@ export async function addLootHistory(
 
   return result.lastID!
 }
+
+export async function deleteLootHistory(id: number): Promise<void> {
+  await db.run('DELETE FROM loot_history WHERE id = ?', id);
+}
+
