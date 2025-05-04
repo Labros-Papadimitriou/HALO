@@ -110,7 +110,7 @@ async function submitLoot() {
   }
 
   loot.value = await getAllLootHistory()
-  showModal.value = false
+  resetForm()
   editingId.value = null
 }
 
@@ -132,6 +132,17 @@ async function deleteLoot(id: number) {
     loot.value = await getAllLootHistory()
   }
 }
+
+function resetForm() {
+  form.value = {
+    member_id: 0,
+    item_id: 0,
+    date: new Date().toISOString().split('T')[0],
+    note: '',
+    council_note: ''
+  }
+}
+
 
 </script>
 
@@ -174,7 +185,7 @@ async function deleteLoot(id: number) {
           <th @click="sortBy('date')" class="p-3 text-left cursor-pointer">Date</th>
           <th class="p-3 text-left">Note</th>
           <th class="p-3 text-left">Council Note</th>
-          <th class="p-3 text-left">Actions</th> <!-- New column -->
+          <th class="p-3 text-left">Actions</th>
         </tr>
       </thead>
 
@@ -194,7 +205,7 @@ async function deleteLoot(id: number) {
           <td class="p-3 border-b border-[#333] text-gray-400 italic">
             {{ entry.council_note || '—' }}
           </td>
-          <td class="p-3 border-b border-[#333] text-right">
+          <td class="p-3 border-b border-[#333]">
             <button @click="editLoot(entry)" class="text-yellow-400 hover:text-yellow-500 mr-2">✏️</button>
             <button @click="deleteLoot(entry.id)" class="text-red-400 hover:text-red-500">🗑️</button>
           </td>
