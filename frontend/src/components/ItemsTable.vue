@@ -7,15 +7,6 @@ import { rarityColors } from '../constants/colors'
 // Reactive item data
 const items = ref<Item[]>([])
 
-// Tooltip setup
-onMounted(async () => {
-  items.value = await getAllItems()
-  await nextTick()
-  if ((window as any).WH?.Tooltip?.setup) {
-    (window as any).WH.Tooltip.setup()
-  }
-})
-
 // Filters
 const filters = ref({
   name: '',
@@ -24,6 +15,11 @@ const filters = ref({
   subclass: '',
   raid: '',
   boss: ''
+})
+
+// Tooltip setup
+onMounted(async () => {
+  items.value = await getAllItems()
 })
 
 // Unique values
@@ -44,34 +40,36 @@ const filteredItems = computed(() =>
 
 <template>
   <div>
-    <!-- Filters -->
-    <div class="flex flex-wrap gap-3 mb-4 text-sm">
-      <input
-        v-model="filters.name"
-        type="text"
-        placeholder="Search name"
-        class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1"
-      />
-      <select v-model="filters.slot" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer">
-        <option value="">All Slots</option>
-        <option v-for="s in unique('inventory_type').value" :key="s" :value="s">{{ s }}</option>
-      </select>
-      <select v-model="filters.class" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer">
-        <option value="">All Classes</option>
-        <option v-for="c in unique('item_class').value" :key="c" :value="c">{{ c }}</option>
-      </select>
-      <select v-model="filters.subclass" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer">
-        <option value="">All Subclasses</option>
-        <option v-for="sc in unique('item_subclass').value" :key="sc" :value="sc">{{ sc }}</option>
-      </select>
-      <select v-model="filters.raid" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer">
-        <option value="">All Raids</option>
-        <option v-for="r in unique('raid').value" :key="r" :value="r">{{ r }}</option>
-      </select>
-      <select v-model="filters.boss" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer">
-        <option value="">All Bosses</option>
-        <option v-for="b in unique('boss').value" :key="b" :value="b">{{ b }}</option>
-      </select>
+    <!-- Filter bar (matches LootHistory) -->
+    <div class="flex justify-between items-center mb-4">
+      <!-- Left: Filters -->
+      <div class="flex flex-wrap gap-2 items-center text-sm">
+        <input
+          v-model="filters.name"
+          placeholder="Search Item"
+          class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1"
+        />
+        <select v-model="filters.slot" class="text-sm cursor-pointer bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1">
+          <option value="">All Slots</option>
+          <option v-for="s in unique('inventory_type').value" :key="s" :value="s">{{ s }}</option>
+        </select>
+        <select v-model="filters.class" class="text-sm cursor-pointer bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1">
+          <option value="">All Classes</option>
+          <option v-for="c in unique('item_class').value" :key="c" :value="c">{{ c }}</option>
+        </select>
+        <select v-model="filters.subclass" class="text-sm cursor-pointer bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1">
+          <option value="">All Subclasses</option>
+          <option v-for="sc in unique('item_subclass').value" :key="sc" :value="sc">{{ sc }}</option>
+        </select>
+        <select v-model="filters.raid" class="text-sm cursor-pointer bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1">
+          <option value="">All Raids</option>
+          <option v-for="r in unique('raid').value" :key="r" :value="r">{{ r }}</option>
+        </select>
+        <select v-model="filters.boss" class="text-sm cursor-pointer bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1">
+          <option value="">All Bosses</option>
+          <option v-for="b in unique('boss').value" :key="b" :value="b">{{ b }}</option>
+        </select>
+      </div>
     </div>
 
     <!-- Table -->
