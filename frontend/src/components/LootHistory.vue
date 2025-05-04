@@ -13,6 +13,7 @@ const members = ref<Member[]>([])
 const items = ref<Item[]>([])
 const showModal = ref(false)
 const editingId = ref<number | null>(null)
+const deleteTargetId = ref<number | null>(null)
 const form = ref<LootHistoryEntry>({
   member_id: 0,
   item_id: 0,
@@ -126,10 +127,11 @@ function editLoot(entry: FullLootHistoryRecord) {
   showModal.value = true
 }
 
-async function deleteLoot(id: number) {
-  if (confirm('Are you sure you want to delete this loot entry?')) {
-    await deleteLootHistory(id)
+async function handleDelete() {
+  if (deleteTargetId.value) {
+    await deleteLootHistory(deleteTargetId.value)
     loot.value = await getAllLootHistory()
+    deleteTargetId.value = null
   }
 }
 
@@ -141,6 +143,20 @@ function resetForm() {
     note: '',
     council_note: ''
   }
+  editingId.value = null
+}
+
+function cancelModal() {
+  resetForm()
+  showModal.value = false
+}
+
+function applyDisenchantPreset() {
+  const disenchantRaider = members.value.find(m => m.name === 'Karthasar')
+  if (disenchantRaider) {
+    form.value.member_id = disenchantRaider.id ?? 0
+  }
+  form.value.note = 'disenchant'
 }
 
 
@@ -207,17 +223,25 @@ function resetForm() {
           </td>
           <td class="p-3 border-b border-[#333]">
             <button @click="editLoot(entry)" class="text-yellow-400 hover:text-yellow-500 mr-2">✏️</button>
-            <button @click="deleteLoot(entry.id)" class="text-red-400 hover:text-red-500">🗑️</button>
+            <button @click="deleteTargetId = entry.id" class="text-red-400 hover:text-red-600 text-sm">
+              🗑
+            </button>
           </td>
         </tr>
       </tbody>
-
     </table>
 
     <!-- Modal -->
     <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div class="bg-[#2b2d31] p-6 rounded-lg w-[400px] shadow-xl">
-        <h3 class="text-lg font-semibold mb-4">
+      <div class="relative bg-[#2b2d31] p-6 rounded-lg w-[400px] shadow-xl">
+        <!-- Close X -->
+        <button
+          @click="cancelModal"
+          class="absolute top-2 right-3 text-gray-400 hover:text-white text-4xl font-extrabold leading-none"
+        >
+          &times;
+        </button>
+        <h3 class="text-lg font-semibold mb-4 text-center">
           {{ editingId ? 'Edit Loot' : 'Add Loot' }}
         </h3>
 
@@ -266,12 +290,37 @@ function resetForm() {
           <input v-model="form.council_note" type="text" class="w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1" />
         </div>
 
-        <div class="flex justify-end gap-2 mt-4">
-          <button @click="() => { showModal = false; editingId = null }" class="bg-gray-600 px-3 py-1 rounded text-white">
-            Cancel
+        <div class="flex justify-between items-center mt-4">
+          <button @click="applyDisenchantPreset" class="text-sm text-gray-300 hover:text-white px-2 py-1 border border-gray-500 rounded">
+          🧪 Disenchant
           </button>
-          <button @click="submitLoot" class="bg-blue-600 px-3 py-1 rounded text-white">
-            {{ editingId ? 'Save' : 'Add' }}
+          <div class="flex gap-2">
+            <button @click="resetForm" class="bg-gray-600 px-3 py-1 rounded text-white">Reset</button>
+            <button @click="submitLoot" class="bg-blue-600 px-3 py-1 rounded text-white">
+              {{ editingId ? 'Save' : 'Add' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      v-if="deleteTargetId !== null"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+    >
+      <div class="bg-[#2b2d31] text-white p-4 rounded-lg w-[300px] text-center shadow-lg">
+        <p class="mb-4">Are you sure you want to delete this loot entry?</p>
+        <div class="flex justify-center gap-4">
+          <button
+            @click="handleDelete"
+            class="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded"
+          >
+            Yes, Delete
+          </button>
+          <button
+            @click="deleteTargetId = null"
+            class="bg-gray-500 hover:bg-gray-600 px-4 py-1 rounded"
+          >
+            Cancel
           </button>
         </div>
       </div>
