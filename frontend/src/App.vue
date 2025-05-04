@@ -20,6 +20,7 @@
       </nav>
 
       <div class="p-6">
+        <MemberTable v-if="activeTab === 'Members Table'" />
         <ItemTable v-if="activeTab === 'Items Table'" />
         <LootHistory v-if="activeTab === 'Loot History'" />
       </div>
@@ -30,10 +31,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import LootHistory from './components/LootHistory.vue'
+import MemberTable from './components/MemberTable.vue'
 import ItemTable from './components/ItemsTable.vue'
 import LandingPage from './components/LandingPage.vue'
 
 const entered = ref(false)
-const tabs = ['Items Table', 'Loot History']
+const tabs = ['Members Table', 'Items Table', 'Loot History']
 const activeTab = ref('Loot History')
 </script>
