@@ -6,7 +6,6 @@ import { getAllMembers } from '../api/memberApi';
 import { getAllItems } from '../api/itemApi';
 import type { Item } from '../types/item';
 import { rarityColors } from '../constants/colors'
-import type { FullLootHistoryRecord } from '../types/lootHistory';
 
 const route = useRoute()
 const memberId = Number(route.params.id)

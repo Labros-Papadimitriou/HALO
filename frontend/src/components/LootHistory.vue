@@ -7,7 +7,9 @@ import type { FullLootHistoryRecord, LootHistoryEntry } from '../types/lootHisto
 import { classColors, rarityColors } from '../constants/colors'
 import type { Member } from '../types/member'
 import type { Item } from '../types/item'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const loot = ref<FullLootHistoryRecord[]>([])
 const members = ref<Member[]>([])
 const items = ref<Item[]>([])
@@ -158,6 +160,10 @@ function applyDisenchantPreset() {
   }
   form.value.note = 'disenchant'
 }
+
+function goToCompare() {
+  router.push('/compare')
+}
 </script>
 
 <template>
@@ -182,7 +188,7 @@ function applyDisenchantPreset() {
       <button @click="resetFilters" class="bg-[#444] text-white px-3 py-1 rounded border border-[#666]">
         Reset
       </button>
-      <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded">
+      <button @click="goToCompare" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded">
         Compare
       </button>
     </div>
@@ -216,7 +222,9 @@ function applyDisenchantPreset() {
             {{ entry.class }}
           </td>
           <td class="p-3 border-b border-[#333] flex items-center gap-2 font-medium" v-html="getWowheadHtml(entry)"></td>
-          <td class="p-3 border-b border-[#333]">{{ entry.date }}</td>
+          <td class="p-3 border-b border-[#333]">
+            {{ new Date(entry.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) }}
+          </td>
           <td class="p-3 border-b border-[#333] text-gray-300 italic">
             {{ entry.note || '—' }}
           </td>
