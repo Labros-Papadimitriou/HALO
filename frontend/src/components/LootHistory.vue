@@ -184,7 +184,11 @@ function applyDisenchantPreset() {
       <button @click="resetFilters" class="bg-[#444] text-white px-3 py-1 rounded border border-[#666]">
         Reset
       </button>
+      <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded">
+        Compare
+      </button>
     </div>
+
 
     <!-- Right: Add Loot Button -->
     <button @click="showModal = true" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded">
