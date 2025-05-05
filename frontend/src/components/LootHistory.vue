@@ -158,8 +158,6 @@ function applyDisenchantPreset() {
   }
   form.value.note = 'disenchant'
 }
-
-
 </script>
 
 <template>

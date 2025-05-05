@@ -1,5 +1,5 @@
 export interface Member {
-    id?: number
+    id: number
     name: string
     class: string
     spec: string

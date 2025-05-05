@@ -1,13 +1,16 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import MemberTable from './components/MemberTable.vue'
-  import ItemTable from './components/ItemsTable.vue'
-  import LootHistory from './components/LootHistory.vue'
-  import LandingPage from './components/LandingPage.vue'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import LandingPage from './components/LandingPage.vue'
 
-  const entered = ref(false)
-  const tabs = ['Members Table', 'Items Table', 'Loot History']
-  const activeTab = ref('Loot History')
+const entered = ref(false)
+const router = useRouter()
+
+const tabs = [
+  { label: 'Members', path: '/members' },
+  { label: 'Items', path: '/items' },
+  { label: 'Loot', path: '/loot' }
+]
 </script>
 
 <template>
@@ -20,32 +23,32 @@
         <h1 class="text-3xl font-extrabold tracking-wide text-white drop-shadow-glow ml-2">
           HALO
         </h1>
-        <!-- Center: Tabs -->
+
+        <!-- Center: Router Tabs -->
         <div class="flex gap-4">
           <button
             v-for="tab in tabs"
-            :key="tab"
-            @click="activeTab = tab"
-            :class="[
-              'px-4 py-2 rounded font-semibold transition-colors',
-              activeTab === tab
-                ? 'bg-blue-600 text-white'
-                : 'bg-[#3f4147] text-gray-300 hover:bg-[#4e5056]'
-            ]"
+            :key="tab.path"
+            @click="router.push(tab.path)"
+            class="px-4 py-2 rounded font-semibold transition-colors"
+            :class="{
+              'bg-blue-600 text-white': $route.path === tab.path,
+              'bg-[#3f4147] text-gray-300 hover:bg-[#4e5056]': $route.path !== tab.path
+            }"
           >
-            {{ tab }}
+            {{ tab.label }}
           </button>
         </div>
-        <!-- Right: Profile area -->
+
+        <!-- Right: Avatar -->
         <div class="flex items-center gap-4">
-          <!-- Circle avatar placeholder -->
           <div class="w-10 h-10 bg-gray-500 rounded-full border border-gray-300"></div>
         </div>
       </nav>
+
+      <!-- Route Display -->
       <div class="p-6">
-        <MemberTable v-if="activeTab === 'Members Table'" />
-        <ItemTable v-if="activeTab === 'Items Table'" />
-        <LootHistory v-if="activeTab === 'Loot History'" />
+        <router-view />
       </div>
     </div>
   </div>
