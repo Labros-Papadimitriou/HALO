@@ -1,0 +1,22 @@
+# Node dependencies
+node_modules/
+
+# TypeScript build output
+dist/
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# SQLite DB file
+*.sqlite
+*.sqlite3
+
+# Local environment variables
+.env
+.env.*
+
+# IDE/editor settings
+.vscode/
