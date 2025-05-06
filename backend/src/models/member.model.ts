@@ -1,5 +1,5 @@
 import { Database } from 'sqlite'
-import type { Member } from '../types/member'
+import type { Member } from '../types/member.js'
 
 let db: Database
 

@@ -1,5 +1,5 @@
 import { Database } from 'sqlite'
-import type { Item } from '../types/item'
+import type { Item } from '../types/item.js'
 
 let db: Database
 

@@ -1,8 +1,8 @@
 import sqlite3 from 'sqlite3'
 import { open, Database } from 'sqlite'
-import { setLootHistoryDB } from './models/lootHistory.model'
-import { setItemDB } from './models/item.model'
-import { setMemberDB } from './models/member.model'
+import { setLootHistoryDB } from './models/lootHistory.model.js'
+import { setItemDB } from './models/item.model.js'
+import { setMemberDB } from './models/member.model.js'
 
 let db: Database | undefined
 

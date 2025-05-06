@@ -16,15 +16,13 @@ const filters = ref({
 })
 
 const uniqueClasses = computed(() => [...new Set(members.value.map(m => m.class))])
-const uniqueRanks = computed(() => [...new Set(members.value.map(m => m.rank))])
-const uniqueProfessions = computed(() => [...new Set(members.value.map(m => m.professions))])
 const uniqueRoles = computed(() => [...new Set(members.value.map(m => m.role))])
 
 const filteredMembers = computed(() => {
   return members.value.filter(m =>
     (!filters.value.class || m.class === filters.value.class) &&
-    (!filters.value.rank || m.rank === filters.value.rank) &&
-    (!filters.value.profession || m.professions === filters.value.profession) &&
+    // (!filters.value.rank || m.rank === filters.value.rank) &&
+    // (!filters.value.profession || m.professions === filters.value.profession) &&
     (!filters.value.role || m.role === filters.value.role)
   )
 })
@@ -47,14 +45,14 @@ function goToDetails(id: number) {
         <option value="">All Classes</option>
         <option v-for="cls in uniqueClasses" :key="cls" :value="cls">{{ cls }}</option>
       </select>
-      <select v-model="filters.rank" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1">
+      <!-- <select v-model="filters.rank" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1">
         <option value="">All Ranks</option>
         <option v-for="r in uniqueRanks" :key="r" :value="r">{{ r }}</option>
       </select>
       <select v-model="filters.profession" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1">
         <option value="">All Professions</option>
         <option v-for="p in uniqueProfessions" :key="p" :value="p">{{ p }}</option>
-      </select>
+      </select> -->
       <select v-model="filters.role" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1">
         <option value="">All Roles</option>
         <option v-for="r in uniqueRoles" :key="r" :value="r">{{ r }}</option>

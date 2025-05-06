@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import { getAllMembers, addMember } from '../models/member.model'
-import type { Member } from '../types/member'
+import { getAllMembers, addMember } from '../models/member.model.js'
+import type { Member } from '../types/member.js'
 
 export async function getMembersHandler(_req: Request, res: Response): Promise<void> {
   const members = await getAllMembers()

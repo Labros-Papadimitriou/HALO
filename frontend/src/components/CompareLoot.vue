@@ -6,15 +6,16 @@ import type { Member } from '../types/member'
 import { getAllItems } from '../api/itemApi'
 import type { Item } from '../types/item'
 import { getAllMembers } from '../api/memberApi'
+import type { FullLootHistoryRecord } from '../types/lootHistory'
 
 const memberMap = ref<Record<string, Member>>({})
-const grouped = ref<{ [date: string]: Record<string, string[]> }>({})
+const grouped = ref<{ [date: string]: Record<string, Item[]> }>({});
 const allRaiders = ref<Member[]>([])
 const items = ref<Item[]>([])
-const selectedRaiders = ref(Array(7).fill(''))
+const selectedRaiders = ref<string[]>(Array(7).fill(''));
 
 onMounted(async () => {
-  const raw = await getAllLootHistory()
+  const raw: FullLootHistoryRecord[] = await getAllLootHistory()
   const allItems = await getAllItems()
   const members = await getAllMembers()
 
@@ -39,7 +40,7 @@ onMounted(async () => {
   }
 
   grouped.value = temp
-  allRaiders.value = Array.from(raiderSet)
+  allRaiders.value = Array.from(raiderSet).map(name => memberMap.value[name]).filter(Boolean) as Member[]
   items.value = allItems
 })
 
@@ -52,7 +53,7 @@ onMounted(async () => {
 
     <!-- Raider Selector -->
     <div class="flex justify-center gap-4 mb-6">
-      <div v-for="(slot, index) in selectedRaiders.length" :key="index" class="flex flex-col items-center">
+      <div v-for="(_, index) in selectedRaiders.length" :key="index" class="flex flex-col items-center">
         <label class="text-sm mb-1 text-gray-300" >Raider {{ index + 1 }}</label>
         <select
           v-model="selectedRaiders[index]"
@@ -61,11 +62,11 @@ onMounted(async () => {
           <option value="">—</option>
           <option
             v-for="r in allRaiders"
-            :key="r"
-            :value="r"
-            :style="{ color: classColors[memberMap[r]?.class?.replace(' ', '')] || '#ccc' }"
+            :key="r.name"
+            :value="r.name"
+            :style="{ color: classColors[memberMap[r.name]?.class?.replace(' ', '')] || '#ccc' }"
           >
-            {{ r }}
+            {{ r.name }}
           </option>
         </select>
       </div>

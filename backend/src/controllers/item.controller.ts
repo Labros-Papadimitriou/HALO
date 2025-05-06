@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import { getAllItems, addItem } from '../models/item.model'
-import type { Item } from '../types/item'
+import { getAllItems, addItem } from '../models/item.model.js'
+import type { Item } from '../types/item.js'
 
 export async function getItemsHandler(_req: Request, res: Response): Promise<void> {
   const items = await getAllItems()

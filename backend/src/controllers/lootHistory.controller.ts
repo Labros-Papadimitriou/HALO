@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import { getAllLootHistory, addLootHistory, deleteLootHistory, updateLootHistory } from '../models/lootHistory.model'
-import { LootHistoryEntry } from '../types/lootHistory'
+import { getAllLootHistory, addLootHistory, deleteLootHistory, updateLootHistory } from '../models/lootHistory.model.js'
+import { LootHistoryEntry } from '../types/lootHistory.js'
 
 export async function getLootHistoryHandler(_req: Request, res: Response) {
   const loot = await getAllLootHistory()

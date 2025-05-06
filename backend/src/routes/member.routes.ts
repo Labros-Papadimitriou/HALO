@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { addMemberHandler, getMembersHandler } from '../controllers/member.controller'
+import { addMemberHandler, getMembersHandler } from '../controllers/member.controller.js'
 
 const router = Router()
 
