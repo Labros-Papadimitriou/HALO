@@ -7,7 +7,7 @@ const NAMESPACE = 'static-classic1x-eu'
 const REGION = 'eu'
 const LOCALE = 'en_GB'
 const BASE_URL = `https://${REGION}.api.blizzard.com`
-const TOKEN = 'EURPIlWTqPtPGWgTrvGCRGXZGd2EXEH2qQ'
+const TOKEN = 'EU4r9841NK24t3aoBMqI8LxHbnz5OwIkHL'
 
 // ✅ This fetches the main item data (name, quality, class, etc)
 async function fetchItemData(id: number) {

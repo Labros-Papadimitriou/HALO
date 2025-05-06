@@ -7,6 +7,8 @@ import { rarityColors } from '../constants/colors'
 // Reactive item data
 const items = ref<Item[]>([])
 
+const removeDuplicates = ref(false)
+
 // Filters
 const filters = ref({
   name: '',
@@ -37,8 +39,8 @@ onMounted(async () => {
 const unique = (key: keyof Item) =>
   computed(() => [...new Set(items.value.map(i => i[key]))])
 
-const filteredItems = computed(() =>
-  items.value.filter(i =>
+  const filteredItems = computed(() => {
+  let result = items.value.filter(i =>
     (!filters.value.name || i.name.toLowerCase().includes(filters.value.name.toLowerCase())) &&
     (!filters.value.slot || i.inventory_type === filters.value.slot) &&
     (!filters.value.class || i.item_class === filters.value.class) &&
@@ -46,7 +48,18 @@ const filteredItems = computed(() =>
     (!filters.value.raid || i.raid === filters.value.raid) &&
     (!filters.value.boss || i.boss === filters.value.boss)
   )
-)
+
+  if (removeDuplicates.value) {
+    const seen = new Set()
+    result = result.filter(i => {
+      if (seen.has(i.wow_id)) return false
+      seen.add(i.wow_id)
+      return true
+    })
+  }
+
+  return result
+})
 </script>
 
 <template>
@@ -83,6 +96,10 @@ const filteredItems = computed(() =>
         <button @click="resetFilters" class="bg-[#444] text-white px-3 py-1 rounded border border-[#666]">
           Reset
         </button>
+        <label class="flex items-center gap-1 text-sm text-white">
+          <input type="checkbox" v-model="removeDuplicates" class="accent-blue-500" />
+          Hide Duplicates
+        </label>
       </div>
     </div>
 
