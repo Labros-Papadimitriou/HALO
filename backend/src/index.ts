@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: process.env.ENV_PATH || '.env' });
+
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -15,7 +18,6 @@ const port = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-// Initialize SQLite DB
 initDB();
 
 // API Routes
@@ -34,10 +36,6 @@ app.use(express.static(clientPath));
 
 // Handle client-side routing in Vue (history mode)
 const indexPath = path.join(clientPath, 'index.html');
-console.log('Resolved __dirname:', __dirname);
-console.log('Resolved clientPath:', clientPath);
-console.log('Resolved indexPath:', indexPath);
-console.log('index.html exists:', fs.existsSync(indexPath));
 
 if (!fs.existsSync(indexPath)) {
   console.error('❌ index.html not found at:', indexPath);

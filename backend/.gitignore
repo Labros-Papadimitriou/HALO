@@ -10,9 +10,6 @@ logs/
 *.log
 npm-debug.log*
 
-# SQLite DB file
-database.db
-
 # Local environment variables
 .env
 .env.*

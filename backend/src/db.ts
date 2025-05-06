@@ -1,30 +1,29 @@
-import sqlite3 from 'sqlite3'
-import { open, Database } from 'sqlite'
-import { setLootHistoryDB } from './models/lootHistory.model.js'
-import { setItemDB } from './models/item.model.js'
-import { setMemberDB } from './models/member.model.js'
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
+import { setLootHistoryDB } from './models/lootHistory.model.js';
+import { setItemDB } from './models/item.model.js';
+import { setMemberDB } from './models/member.model.js';
 
-let db: Database | undefined
+dotenv.config();
+
+export const db = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
 
 export async function initDB() {
-  db = await open({
-    filename: './database.db',
-    driver: sqlite3.Database,
-  })
-
-  await db.exec(`
+  await db.query(`
     CREATE TABLE IF NOT EXISTS members (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      id SERIAL PRIMARY KEY,
       name TEXT NOT NULL,
       class TEXT NOT NULL,
       spec TEXT NOT NULL,
       role TEXT CHECK(role IN ('social', 'raider', 'council', 'master'))
     );
-  `)
-  
-  await db.exec(`
+  `);
+
+  await db.query(`
     CREATE TABLE IF NOT EXISTS items (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      id SERIAL PRIMARY KEY,
       wow_id INTEGER,
       name TEXT NOT NULL,
       icon TEXT NOT NULL,
@@ -35,33 +34,22 @@ export async function initDB() {
       raid TEXT,
       boss TEXT
     );
-  `)
-  
-  await db.exec(`
+  `);
+
+  await db.query(`
     CREATE TABLE IF NOT EXISTS loot_history (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      member_id INTEGER NOT NULL,
-      item_id INTEGER NOT NULL,
+      id SERIAL PRIMARY KEY,
+      member_id INTEGER NOT NULL REFERENCES members(id),
+      item_id INTEGER NOT NULL REFERENCES items(id),
       date TEXT NOT NULL,
       note TEXT,
-      council_note TEXT,
-      FOREIGN KEY (member_id) REFERENCES members(id),
-      FOREIGN KEY (item_id) REFERENCES items(id)
+      council_note TEXT
     );
-  `)  
+  `);
 
-  setMemberDB(db)
-  setItemDB(db)
-  setLootHistoryDB(db)
+  setMemberDB(db);
+  setItemDB(db);
+  setLootHistoryDB(db);
 
-  console.log('📦 SQLite database initialized.')
-}
-
-async function ensureColumnExists(table: string, column: string, definition: string) {
-  const colInfo = await db!.all(`PRAGMA table_info(${table});`)
-  const exists = colInfo.some(c => c.name === column)
-  if (!exists) {
-    await db!.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${definition};`)
-    console.log(`🔧 Added column '${column}' to '${table}'`)
-  }
+  console.log('🐘 PostgreSQL database initialized.');
 }
