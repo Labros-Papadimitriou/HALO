@@ -8,7 +8,7 @@ let db: Database | undefined
 
 export async function initDB() {
   db = await open({
-    filename: './loot-council.db',
+    filename: './database.db',
     driver: sqlite3.Database,
   })
 

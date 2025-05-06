@@ -35,7 +35,7 @@ async function main() {
   const raw = await fs.readFile('mc_items.json', 'utf-8')
   const items = JSON.parse(raw)
 
-  const db = await open({ filename: '../../loot-council.db', driver: sqlite3.Database })
+  const db = await open({ filename: '../../database.db', driver: sqlite3.Database })
 
   for (const entry of items) {
     try {

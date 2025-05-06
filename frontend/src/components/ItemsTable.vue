@@ -7,7 +7,7 @@ import { rarityColors } from '../constants/colors'
 // Reactive item data
 const items = ref<Item[]>([])
 
-const removeDuplicates = ref(false)
+const removeDuplicates = ref(true)
 
 // Filters
 const filters = ref({
