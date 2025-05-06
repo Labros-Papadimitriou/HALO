@@ -11,7 +11,7 @@ const memberMap = ref<Record<string, Member>>({})
 const grouped = ref<{ [date: string]: Record<string, string[]> }>({})
 const allRaiders = ref<Member[]>([])
 const items = ref<Item[]>([])
-const selectedRaiders = ref(['', '', '', ''])
+const selectedRaiders = ref(Array(7).fill(''))
 
 onMounted(async () => {
   const raw = await getAllLootHistory()
@@ -52,7 +52,7 @@ onMounted(async () => {
 
     <!-- Raider Selector -->
     <div class="flex justify-center gap-4 mb-6">
-      <div v-for="(slot, index) in 4" :key="index" class="flex flex-col items-center">
+      <div v-for="(slot, index) in selectedRaiders.length" :key="index" class="flex flex-col items-center">
         <label class="text-sm mb-1 text-gray-300" >Raider {{ index + 1 }}</label>
         <select
           v-model="selectedRaiders[index]"
