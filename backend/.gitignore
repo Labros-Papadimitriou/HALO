@@ -11,8 +11,7 @@ logs/
 npm-debug.log*
 
 # SQLite DB file
-*.sqlite
-*.sqlite3
+database.db
 
 # Local environment variables
 .env
