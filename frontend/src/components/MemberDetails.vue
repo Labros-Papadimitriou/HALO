@@ -51,9 +51,9 @@ function assignItemToSlot(slot: string, item: Item | null) {
         <div class="text-lg font-bold border-b border-gray-600 pb-2">Character Info</div>
         <div><strong>Name:</strong> {{member?.name}}</div>
         <div><strong>Role:</strong> {{member?.role[0].toUpperCase()}}{{ member?.role.substring(1) }}</div>
-        <div><strong>Professions:</strong> Alchemy / Herbalism</div>
-        <div><strong>PvP Rank:</strong> Field Marshal</div>
-        <div><strong>Enchants:</strong> Fully Enchanted</div>
+        <div><strong>Professions:</strong> -</div>
+        <div><strong>PvP Rank:</strong> -</div>
+        <div><strong>Enchants:</strong> -</div>
       </div>
 
       <!-- Gear Grid -->
@@ -106,10 +106,10 @@ function assignItemToSlot(slot: string, item: Item | null) {
       <!-- Right Placeholder -->
       <div class="w-64 text-sm space-y-3">
         <div class="text-lg font-bold border-b border-gray-600 pb-2">Summary</div>
-        <div><strong>Gear Score:</strong> 340</div>
-        <div><strong>Spell Power:</strong> 350</div>
-        <div><strong>Hit Chance:</strong> 4%</div>
-        <div><strong>Crit Chance:</strong> 10%</div>
+        <div><strong>Gear Score:</strong> -</div>
+        <div><strong>Spell Power:</strong> -</div>
+        <div><strong>Hit Chance:</strong> -</div>
+        <div><strong>Crit Chance:</strong> -</div>
       </div>
     </div>
   </div>

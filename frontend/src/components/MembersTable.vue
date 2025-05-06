@@ -83,8 +83,8 @@ function goToDetails(id: number) {
           >
             {{ member.class }}
           </td>
-          <td class="p-3 border-b border-[#333]">{{ 'R14' }}</td>
-          <td class="p-3 border-b border-[#333]">{{ 'Fishing' }}</td>
+          <td class="p-3 border-b border-[#333]">{{ '-' }}</td>
+          <td class="p-3 border-b border-[#333]">{{ '-' }}</td>
           <td class="p-3 border-b border-[#333]">{{ member.role }}</td>
         </tr>
       </tbody>
