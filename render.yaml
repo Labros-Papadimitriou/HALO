@@ -1,14 +1,16 @@
+databases:
+  - name: halo-db
+    plan: free
+
 services:
   - type: web
     name: halo-app
     env: node
-    region: oregon
-    plan: free
+    rootDir: backend
     buildCommand: |
-      cd frontend && npm install && npm run build &&
+      cd ../frontend && npm install && npm run build &&
       cd ../backend && npm install && npm run build
     startCommand: node dist/index.js
-    rootDir: backend
     envVars:
       - key: NODE_ENV
         value: production
@@ -16,7 +18,3 @@ services:
         fromDatabase:
           name: halo-db
           property: connectionString
-
-databases:
-  - name: halodb
-    plan: free
