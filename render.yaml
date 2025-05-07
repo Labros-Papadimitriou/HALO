@@ -1,7 +1,3 @@
-databases:
-  - name: halo-db
-    plan: free
-
 services:
   - type: web
     name: halo.xepper
@@ -13,8 +9,12 @@ services:
     startCommand: node dist/index.js
     envVars:
       - key: NODE_ENV
-        value: production
+        value: development
       - key: DATABASE_URL
         fromDatabase:
           name: halo-db
           property: connectionString
+
+databases:
+  - name: halo-db
+    plan: free
