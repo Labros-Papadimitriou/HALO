@@ -1,14 +1,23 @@
-import { Pool } from 'pg';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
+import { Pool } from 'pg';
 import { setLootHistoryDB } from './models/lootHistory.model.js';
 import { setItemDB } from './models/item.model.js';
 import { setMemberDB } from './models/member.model.js';
 
-dotenv.config();
 
 export const db = new Pool({
   connectionString: process.env.DATABASE_URL,
+  max: 10,
 });
+
 
 export async function initDB() {
   await db.query(`
