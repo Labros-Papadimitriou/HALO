@@ -4,7 +4,7 @@ databases:
 
 services:
   - type: web
-    name: halo-app
+    name: halo.xepper
     env: node
     rootDir: backend
     buildCommand: |
