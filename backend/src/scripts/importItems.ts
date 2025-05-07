@@ -1,78 +1,75 @@
-import fs from 'fs/promises'
-import axios from 'axios'
-import sqlite3 from 'sqlite3'
-import { open } from 'sqlite'
+import fs from 'fs/promises';
+import axios from 'axios';
+import { db } from '../db.js';
 
-const NAMESPACE = 'static-classic1x-eu'
-const REGION = 'eu'
-const LOCALE = 'en_GB'
-const BASE_URL = `https://${REGION}.api.blizzard.com`
-const TOKEN = 'EU4r9841NK24t3aoBMqI8LxHbnz5OwIkHL'
+const NAMESPACE = 'static-classic1x-eu';
+const REGION = 'eu';
+const LOCALE = 'en_GB';
+const BASE_URL = `https://${REGION}.api.blizzard.com`;
+const TOKEN = process.env.BLIZZARD_TOKEN || 'YOUR_TOKEN_HERE';
 
-// ✅ This fetches the main item data (name, quality, class, etc)
 async function fetchItemData(id: number) {
-  const url = `${BASE_URL}/data/wow/item/${id}?namespace=${NAMESPACE}&locale=${LOCALE}`
+  const url = `${BASE_URL}/data/wow/item/${id}?namespace=${NAMESPACE}&locale=${LOCALE}`;
   const res = await axios.get(url, {
     headers: {
       Authorization: `Bearer ${TOKEN}`,
     },
-  })
-  return res.data
+  });
+  return res.data;
 }
 
-// ✅ This fetches the item's icon
 async function fetchItemMedia(id: number) {
-  const url = `${BASE_URL}/data/wow/media/item/${id}?namespace=${NAMESPACE}`
+  const url = `${BASE_URL}/data/wow/media/item/${id}?namespace=${NAMESPACE}`;
   const res = await axios.get(url, {
     headers: {
       Authorization: `Bearer ${TOKEN}`,
     },
-  })
-  return res.data.assets?.find((a: any) => a.key === 'icon')?.value || null
+  });
+  return res.data.assets?.find((a: any) => a.key === 'icon')?.value || null;
 }
 
 async function main() {
-  const raw = await fs.readFile('mc_items.json', 'utf-8')
-  const items = JSON.parse(raw)
-
-  const db = await open({ filename: '../../database.db', driver: sqlite3.Database })
+  const raw = await fs.readFile('mc_items.json', 'utf-8');
+  const items = JSON.parse(raw);
 
   for (const entry of items) {
     try {
-      const itemData = await fetchItemData(entry.wowId)
-      const icon = await fetchItemMedia(entry.wowId)
+      const itemData = await fetchItemData(entry.wowId);
+      const icon = await fetchItemMedia(entry.wowId);
 
-      const name = itemData.name
-      const quality = itemData.quality.type.toLowerCase()
-      const inventoryType = itemData.inventory_type?.type || null
-      const itemClass = itemData.item_class?.name || null
-      const itemSubclass = itemData.item_subclass?.name || null
+      const name = itemData.name;
+      const quality = itemData.quality?.type?.toLowerCase();
+      const inventoryType = itemData.inventory_type?.type?.toLowerCase() || null;
+      const itemClass = itemData.item_class?.name || null;
+      const itemSubclass = itemData.item_subclass?.name || null;
 
-      await db.run(
-        `INSERT OR IGNORE INTO items (
+      await db.query(
+        `INSERT INTO items (
           wow_id, name, icon, quality, inventory_type,
           item_class, item_subclass, raid, boss
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        )
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        ON CONFLICT (wow_id) DO NOTHING`,
         [
           entry.wowId,
           name.trim(),
           icon,
-          quality?.toLowerCase(),
-          inventoryType?.toLowerCase(),
+          quality,
+          inventoryType,
           itemClass,
           itemSubclass,
           entry.raid,
           entry.boss,
         ]
-      )      
+      );
 
-      console.log(`✅ Imported: ${name}`)
+      console.log(`✅ Imported: ${name}`);
     } catch (err: any) {
-      console.error(`❌ Failed for item ${entry.wowId}`, err.message || err)
+      console.error(`❌ Failed for item ${entry.wowId}`, err.message || err);
     }
   }
 
-  await db.close()
+  await db.end();
 }
 
-main()
+main();
