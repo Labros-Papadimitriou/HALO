@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type { Member } from '../types/member'
 
-const API_URL = 'http://localhost:3001/api/members'
+const API_URL = 'https://halo-xepper.onrender.com/api/members'
 
 export const getAllMembers = async (): Promise<Member[]> => {
   const res = await axios.get(API_URL)

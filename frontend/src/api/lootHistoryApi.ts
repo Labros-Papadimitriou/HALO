@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type { LootHistoryEntry, FullLootHistoryRecord } from '../types/lootHistory'
 
-const API_URL = 'http://localhost:3001/api/lootHistory'
+const API_URL = 'https://halo-xepper.onrender.com/api/lootHistory'
 
 // GET returns the joined records (with item/raider names)
 export const getAllLootHistory = async (): Promise<FullLootHistoryRecord[]> => {
@@ -16,9 +16,9 @@ export const addLootHistory = async (entry: LootHistoryEntry): Promise<number> =
 }
 
 export const deleteLootHistory = async (id: number): Promise<void> => {
-  await axios.delete(`http://localhost:3001/api/lootHistory/${id}`);
+  await axios.delete(`https://halo-xepper.onrender.com/api/lootHistory/${id}`);
 };
 
 export const updateLootHistory = async (id: number, entry: LootHistoryEntry): Promise<void> => {
-  await axios.put(`http://localhost:3001/api/lootHistory/${id}`, entry);
+  await axios.put(`https://halo-xepper.onrender.com/api/lootHistory/${id}`, entry);
 };
