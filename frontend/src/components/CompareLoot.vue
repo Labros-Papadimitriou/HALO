@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { getAllLootHistory } from '../api/lootHistoryApi'
 import { classColors, rarityColors } from '../constants/colors'
 import type { Member } from '../types/member'
@@ -9,10 +9,13 @@ import { getAllMembers } from '../api/memberApi'
 import type { FullLootHistoryRecord } from '../types/lootHistory'
 
 const memberMap = ref<Record<string, Member>>({})
-const grouped = ref<{ [date: string]: Record<string, Item[]> }>({});
+const grouped = ref<{ [date: string]: Record<string, Item[]> }>({})
 const allRaiders = ref<Member[]>([])
 const items = ref<Item[]>([])
-const selectedRaiders = ref<string[]>(Array(7).fill(''));
+const selectedRaiders = ref<string[]>(Array(7).fill(''))
+  const resetRaiders = () => {
+  selectedRaiders.value = Array(7).fill('');
+};
 
 onMounted(async () => {
   const raw: FullLootHistoryRecord[] = await getAllLootHistory()
@@ -44,7 +47,24 @@ onMounted(async () => {
   items.value = allItems
 })
 
+const filteredGrouped = computed(() => {
+  const result: typeof grouped.value = {}
+
+  for (const [date, raidersItems] of Object.entries(grouped.value)) {
+    // Check if any selected raider has items for this date
+    const hasItems = selectedRaiders.value.some(raider => {
+      return raider && raidersItems[raider]?.length
+    })
+
+    if (hasItems) {
+      result[date] = raidersItems
+    }
+  }
+
+  return result
+})
 </script>
+
 
 <template>
   <div class="p-6 text-white">
@@ -52,24 +72,34 @@ onMounted(async () => {
     <h2 class="text-2xl font-bold text-center mb-6">Compare Loot</h2>
 
     <!-- Raider Selector -->
-    <div class="flex justify-center gap-4 mb-6">
-      <div v-for="(_, index) in selectedRaiders.length" :key="index" class="flex flex-col items-center">
-        <label class="text-sm mb-1 text-gray-300" >Raider {{ index + 1 }}</label>
-        <select
-          v-model="selectedRaiders[index]"
-          class="bg-[#2b2d31] text-white border border-[#444] rounded px-3 py-1 w-40 cursor-pointer"
-        >
-          <option value="">—</option>
-          <option
-            v-for="r in allRaiders"
-            :key="r.name"
-            :value="r.name"
-            :style="{ color: classColors[memberMap[r.name]?.class?.replace(' ', '')] || '#ccc' }"
+    <div class="flex flex-col items-center gap-4 mb-6">
+      <div class="flex justify-center gap-4">
+        <div v-for="(_, index) in selectedRaiders.length" :key="index" class="flex flex-col items-center">
+          <label class="text-sm mb-1 text-gray-300">Raider {{ index + 1 }}</label>
+          <select
+            v-model="selectedRaiders[index]"
+            class="bg-[#2b2d31] text-white border border-[#444] rounded px-3 py-1 w-40 cursor-pointer"
           >
-            {{ r.name }}
-          </option>
-        </select>
+            <option value="">—</option>
+            <option
+              v-for="r in allRaiders"
+              :key="r.name"
+              :value="r.name"
+              :style="{ color: classColors[memberMap[r.name]?.class?.replace(' ', '')] || '#ccc' }"
+            >
+              {{ r.name }}
+            </option>
+          </select>
+        </div>
       </div>
+
+      <!-- Reset Button -->
+      <button
+        @click="resetRaiders"
+        class="mt-4 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Reset Selection
+      </button>
     </div>
 
     <!-- Table -->
@@ -88,7 +118,7 @@ onMounted(async () => {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(group, date) in grouped" :key="date">
+        <tr v-for="(group, date) in filteredGrouped" :key="date">
           <td
             v-for="raider in selectedRaiders.filter(Boolean)"
             :key="raider"
