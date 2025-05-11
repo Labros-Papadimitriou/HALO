@@ -1,53 +1,74 @@
-import dotenv from 'dotenv';
-dotenv.config({ path: process.env.ENV_PATH || '.env' });
+import dotenv from 'dotenv'
+dotenv.config({ path: process.env.ENV_PATH || '.env' })
 
-import express from 'express';
-import cors from 'cors';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import fs from 'fs';
+import express from 'express'
+import cors from 'cors'
+import path from 'path'
+import { fileURLToPath } from 'url'
+import fs from 'fs'
 
-import lootRoutes from './routes/lootHistory.routes.js';
-import memberRoutes from './routes/member.routes.js';
-import itemRoutes from './routes/item.routes.js';
-import { initDB } from './db.js';
+import lootRoutes from './routes/lootHistory.routes.js'
+import memberRoutes from './routes/member.routes.js'
+import itemRoutes from './routes/item.routes.js'
+import { initDB } from './db.js'
 
-const app = express();
-const port = process.env.PORT || 3001;
+const app = express()
+const port = process.env.PORT || 3001
 
-app.use(cors());
-app.use(express.json());
+// === CORS Setup ===
+const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || ['http://localhost:5173']
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+}))
 
-initDB();
+app.use(express.json())
 
-// API Routes
-app.use('/api/lootHistory', lootRoutes);
-app.use('/api/members', memberRoutes);
-app.use('/api/items', itemRoutes);
+// === Init DB ===
+initDB()
 
-// --- Serve Frontend ---
-// This resolves __dirname in ESM
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// === Auth Middleware ===
+const requireAuth = (req: any, res: any, next: any) => {
+  const authHeader = req.headers['authorization']
+  const token = authHeader?.split(' ')[1]
 
-// Serve frontend static files
-const clientPath = path.resolve(__dirname, '../../frontend/dist');
-app.use(express.static(clientPath));
+  if (token !== process.env.API_SECRET) {
+    return res.status(403).json({ error: 'Unauthorized' })
+  }
 
-// Handle client-side routing in Vue (history mode)
-const indexPath = path.join(clientPath, 'index.html');
+  next()
+}
 
+// === Apply Auth to API Routes ===
+app.use('/api', requireAuth)
+app.use('/api/lootHistory', lootRoutes)
+app.use('/api/members', memberRoutes)
+app.use('/api/items', itemRoutes)
+
+// === Serve Frontend ===
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+const clientPath = path.resolve(__dirname, '../../frontend/dist')
+app.use(express.static(clientPath))
+
+const indexPath = path.join(clientPath, 'index.html')
 if (!fs.existsSync(indexPath)) {
-  console.error('❌ index.html not found at:', indexPath);
-  process.exit(1);
+  console.error('index.html not found at:', indexPath)
+  process.exit(1)
 }
 
 app.get('/{*splat}', (req, res) => {
-  res.sendFile('index.html', { root: clientPath });
-});
+  res.sendFile('index.html', { root: clientPath })
+})
 
-
-// Start server
+// === Start Server ===
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+  console.log(`Server running at http://localhost:${port}`)
+})
