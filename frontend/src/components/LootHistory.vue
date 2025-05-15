@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import { getAllLootHistory, addLootHistory, deleteLootHistory, updateLootHistory } from '../api/lootHistoryApi'
+import { getAllLootHistory, addLootHistory, deleteLootHistory, updateLootHistory, importLootHistoryFromJson } from '../api/lootHistoryApi'
 import { getAllMembers } from '../api/memberApi'
 import { getAllItems } from '../api/itemApi'
-import type { FullLootHistoryRecord, LootHistoryEntry } from '../types/lootHistory'
+import type { FullLootHistoryRecord, ImportJsonEntry, LootHistoryEntry } from '../types/lootHistory'
 import { classColors, rarityColors } from '../constants/colors'
 import type { Member } from '../types/member'
 import type { Item } from '../types/item'
@@ -14,8 +14,11 @@ const loot = ref<FullLootHistoryRecord[]>([])
 const members = ref<Member[]>([])
 const items = ref<Item[]>([])
 const showModal = ref(false)
+const showImportModal = ref(false)
+const importJson = ref('')
 const editingId = ref<number | null>(null)
 const deleteTargetId = ref<number | null>(null)
+const isImporting = ref(false)
 const form = ref<LootHistoryEntry>({
   member_id: 0,
   item_id: 0,
@@ -164,6 +167,23 @@ function applyDisenchantPreset() {
 function goToCompare() {
   router.push('/compare')
 }
+
+async function submitImport() {
+  isImporting.value = true
+  try {
+    const entry: ImportJsonEntry = JSON.parse(importJson.value)
+    await importLootHistoryFromJson(entry)
+    loot.value = await getAllLootHistory()
+
+    importJson.value = ''
+    showImportModal.value = false
+  } catch (e) {
+    console.error('Error:', e)
+    alert('Invalid JSON format.')
+  } finally {
+    isImporting.value = false
+  }
+}
 </script>
 
 <template>
@@ -188,16 +208,22 @@ function goToCompare() {
       <button @click="resetFilters" class="bg-[#444] text-white px-3 py-1 rounded border border-[#666]">
         Reset
       </button>
-      <button @click="goToCompare" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded">
+      <button @click="goToCompare" class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-1 rounded">
         Compare
       </button>
     </div>
 
 
     <!-- Right: Add Loot Button -->
-    <button @click="showModal = true" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded">
-      Add Loot
-    </button>
+    <!-- Right: Import + Add Loot Buttons -->
+    <div class="flex gap-2">
+      <button @click="showImportModal = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded">
+        Import
+      </button>
+      <button @click="showModal = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded">
+        Add Loot
+      </button>
+    </div>
   </div>
 
     <table class="w-full bg-[#2b2d31] text-sm text-gray-200 border border-[#3f4147] rounded shadow">
@@ -331,6 +357,38 @@ function goToCompare() {
             class="bg-gray-500 hover:bg-gray-600 px-4 py-1 rounded"
           >
             Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Import Modal -->
+    <div v-if="showImportModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div class="bg-[#2b2d31] p-6 rounded-lg w-[500px] shadow-xl relative text-white">
+        <button
+          @click="showImportModal = false"
+          class="absolute top-2 right-3 text-gray-400 hover:text-white text-3xl font-bold leading-none"
+        >
+          &times;
+        </button>
+        <h3 class="text-lg font-semibold mb-4 text-center">Import Loot History (Paste JSON)</h3>
+        
+        <textarea
+          v-model="importJson"
+          rows="10"
+          class="w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1 mb-4"
+        ></textarea>
+
+        <div class="flex justify-end gap-2">
+          <button @click="showImportModal = false" class="bg-gray-600 px-4 py-1 rounded">
+            Cancel
+          </button>
+          <button
+            @click="submitImport"
+            :disabled="isImporting"
+            class="bg-green-600 px-4 py-1 rounded flex items-center gap-2 disabled:opacity-50"
+          >
+            <span v-if="isImporting" class="loader border-t-white border-2 rounded-full w-4 h-4 animate-spin"></span>
+            <span>{{ isImporting ? 'Importing...' : 'Import' }}</span>
           </button>
         </div>
       </div>

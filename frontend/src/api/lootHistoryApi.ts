@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { LootHistoryEntry, FullLootHistoryRecord } from '../types/lootHistory'
+import type { LootHistoryEntry, FullLootHistoryRecord, ImportJsonEntry } from '../types/lootHistory'
 
 const BASE_URL = import.meta.env.VITE_API_URL
 const API_URL = `${BASE_URL}/lootHistory`
@@ -20,6 +20,13 @@ export const addLootHistory = async (entry: LootHistoryEntry): Promise<number> =
     Authorization: `Bearer ${import.meta.env.VITE_API_SECRET}`,
   }})
   return res.data.id
+}
+
+export const importLootHistoryFromJson = async (entry: ImportJsonEntry): Promise<void> => {
+  await axios.post(`${API_URL}/import`, entry, {
+    headers: {
+    Authorization: `Bearer ${import.meta.env.VITE_API_SECRET}`,
+  }})
 }
 
 export const deleteLootHistory = async (id: number): Promise<void> => {

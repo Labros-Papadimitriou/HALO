@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { getAllLootHistory, addLootHistory, deleteLootHistory, updateLootHistory } from '../models/lootHistory.model.js'
 import { LootHistoryEntry } from '../types/lootHistory.js'
+import { loadAndImportLoot } from '../scripts/importLootHistory.js'
 
 export async function getLootHistoryHandler(_req: Request, res: Response) {
   const loot = await getAllLootHistory()
@@ -21,6 +22,15 @@ export async function addLootHistoryHandler(
   res.json({ id })
 }
 
+export async function importLootHistoryHandler(
+  req: Request<{}, any, LootHistoryEntry>,
+  res: Response
+): Promise<any> {
+  const jsonData: any = req.body
+  await loadAndImportLoot(jsonData)
+  res.status(200).json({ success: true });
+}
+
 export async function deleteLootHistoryHandler(req: Request, res: Response): Promise<void> {
   const { id } = req.params;
 
@@ -30,7 +40,7 @@ export async function deleteLootHistoryHandler(req: Request, res: Response): Pro
   }
 
   await deleteLootHistory(Number(id));
-  res.status(204).send(); // No content
+  res.status(204).send();
 }
 
 export async function updateLootHistoryHandler(req: Request, res: Response): Promise<void> {

@@ -1,8 +1,6 @@
-import { readFileSync } from 'fs';
-import path from 'path';
 import { db } from '../db.js';
 
-interface LootEntryRaw {
+export interface LootEntryRaw {
   player: string;
   date: string;
   itemID: number;
@@ -10,12 +8,9 @@ interface LootEntryRaw {
   note?: string;
 }
 
-const loadAndImportLoot = async () => {
-  const rawData = readFileSync(path.join('./loot_history.json'), 'utf-8');
-  const entries: LootEntryRaw[] = JSON.parse(rawData);
-
+export const loadAndImportLoot = async (parsedJsonData: any) => {
   let inserted = 0;
-  for (const entry of entries) {
+  for (const entry of parsedJsonData) {
     const playerName = entry.player.split('-')[0];
     const itemWowId = entry.itemID;
 
@@ -51,7 +46,4 @@ const loadAndImportLoot = async () => {
   }
 
   console.log(`✅ Imported ${inserted} loot entries.`);
-  process.exit();
 };
-
-loadAndImportLoot();
