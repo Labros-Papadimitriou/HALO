@@ -1,3 +1,27 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const code = ref('')
+const error = ref(false)
+const showInput = ref(false)
+
+const emit = defineEmits(['enter'])
+
+function tryUnlock() {
+  if (code.value.toLowerCase().trim() === 'isuckxepperballs') {
+    const expiration = Date.now() + 1000 * 60 * 60 * 24
+    localStorage.setItem('unlocked', JSON.stringify({ value: true, expiresAt: expiration }))
+    error.value = false
+    emit('enter')
+    router.push('/loot')
+  } else {
+    error.value = true
+  }
+}
+</script>
+
 <template>
   <div class="min-h-screen bg-black flex flex-col items-center justify-center text-white relative overflow-hidden">
     <!-- Background image -->
@@ -10,25 +34,33 @@
     <!-- Overlay -->
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent z-10"></div>
 
-    <!-- Title (top center) -->
+    <!-- Title and Input -->
     <div class="absolute top-10 z-20 text-center">
       <h1
-        class="text-9xl font-black text-white drop-shadow-glow animate-fade-in cursor-pointer hover:text-blue-500 transition"
-        @click="$emit('enter')"
+        class="text-9xl font-black text-white drop-shadow-glow animate-fade-in mb-6 cursor-pointer hover:text-blue-500 transition"
+        @click="showInput = true"
       >
         HALO
       </h1>
-      <h2 class="text-4xl mt-2 font-semibold text-gray-200 drop-shadow-md animate-fade-in delay-200">
-        Loot Council
-      </h2>
+
+      <transition name="fade">
+        <div v-if="showInput">
+          <input
+            v-model="code"
+            @keyup.enter="tryUnlock"
+            class="px-4 py-2 rounded text-center text-lg outline-none transition duration-300"
+            :class="[
+              error ? 'ring-2 ring-red-500' : '',
+              'bg-[#1e1f22]/10 text-[#1e1f22]/50 border border-[#1e1f22]/20'
+            ]"
+          />
+
+          <p v-if="error" class="text-red-400 mt-2 animate-fade-in"></p>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
-
-  
-<script setup lang="ts">
-// Emits 'enter' to parent
-</script>
 
 <style scoped>
 @keyframes fade-in {
@@ -42,16 +74,15 @@
   }
 }
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.6s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
 .animate-fade-in {
   animation: fade-in 1s ease-out both;
-}
-
-.delay-200 {
-  animation-delay: 0.2s;
-}
-
-.delay-500 {
-  animation-delay: 0.5s;
 }
 
 .drop-shadow-glow {

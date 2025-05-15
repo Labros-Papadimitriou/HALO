@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import LandingPage from './components/LandingPage.vue'
 import Toast from './components/Toast.vue'
@@ -17,6 +17,13 @@ const tabs = [
 function showToast(msg: string) {
   toastRef.value?.showToast(msg)
 }
+
+onMounted(() => {
+  if (localStorage.getItem('unlocked') === 'true') {
+    entered.value = true
+  }
+})
+
 </script>
 
 <template>
