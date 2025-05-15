@@ -7,6 +7,8 @@ import { getAllItems } from '../api/itemApi'
 import type { Item } from '../types/item'
 import { getAllMembers } from '../api/memberApi'
 import type { FullLootHistoryRecord } from '../types/lootHistory'
+import Multiselect from 'vue-multiselect'
+import 'vue-multiselect/dist/vue-multiselect.css'
 
 const memberMap = ref<Record<string, Member>>({})
 const grouped = ref<{ [date: string]: Record<string, Item[]> }>({})
@@ -76,20 +78,15 @@ const filteredGrouped = computed(() => {
       <div class="flex justify-center gap-4">
         <div v-for="(_, index) in selectedRaiders.length" :key="index" class="flex flex-col items-center">
           <label class="text-sm mb-1 text-gray-300">Raider {{ index + 1 }}</label>
-          <select
+          <Multiselect
             v-model="selectedRaiders[index]"
-            class="bg-[#2b2d31] text-white border border-[#444] rounded px-3 py-1 w-40 cursor-pointer"
-          >
-            <option value="">—</option>
-            <option
-              v-for="r in allRaiders"
-              :key="r.name"
-              :value="r.name"
-              :style="{ color: classColors[memberMap[r.name]?.class?.replace(' ', '')] || '#ccc' }"
-            >
-              {{ r.name }}
-            </option>
-          </select>
+            :options="allRaiders.map(r => r.name)"
+            placeholder="Select Raider"
+            class="w-40"
+            :searchable="true"
+            :allowEmpty="true"
+            :close-on-select="true"
+          />
         </div>
       </div>
 

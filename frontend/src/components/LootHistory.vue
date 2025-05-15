@@ -8,6 +8,8 @@ import { classColors, rarityColors } from '../constants/colors'
 import type { Member } from '../types/member'
 import type { Item } from '../types/item'
 import { useRouter } from 'vue-router'
+import Multiselect from 'vue-multiselect'
+import 'vue-multiselect/dist/vue-multiselect.css'
 
 const { showToast } = defineProps<{
   showToast: (msg: string) => void
@@ -314,7 +316,6 @@ async function submitImport() {
             </option>
           </select>
         </div>
-
         <div class="mb-3">
           <label class="block text-sm mb-1">Item</label>
           <select v-model="form.item_id" class="cursor-pointer w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1">
