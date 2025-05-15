@@ -11,7 +11,7 @@ export interface FullLootHistoryRecord {
   raider: string
   class: string
   item: string
-  wowId: number
+  wowid: number
   icon: string
   quality: string
   date: string

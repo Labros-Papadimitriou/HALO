@@ -8,7 +8,6 @@ import { classColors, rarityColors } from '../constants/colors'
 import type { Member } from '../types/member'
 import type { Item } from '../types/item'
 import { useRouter } from 'vue-router'
-import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.css'
 
 const { showToast } = defineProps<{
@@ -70,11 +69,16 @@ const filteredLoot = computed(() => {
     )
   })
 
+  results = results.slice().sort((a, b) => {
+    const dateCompare = b.date.localeCompare(a.date)
+    if (dateCompare !== 0) return dateCompare
+    return a.raider.localeCompare(b.raider)
+  })
+
   if (sortKey.value) {
     results = results.slice().sort((a, b) => {
       const aVal = a[sortKey.value!]
       const bVal = b[sortKey.value!]
-
       return sortAsc.value
         ? String(aVal).localeCompare(String(bVal))
         : String(bVal).localeCompare(String(aVal))
@@ -83,6 +87,7 @@ const filteredLoot = computed(() => {
 
   return results
 })
+
 
 function resetFilters() {
   filters.value = {
@@ -96,8 +101,8 @@ function resetFilters() {
 function getWowheadHtml(entry: FullLootHistoryRecord) {
   return `
     <a 
-      href="https://classic.wowhead.com/item=${entry.wowId}" 
-      data-wowhead="item=${entry.wowId}&domain=classic" 
+      href="https://classic.wowhead.com/item=${entry.wowid}"
+      data-wowhead="item=${entry.wowid}&domain=classic" 
       target="_blank"
       style="color: ${rarityColors[entry.quality?.toLowerCase()] || '#fff'}; display: flex; align-items: center; gap: 0.5rem;"
       onclick="event.stopPropagation();"
@@ -132,7 +137,6 @@ async function submitLoot() {
     showToast('Failed to add loot')
   }
 }
-
 
 function editLoot(entry: FullLootHistoryRecord) {
   editingId.value = entry.id
