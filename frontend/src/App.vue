@@ -19,11 +19,20 @@ function showToast(msg: string) {
 }
 
 onMounted(() => {
-  if (localStorage.getItem('unlocked') === 'true') {
-    entered.value = true
+  try {
+    const raw = localStorage.getItem('unlocked')
+    if (raw) {
+      const parsed = JSON.parse(raw)
+      const { value, expiresAt } = parsed
+      const now = Date.now()
+      if (value === true && now < expiresAt) {
+        entered.value = true
+      }
+    }
+  } catch {
+    localStorage.removeItem('unlocked')
   }
 })
-
 </script>
 
 <template>
