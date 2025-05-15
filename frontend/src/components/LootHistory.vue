@@ -9,6 +9,10 @@ import type { Member } from '../types/member'
 import type { Item } from '../types/item'
 import { useRouter } from 'vue-router'
 
+const { showToast } = defineProps<{
+  showToast: (msg: string) => void
+}>()
+
 const router = useRouter()
 const loot = ref<FullLootHistoryRecord[]>([])
 const members = ref<Member[]>([])
@@ -109,16 +113,24 @@ function handleDateClick(event: MouseEvent) {
 }
 
 async function submitLoot() {
-  if (editingId.value) {
-    await updateLootHistory(editingId.value, form.value)
-  } else {
-    await addLootHistory(form.value)
-  }
+  try {
+    if (editingId.value) {
+      await updateLootHistory(editingId.value, form.value)
+      showToast('Loot edited!')
+    } else {
+      await addLootHistory(form.value)
+      showToast('Loot added!')
+    }
 
-  loot.value = await getAllLootHistory()
-  resetForm()
-  editingId.value = null
+    loot.value = await getAllLootHistory()
+    resetForm()
+    editingId.value = null
+  } catch (e) {
+    console.error(e)
+    showToast('Failed to add loot')
+  }
 }
+
 
 function editLoot(entry: FullLootHistoryRecord) {
   editingId.value = entry.id
@@ -133,10 +145,16 @@ function editLoot(entry: FullLootHistoryRecord) {
 }
 
 async function handleDelete() {
-  if (deleteTargetId.value) {
-    await deleteLootHistory(deleteTargetId.value)
-    loot.value = await getAllLootHistory()
-    deleteTargetId.value = null
+  try {
+    if (deleteTargetId.value) {
+      await deleteLootHistory(deleteTargetId.value)
+      loot.value = await getAllLootHistory()
+      deleteTargetId.value = null
+      showToast('Loot deleted!')
+    }
+  } catch (e) {
+    console.error(e)
+    showToast('Failed to delete loot')
   }
 }
 
@@ -174,12 +192,13 @@ async function submitImport() {
     const entry: ImportJsonEntry = JSON.parse(importJson.value)
     await importLootHistoryFromJson(entry)
     loot.value = await getAllLootHistory()
+    showToast('Loot import successful!')
 
     importJson.value = ''
     showImportModal.value = false
   } catch (e) {
     console.error('Error:', e)
-    alert('Invalid JSON format.')
+    showToast('Invalid JSON format.')
   } finally {
     isImporting.value = false
   }

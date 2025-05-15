@@ -2,15 +2,21 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import LandingPage from './components/LandingPage.vue'
+import Toast from './components/Toast.vue'
 
-const entered = ref(false)
 const router = useRouter()
+const entered = ref(false)
+const toastRef = ref<InstanceType<typeof Toast> | null>(null)
 
 const tabs = [
   { label: 'Members', path: '/members' },
   { label: 'Items', path: '/items' },
   { label: 'Loot', path: '/loot' }
 ]
+
+function showToast(msg: string) {
+  toastRef.value?.showToast(msg)
+}
 </script>
 
 <template>
@@ -46,11 +52,17 @@ const tabs = [
         </div>
       </nav>
 
+      <div class="p-6">
+        <router-view :show-toast="showToast" />
+      </div>
+
       <!-- Route Display -->
       <div class="p-6">
         <router-view />
       </div>
     </div>
+
+    <Toast ref="toastRef" />
   </div>
 </template>
 
