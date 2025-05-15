@@ -55,11 +55,6 @@ function showToast(msg: string) {
       <div class="p-6">
         <router-view :show-toast="showToast" />
       </div>
-
-      <!-- Route Display -->
-      <div class="p-6">
-        <router-view />
-      </div>
     </div>
 
     <Toast ref="toastRef" />
