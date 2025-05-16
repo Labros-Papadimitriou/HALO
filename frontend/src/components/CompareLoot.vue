@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import { getAllLootHistory } from '../api/lootHistoryApi'
 import { classColors, rarityColors } from '../constants/colors'
 import type { Member } from '../types/member'
@@ -14,10 +14,42 @@ const memberMap = ref<Record<string, Member>>({})
 const grouped = ref<{ [date: string]: Record<string, Item[]> }>({})
 const allRaiders = ref<Member[]>([])
 const items = ref<Item[]>([])
-const selectedRaiders = ref<string[]>(Array(7).fill(''))
-  const resetRaiders = () => {
-  selectedRaiders.value = Array(7).fill('');
-};
+
+const selectedRaiders = ref<string[]>(['', ''])
+  watch(
+  () => [...selectedRaiders.value],
+  (val) => {
+    console.log('Selected changed:', val)
+    const nonEmptyCount = val.filter(Boolean).length
+    const total = val.length
+
+    if (nonEmptyCount === total && total < 15) {
+      selectedRaiders.value = [...val, '']
+    }
+  }
+)
+
+const resetRaiders = () => {
+  selectedRaiders.value = ['', '']
+  selectedClass.value = ''
+}
+
+const selectedClass = ref('')
+const uniqueClasses = computed(() => {
+  const all = allRaiders.value.map(r => r.class?.trim()).filter(Boolean)
+  return [...new Set(all)]
+})
+
+watch(selectedClass, (cls) => {
+  if (!cls) return
+
+  const raidersOfClass = allRaiders.value
+    .filter(r => r.class === cls)
+    .map(r => r.name)
+
+  selectedRaiders.value = [...raidersOfClass, '']
+})
+
 
 onMounted(async () => {
   const raw: FullLootHistoryRecord[] = await getAllLootHistory()
@@ -70,8 +102,19 @@ const filteredGrouped = computed(() => {
 
 <template>
   <div class="p-6 text-white">
-    <!-- Centered Title -->
-    <h2 class="text-2xl font-bold text-center mb-6">Compare Loot</h2>
+
+    <div class="flex justify-center mb-4">
+      <label class="mr-2 font-medium text-white">Compare by Class:</label>
+      <select
+        v-model="selectedClass"
+        class="bg-[#2b2d31] text-white border border-gray-500 rounded px-3 py-1"
+      >
+        <option value="">— Select Class —</option>
+        <option v-for="cls in uniqueClasses" :key="cls" :value="cls">
+          {{ cls }}
+        </option>
+      </select>
+    </div>
 
     <!-- Raider Selector -->
     <div class="flex flex-col items-center gap-4 mb-6">
