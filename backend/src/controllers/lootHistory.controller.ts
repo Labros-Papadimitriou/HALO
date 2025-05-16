@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { getAllLootHistory, addLootHistory, deleteLootHistory, updateLootHistory } from '../models/lootHistory.model.js'
 import { LootHistoryEntry } from '../types/lootHistory.js'
-import { loadAndImportLoot } from '../scripts/importLootHistory.js'
+import { loadAndImportLoot, updatePriorityNotes } from '../scripts/importLootHistory.js'
 
 export async function getLootHistoryHandler(_req: Request, res: Response) {
   const loot = await getAllLootHistory()
@@ -12,13 +12,13 @@ export async function addLootHistoryHandler(
   req: Request<{}, any, LootHistoryEntry>,
   res: Response
 ): Promise<any> {
-  const { member_id, item_id, date, note, council_note } = req.body
+  const { member_id, item_id, date, note, council_note, priority_note } = req.body
 
   if (!member_id || !item_id || !date) {
     return res.status(400).json({ error: 'Missing required fields' })
   }
 
-  const id = await addLootHistory(member_id, item_id, date, note, council_note)
+  const id = await addLootHistory(member_id, item_id, date, note, council_note, priority_note)
   res.json({ id })
 }
 
@@ -27,11 +27,11 @@ export async function importLootHistoryHandler(
   res: Response
 ): Promise<any> {
   const jsonData: any = req.body
-  await loadAndImportLoot(jsonData)
+  await updatePriorityNotes(jsonData)
   res.status(200).json({ success: true });
 }
 
-export async function deleteLootHistoryHandler(req: Request, res: Response): Promise<void> {
+export async function deleteLootHistoryHandler(req: Request<{ id: string }>, res: Response): Promise<void> {
   const { id } = req.params;
 
   if (!id) {
@@ -43,15 +43,15 @@ export async function deleteLootHistoryHandler(req: Request, res: Response): Pro
   res.status(204).send();
 }
 
-export async function updateLootHistoryHandler(req: Request, res: Response): Promise<void> {
+export async function updateLootHistoryHandler(req: Request<{ id: string }, any, LootHistoryEntry>, res: Response): Promise<void> {
   const { id } = req.params;
-  const { member_id, item_id, date, note, council_note } = req.body;
+  const { member_id, item_id, date, note, council_note, priority_note } = req.body;
 
   if (!id || !member_id || !item_id || !date) {
     res.status(400).json({ error: 'Missing required fields' });
     return;
   }
 
-  await updateLootHistory(Number(id), member_id, item_id, date, note, council_note);
+  await updateLootHistory(Number(id), member_id, item_id, date, note, council_note, priority_note);
   res.status(200).json({ success: true });
 }

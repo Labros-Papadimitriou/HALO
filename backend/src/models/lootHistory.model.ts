@@ -23,8 +23,9 @@ export async function getAllLootHistory(): Promise<any[]> {
       i.boss AS boss,
       lh.date,
       lh.note,
-      lh.council_note
-    FROM loot_history lh
+      lh.council_note,
+      lh.priority_note
+    FROM loot_history lh 
     JOIN members m ON lh.member_id = m.id
     JOIN items i ON lh.item_id = i.id
     ORDER BY lh.date DESC
@@ -37,13 +38,14 @@ export async function addLootHistory(
   item_id: number,
   date: string,
   note?: string,
-  council_note?: string
+  council_note?: string,
+  priority_note?: string
 ): Promise<number> {
   const result = await db.query(
-    `INSERT INTO loot_history (member_id, item_id, date, note, council_note)
-     VALUES ($1, $2, $3, $4, $5)
+    `INSERT INTO loot_history (member_id, item_id, date, note, council_note, priority_note)
+     VALUES ($1, $2, $3, $4, $5, $6)
      RETURNING id`,
-    [member_id, item_id, date, note ?? null, council_note ?? null]
+    [member_id, item_id, date, note ?? null, council_note ?? null, priority_note ?? null]
   );
   return result.rows[0].id;
 }
@@ -58,12 +60,13 @@ export async function updateLootHistory(
   item_id: number,
   date: string,
   note?: string,
-  council_note?: string
+  council_note?: string,
+  priority_note?: string
 ): Promise<void> {
   await db.query(
     `UPDATE loot_history
-     SET member_id = $1, item_id = $2, date = $3, note = $4, council_note = $5
-     WHERE id = $6`,
-    [member_id, item_id, date, note ?? null, council_note ?? null, id]
+     SET member_id = $1, item_id = $2, date = $3, note = $4, council_note = $5, priority_note = $6
+     WHERE id = $7`,
+    [member_id, item_id, date, note ?? null, council_note ?? null, priority_note ?? null, id]
   );
 }

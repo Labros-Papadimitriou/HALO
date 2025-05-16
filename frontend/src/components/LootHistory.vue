@@ -24,6 +24,7 @@ const importJson = ref('')
 const editingId = ref<number | null>(null)
 const deleteTargetId = ref<number | null>(null)
 const isImporting = ref(false)
+const filterDisenchantOnly = ref(false)
 const form = ref<LootHistoryEntry>({
   member_id: 0,
   item_id: 0,
@@ -69,6 +70,10 @@ const filteredLoot = computed(() => {
     )
   })
 
+  if (filterDisenchantOnly.value) {
+    results = results.filter(entry => entry.priority_note?.toLowerCase() === 'disenchant')
+  }
+
   results = results.slice().sort((a, b) => {
     const dateCompare = b.date.localeCompare(a.date)
     if (dateCompare !== 0) return dateCompare
@@ -87,7 +92,6 @@ const filteredLoot = computed(() => {
 
   return results
 })
-
 
 function resetFilters() {
   filters.value = {
@@ -145,7 +149,8 @@ function editLoot(entry: FullLootHistoryRecord) {
     item_id: items.value.find(i => i.name === entry.item)?.id || 0,
     date: entry.date,
     note: entry.note || '',
-    council_note: entry.council_note || ''
+    council_note: entry.council_note || '',
+    priority_note: entry.priority_note || ''
   }
   showModal.value = true
 }
@@ -227,6 +232,11 @@ async function submitImport() {
       </select>
 
       <input v-model="filters.item" placeholder="Search Item" class="text-sm cursor-pointer bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1"/>
+
+      <label class="flex items-center gap-2 text-sm text-white">
+        <input type="checkbox" v-model="filterDisenchantOnly" />
+        Only Disenchant
+      </label>
       
       <input v-model="filters.date" type="date" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer" @mousedown="handleDateClick" />
 
@@ -257,9 +267,10 @@ async function submitImport() {
           <th @click="sortBy('raider')" class="p-3 text-left cursor-pointer">Raider</th>
           <th class="p-3 text-left">Class</th>
           <th class="p-3 text-left">Item</th>
-          <th @click="sortBy('date')" class="p-3 text-left cursor-pointer">Date</th>
-          <th class="p-3 text-left">Note</th>
+          <th class="p-3 text-left">Priority Note</th>
+          <th class="p-3 text-left">Raider Note</th>
           <th class="p-3 text-left">Council Note</th>
+          <th @click="sortBy('date')" class="p-3 text-left cursor-pointer">Date</th>
           <th class="p-3 text-left">Actions</th>
         </tr>
       </thead>
@@ -273,14 +284,17 @@ async function submitImport() {
             {{ entry.class }}
           </td>
           <td class="p-3 border-b border-[#333] flex items-center gap-2 font-medium" v-html="getWowheadHtml(entry)"></td>
-          <td class="p-3 border-b border-[#333]">
-            {{ new Date(entry.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) }}
+          <td class="p-3 border-b border-[#333] text-gray-300 italic">
+            {{ entry.priority_note || '—' }}
           </td>
           <td class="p-3 border-b border-[#333] text-gray-300 italic">
             {{ entry.note || '—' }}
           </td>
           <td class="p-3 border-b border-[#333] text-gray-400 italic">
             {{ entry.council_note || '—' }}
+          </td>
+          <td class="p-3 border-b border-[#333]">
+            {{ new Date(entry.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) }}
           </td>
           <td class="p-3 border-b border-[#333]">
             <button @click="editLoot(entry)" class="text-yellow-400 hover:text-yellow-500 mr-2">✏️</button>
@@ -341,7 +355,12 @@ async function submitImport() {
         </div>
 
         <div class="mb-3">
-          <label class="block text-sm mb-1">Note</label>
+          <label class="block text-sm mb-1">Priority Note</label>
+          <input v-model="form.priority_note" type="text" class="w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1" />
+        </div>
+
+        <div class="mb-3">
+          <label class="block text-sm mb-1">Raider Note</label>
           <input v-model="form.note" type="text" class="w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1" />
         </div>
 

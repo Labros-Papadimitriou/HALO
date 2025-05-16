@@ -4,4 +4,5 @@ export interface LootHistoryEntry {
   date: string
   note?: string
   council_note?: string
+  priority_note?: string
 }
