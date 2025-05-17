@@ -7,9 +7,10 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import fs from 'fs'
 
-import lootRoutes from './routes/lootHistory.routes.js'
+import lootHistoryRoutes from './routes/lootHistory.routes.js'
 import memberRoutes from './routes/member.routes.js'
 import itemRoutes from './routes/item.routes.js'
+import authRoutes from './auth.js'
 import { initDB } from './db.js'
 
 const app = express()
@@ -45,9 +46,12 @@ const requireAuth = (req: any, res: any, next: any) => {
   next()
 }
 
+// === Discord OAuth Routes ===
+app.use('/auth', authRoutes);
+
 // === Apply Auth to API Routes ===
 app.use('/api', requireAuth)
-app.use('/api/lootHistory', lootRoutes)
+app.use('/api/lootHistory', lootHistoryRoutes)
 app.use('/api/members', memberRoutes)
 app.use('/api/items', itemRoutes)
 
