@@ -201,9 +201,9 @@ async function submitImport() {
   isImporting.value = true
   try {
     const entry: ImportJsonEntry = JSON.parse(importJson.value)
-    await importLootHistoryFromJson(entry)
+    const result = await importLootHistoryFromJson(entry) as unknown as { inserted: number }
     loot.value = await getAllLootHistory()
-    showToast('Loot import successful!')
+    showToast(`Loot import successful! ${result.inserted} items imported.`)
 
     importJson.value = ''
     showImportModal.value = false
@@ -257,8 +257,6 @@ const priorityOptions = [
       </button>
     </div>
 
-
-    <!-- Right: Add Loot Button -->
     <!-- Right: Import + Add Loot Buttons -->
     <div class="flex gap-2">
       <button @click="showImportModal = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded">

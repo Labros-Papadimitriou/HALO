@@ -5,7 +5,7 @@ const visible = ref(false)
 const message = ref('')
 const fading = ref(false)
 
-function showToast(msg: string, timeout = 2000) {
+function showToast(msg: string, timeout = 4000) {
   message.value = msg
   visible.value = true
   fading.value = false

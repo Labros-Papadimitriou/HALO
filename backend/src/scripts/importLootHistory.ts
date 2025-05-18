@@ -38,8 +38,8 @@ export const loadAndImportLoot = async (parsedJsonData: any) => {
       console.error(`Failed to insert entry for ${entry.player}, ${entry.itemID}`, err);
     }
   }
-
   console.log(`✅ Imported ${inserted} loot entries.`);
+  return inserted;
 };
 
 export const updatePriorityNotes = async (parsedJsonData: any) => {

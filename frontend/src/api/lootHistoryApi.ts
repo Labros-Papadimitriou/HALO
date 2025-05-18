@@ -23,10 +23,11 @@ export const addLootHistory = async (entry: LootHistoryEntry): Promise<number> =
 }
 
 export const importLootHistoryFromJson = async (entry: ImportJsonEntry): Promise<void> => {
-  await axios.post(`${API_URL}/import`, entry, {
+  const inserted = await axios.post(`${API_URL}/import`, entry, {
     headers: {
     Authorization: `Bearer ${import.meta.env.VITE_API_SECRET}`,
   }})
+  return inserted.data
 }
 
 export const deleteLootHistory = async (id: number): Promise<void> => {

@@ -27,8 +27,8 @@ export async function importLootHistoryHandler(
   res: Response
 ): Promise<any> {
   const jsonData: any = req.body
-  await loadAndImportLoot(jsonData)
-  res.status(200).json({ success: true });
+  const inserted = await loadAndImportLoot(jsonData)
+  res.status(200).json({ success: true, inserted });
 }
 
 export async function deleteLootHistoryHandler(req: Request<{ id: string }>, res: Response): Promise<void> {
