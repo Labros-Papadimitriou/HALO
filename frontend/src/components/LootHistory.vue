@@ -252,17 +252,23 @@ const priorityOptions = [
       <button @click="resetFilters" class="bg-[#444] text-white px-3 py-1 rounded border border-[#666]">
         Reset
       </button>
-      <button @click="goToCompare" class="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-1 rounded">
+      <button @click="goToCompare" class="bg-[#5865F2] hover:bg-[#4752C4] text-white px-4 py-1 rounded font-medium">
         Compare
       </button>
     </div>
 
     <!-- Right: Import + Add Loot Buttons -->
     <div class="flex gap-2">
-      <button @click="showImportModal = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded">
+      <button
+        @click="showImportModal = true"
+        class="bg-[#3a3b3f] hover:bg-[#4E5058] text-white px-4 py-1 rounded border border-[#555]"
+      >
         Import
       </button>
-      <button @click="showModal = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded">
+      <button
+        @click="showModal = true"
+        class="bg-[#5865F2] hover:bg-[#4752C4] text-white px-4 py-1 rounded font-medium"
+      >
         Add Loot
       </button>
     </div>
@@ -385,16 +391,27 @@ const priorityOptions = [
         </div>
 
         <div class="flex justify-between items-center mt-4">
-          <button @click="applyDisenchantPreset" class="text-sm text-gray-300 hover:text-white px-2 py-1 border border-gray-500 rounded">
+        <button
+          @click="applyDisenchantPreset"
+          class="text-sm text-gray-300 hover:text-white px-2 py-1 border border-gray-600 rounded"
+        >
           🧪 Disenchant
+        </button>
+        <div class="flex gap-2">
+          <button
+            @click="resetForm"
+            class="bg-[#3a3b3f] hover:bg-[#4E5058] px-3 py-1 rounded text-white border border-[#555]"
+          >
+            Reset
           </button>
-          <div class="flex gap-2">
-            <button @click="resetForm" class="bg-gray-600 px-3 py-1 rounded text-white">Reset</button>
-            <button @click="submitLoot" class="bg-blue-600 px-3 py-1 rounded text-white">
-              {{ editingId ? 'Save' : 'Add' }}
-            </button>
-          </div>
+          <button
+            @click="submitLoot"
+            class="bg-[#5865F2] hover:bg-[#4752C4] px-3 py-1 rounded text-white font-medium"
+          >
+            {{ editingId ? 'Save' : 'Add' }}
+          </button>
         </div>
+      </div>
       </div>
     </div>
     <div
@@ -406,13 +423,13 @@ const priorityOptions = [
         <div class="flex justify-center gap-4">
           <button
             @click="handleDelete"
-            class="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded"
+            class="bg-[#4E5058] hover:bg-[#5C5E66] text-white px-4 py-1 rounded"
           >
             Yes, Delete
           </button>
           <button
             @click="deleteTargetId = null"
-            class="bg-gray-500 hover:bg-gray-600 px-4 py-1 rounded"
+            class="bg-[#2b2d31] hover:bg-[#383a40] px-4 py-1 rounded border border-[#555] text-white"
           >
             Cancel
           </button>
@@ -421,34 +438,21 @@ const priorityOptions = [
     </div>
     <!-- Import Modal -->
     <div v-if="showImportModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div class="bg-[#2b2d31] p-6 rounded-lg w-[500px] shadow-xl relative text-white">
+      <div class="flex justify-end gap-2">
         <button
           @click="showImportModal = false"
-          class="absolute top-2 right-3 text-gray-400 hover:text-white text-3xl font-bold leading-none"
+          class="bg-[#2b2d31] hover:bg-[#383a40] px-4 py-1 rounded border border-[#555] text-white"
         >
-          &times;
+          Cancel
         </button>
-        <h3 class="text-lg font-semibold mb-4 text-center">Import Loot History (Paste JSON)</h3>
-        
-        <textarea
-          v-model="importJson"
-          rows="10"
-          class="w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1 mb-4"
-        ></textarea>
-
-        <div class="flex justify-end gap-2">
-          <button @click="showImportModal = false" class="bg-gray-600 px-4 py-1 rounded">
-            Cancel
-          </button>
-          <button
-            @click="submitImport"
-            :disabled="isImporting"
-            class="bg-green-600 px-4 py-1 rounded flex items-center gap-2 disabled:opacity-50"
-          >
-            <span v-if="isImporting" class="loader border-t-white border-2 rounded-full w-4 h-4 animate-spin"></span>
-            <span>{{ isImporting ? 'Importing...' : 'Import' }}</span>
-          </button>
-        </div>
+        <button
+          @click="submitImport"
+          :disabled="isImporting"
+          class="bg-[#5865F2] hover:bg-[#4752C4] px-4 py-1 rounded text-white font-medium flex items-center gap-2 disabled:opacity-50"
+        >
+          <span v-if="isImporting" class="loader border-t-white border-2 rounded-full w-4 h-4 animate-spin"></span>
+          <span>{{ isImporting ? 'Importing...' : 'Import' }}</span>
+        </button>
       </div>
     </div>
   </div>

@@ -11,7 +11,7 @@ const toastRef = ref<InstanceType<typeof Toast> | null>(null)
 const tabs = [
   { label: 'Members', path: '/members' },
   { label: 'Items', path: '/items' },
-  { label: 'Loot', path: '/loot' }
+  { label: 'Loot History', path: '/loot' }
 ]
 
 function showToast(msg: string) {
@@ -56,7 +56,7 @@ function logout() {
           @click="router.push(tab.path)"
           class="px-4 py-2 rounded font-semibold transition-colors"
           :class="{
-            'bg-blue-600 text-white': $route.path === tab.path,
+            'bg-[#5865F2] hover:bg-[#4752C4] text-white px-4 py-1 rounded font-medium': $route.path === tab.path,
             'bg-[#3f4147] text-gray-300 hover:bg-[#4e5056]': $route.path !== tab.path
           }"
         >
