@@ -112,7 +112,7 @@ const filteredGrouped = computed(() => {
         v-model="selectedClass"
         class="bg-[#2b2d31] text-white border border-[#444] rounded px-3 py-1"
       >
-        <option value="">— Select Class —</option>
+        <option value="">Select Class</option>
         <option v-for="cls in uniqueClasses" :key="cls" :value="cls">
           {{ cls }}
         </option>
