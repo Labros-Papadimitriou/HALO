@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { getAllLootHistory, addLootHistory, deleteLootHistory, updateLootHistory } from '../models/lootHistory.model.js'
 import { LootHistoryEntry } from '../types/lootHistory.js'
-import { loadAndImportLoot, updatePriorityNotes } from '../scripts/importLootHistory.js'
+import { loadAndImportLoot } from '../scripts/importLootHistory.js'
 
 export async function getLootHistoryHandler(_req: Request, res: Response) {
   const loot = await getAllLootHistory()
@@ -27,7 +27,7 @@ export async function importLootHistoryHandler(
   res: Response
 ): Promise<any> {
   const jsonData: any = req.body
-  await updatePriorityNotes(jsonData)
+  await loadAndImportLoot(jsonData)
   res.status(200).json({ success: true });
 }
 
