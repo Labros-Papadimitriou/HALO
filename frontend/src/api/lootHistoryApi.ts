@@ -2,7 +2,7 @@ import axios from 'axios'
 import type { LootHistoryEntry, FullLootHistoryRecord, ImportJsonEntry } from '../types/lootHistory'
 
 const BASE_URL = import.meta.env.VITE_API_URL
-const API_URL = `${BASE_URL}/lootHistory`
+const API_URL = `${BASE_URL}/api/lootHistory`
 
 // GET returns the joined records (with item/raider names)
 export const getAllLootHistory = async (): Promise<FullLootHistoryRecord[]> => {
