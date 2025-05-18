@@ -214,6 +214,15 @@ async function submitImport() {
     isImporting.value = false
   }
 }
+
+const priorityOptions = [
+  'BIS multiple phase',
+  'BIS current phase',
+  'Upgrade/MS	',
+  'OffSpec',
+  'PVP',
+  'Disenchant',
+]
 </script>
 
 <template>
@@ -356,7 +365,15 @@ async function submitImport() {
 
         <div class="mb-3">
           <label class="block text-sm mb-1">Priority Note</label>
-          <input v-model="form.priority_note" type="text" class="w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1" />
+          <select
+            v-model="form.priority_note"
+            class="cursor-pointer w-full bg-[#1e1f22] text-white border border-[#555] rounded px-2 py-1"
+          >
+            <option value="">— Select Priority —</option>
+            <option v-for="opt in priorityOptions" :key="opt" :value="opt">
+              {{ opt }}
+            </option>
+          </select>
         </div>
 
         <div class="mb-3">

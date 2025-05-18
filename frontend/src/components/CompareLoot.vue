@@ -63,6 +63,7 @@ onMounted(async () => {
     memberMap.value[m.name] = m
   })
 
+  const excludedPriorities = ['disenchant', 'banking', 'autopass', 'pass']
   for (const entry of raw) {
     raiderSet.add(entry.raider)
 
@@ -71,9 +72,12 @@ onMounted(async () => {
     if (!temp[entry.date]) temp[entry.date] = {}
     if (!temp[entry.date][entry.raider]) temp[entry.date][entry.raider] = []
 
-    if (item) {
-      temp[entry.date][entry.raider].push(item)
-    }
+    if (
+      item &&
+      !excludedPriorities.includes(entry.priority_note?.toLowerCase() || '')
+      ) {
+        temp[entry.date][entry.raider].push(item)
+      }
   }
 
   grouped.value = temp
