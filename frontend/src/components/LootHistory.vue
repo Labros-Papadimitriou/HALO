@@ -249,7 +249,7 @@ const priorityOptions = [
       
       <input v-model="filters.date" type="date" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer" @mousedown="handleDateClick" />
 
-      <button @click="resetFilters" class="bg-[#444] text-white px-3 py-1 rounded border border-[#666]">
+      <button @click="resetFilters" class=" bg-[#3a3b3f] hover:bg-[#4E5058] border border-[#555] rounded px-2 py-1 text-white">
         Reset
       </button>
       <button @click="goToCompare" class="bg-[#5865F2] hover:bg-[#4752C4] text-white px-4 py-1 rounded font-medium">

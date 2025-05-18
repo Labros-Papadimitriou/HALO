@@ -57,7 +57,7 @@ function logout() {
           class="px-4 py-2 rounded font-semibold transition-colors"
           :class="{
             'bg-[#5865F2] hover:bg-[#4752C4] text-white px-4 py-1 rounded font-medium': $route.path === tab.path,
-            'bg-[#3f4147] text-gray-300 hover:bg-[#4e5056]': $route.path !== tab.path
+            ' bg-[#3a3b3f] hover:bg-[#4E5058] border border-[#555]': $route.path !== tab.path
           }"
         >
           {{ tab.label }}
