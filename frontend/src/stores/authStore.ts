@@ -1,59 +1,70 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
+import { jwtDecode } from 'jwt-decode';
 
 export interface DiscordUser {
-  id: string;
-  username: string;
-  avatar: string | null;
-  canEdit: boolean;
-  nick: string;
+  id: string
+  username: string
+  nick?: string
+  avatar: string | null
+  canEdit: boolean
 }
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
+    token: null as string | null,
     user: null as DiscordUser | null,
     loading: false,
-    error: null as string | null,
+    error: null as string | null
   }),
+
   actions: {
     async loginWithCode(code: string) {
-      this.loading = true;
-      this.error = null;
+      this.loading = true
+      this.error = null
 
       try {
         const res = await fetch('http://localhost:3001/auth/callback', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ code }),
-        });
+          body: JSON.stringify({ code })
+        })
 
-        if (!res.ok) throw new Error('Failed to login');
+        if (!res.ok) throw new Error('Failed to login')
 
-        const data = await res.json();
-        this.user = data;
-        localStorage.setItem('authUser', JSON.stringify(data))
+        const data = await res.json()
+        this.token = data.token
+        this.user = jwtDecode<DiscordUser>(data.token);
+
+
+        localStorage.setItem('authToken', this.token ?? '')
       } catch (err: any) {
-        this.error = err.message || 'Login failed';
-        this.user = null;
+        this.error = err.message || 'Login failed'
+        this.user = null
+        this.token = null
+        localStorage.removeItem('authToken')
       } finally {
-        this.loading = false;
+        this.loading = false
       }
     },
 
     loadUserFromStorage() {
-      const raw = localStorage.getItem('authUser')
-      if (!raw) return
+      const stored = localStorage.getItem('authToken')
+      if (!stored) return
       try {
-        const data = JSON.parse(raw)
-        this.user = data
+        this.token = stored
+        this.user = jwtDecode<DiscordUser>(stored)
+
       } catch {
+        this.token = null
         this.user = null
-        localStorage.removeItem('authUser')
+        localStorage.removeItem('authToken')
       }
     },
 
     logout() {
       this.user = null
-      localStorage.removeItem('authUser')
+      this.token = null
+      localStorage.removeItem('authToken')
     }
-  },
-});
+  }
+})

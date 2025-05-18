@@ -1,6 +1,7 @@
 import express from 'express';
 import axios from 'axios';
 import { DiscordGuildMember, DiscordUser } from './types/discord';
+import jwt from 'jsonwebtoken'
 
 const authRoutes = express.Router();
 
@@ -17,16 +18,18 @@ authRoutes.post('/callback', async (req: any, res: any) => {
   if (!code) return res.status(400).json({ error: 'No code provided' });
 
   try {
-    const tokenRes = await axios.post('https://discord.com/api/oauth2/token', new URLSearchParams({
-      client_id: DISCORD_CLIENT_ID!,
-      client_secret: DISCORD_CLIENT_SECRET!,
-      grant_type: 'authorization_code',
-      code,
-      redirect_uri: DISCORD_REDIRECT_URI!,
-      scope: 'identify guilds guilds.members.read',
-    }), {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    });
+    const tokenRes = await axios.post(
+      'https://discord.com/api/oauth2/token',
+      new URLSearchParams({
+        client_id: DISCORD_CLIENT_ID!,
+        client_secret: DISCORD_CLIENT_SECRET!,
+        grant_type: 'authorization_code',
+        code,
+        redirect_uri: DISCORD_REDIRECT_URI!,
+        scope: 'identify guilds guilds.members.read',
+      }),
+      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+    );
 
     const { access_token } = tokenRes.data;
 
@@ -36,28 +39,31 @@ authRoutes.post('/callback', async (req: any, res: any) => {
 
     const memberRes = await axios.get<DiscordGuildMember>(
       `https://discord.com/api/users/@me/guilds/${DISCORD_GUILD_ID}/member`,
-      {
-        headers: { Authorization: `Bearer ${access_token}` },
-      }
+      { headers: { Authorization: `Bearer ${access_token}` } }
     );
 
-    const editorRoleIds = DISCORD_EDITOR_ROLE_IDS?.split(',') || [];
-    const hasEditorRole = editorRoleIds.some(roleId =>
-      memberRes.data.roles.includes(roleId)
-    );
+    
+    const allowedRoles = DISCORD_EDITOR_ROLE_IDS!.split(',');
+    const hasEditorRole = memberRes.data.roles.some(role => allowedRoles.includes(role));
 
-    return res.json({
-      username: userRes.data.username,
+    const payload = {
       id: userRes.data.id,
+      username: userRes.data.username,
       avatar: userRes.data.avatar,
+      nick: memberRes.data.nick,
       canEdit: hasEditorRole,
-      nick: memberRes.data.nick ?? null
-    });    
+    };
+
+    const jwtToken = jwt.sign(payload, process.env.JWT_SECRET!, {
+      expiresIn: '12h',
+    });
+
+    return res.json({ token: jwtToken });
   } catch (error: any) {
-    console.error('Discord error response:', error.response?.data);
-    console.error('Full error:', error.message);
-    return res.status(500).json({ error: 'Discord auth failed', detail: error.response?.data || error.message });
-  }  
+    console.error(error.response?.data || error.message);
+    return res.status(500).json({ error: 'Discord auth failed' });
+  }
 });
+
 
 export default authRoutes;
