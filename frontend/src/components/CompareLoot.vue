@@ -90,6 +90,7 @@ const priorityFilters = ref<Record<string, boolean>>({
   'BIS multiple phase': true,
   'BIS current phase': true,
   'Upgrade/MS': true,
+  'OffSpec': false,
   PVP: false,
 })
 const rawLootHistory = ref<FullLootHistoryRecord[]>([])
@@ -127,47 +128,53 @@ const filteredGrouped = computed(() => {
 </script>
 
 <template>
-  <!-- Priority Filters -->
-  <div class="flex justify-start mb-6 ml-6 flex-col gap-2">
-    <div
-      v-for="(checked, priority) in priorityFilters"
-      :key="priority"
-      class="flex items-center gap-2 cursor-pointer"
-    >
-      <input
-        type="checkbox"
-        v-model="priorityFilters[priority]"
-        :id="priority"
-        class="accent-[#5865F2] w-4 h-4 cursor-pointer"
-      />
-      <label
-        :for="priority"
-        class="text-sm text-gray-300 cursor-pointer"
+  <!-- Filter and Selection Bar -->
+  <div class="relative w-full mb-6 px-6 min-h-[180px]">
+    <!-- Priority Filters (Left) -->
+    <div class="absolute left-0 top-0 flex flex-col gap-2">
+      <div
+        v-for="(checked, priority) in priorityFilters"
+        :key="priority"
+        class="flex items-center gap-2 ml-6 cursor-pointer"
       >
-        {{ priority }}
-      </label>
-    </div>
-  </div>
-
-  <div class="p-6 text-white bg-[#1e1f22] min-h-screen">
-    <!-- Class Dropdown -->
-    <div class="flex justify-center mb-6">
-      <label class="mr-2 font-medium text-gray-300">Compare by Class:</label>
-      <select
-        v-model="selectedClass"
-        class="bg-[#2b2d31] text-white border border-[#444] rounded px-3 py-1"
-      >
-        <option value="">Select Class</option>
-        <option v-for="cls in uniqueClasses" :key="cls" :value="cls">
-          {{ cls }}
-        </option>
-      </select>
+        <input
+          type="checkbox"
+          v-model="priorityFilters[priority]"
+          :id="priority"
+          class="accent-[#5865F2] w-4 h-4 cursor-pointer"
+        />
+        <label
+          :for="priority"
+          class="text-sm text-gray-300 cursor-pointer"
+        >
+          {{ priority }}
+        </label>
+      </div>
     </div>
 
-    <!-- Raider Selector -->
-    <div class="flex flex-col items-center gap-4 mb-6">
+    <!-- Centered Content (Class + Raiders + Button) -->
+    <div class="absolute left-1/2 top-0 -translate-x-1/2 flex flex-col items-center gap-4">
+      <!-- Class Dropdown -->
+      <div class="flex items-center gap-2">
+        <label class="font-medium text-gray-300">Compare by Class:</label>
+        <select
+          v-model="selectedClass"
+          class="bg-[#2b2d31] text-white border border-[#444] rounded px-3 py-1"
+        >
+          <option value="">Select Class</option>
+          <option v-for="cls in uniqueClasses" :key="cls" :value="cls">
+            {{ cls }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Raider Selectors -->
       <div class="flex justify-center gap-4">
-        <div v-for="(_, index) in selectedRaiders.length" :key="index" class="flex flex-col items-center">
+        <div
+          v-for="(_, index) in selectedRaiders.length"
+          :key="index"
+          class="flex flex-col items-center"
+        >
           <label class="text-sm mb-1 text-gray-300">Raider {{ index + 1 }}</label>
           <Multiselect
             v-model="selectedRaiders[index]"
@@ -181,14 +188,19 @@ const filteredGrouped = computed(() => {
         </div>
       </div>
 
+      <!-- Reset Button -->
       <button
         @click="resetRaiders"
-        class="mt-2 px-4 py-1.5 text-sm text-white bg-[#3a3b3f] hover:bg-[#4E5058] border border-[#555] rounded"
+        class="px-4 py-1.5 text-sm text-white bg-[#3a3b3f] hover:bg-[#4E5058] border border-[#555] rounded"
       >
         Reset Selection
       </button>
     </div>
+  </div>
 
+
+  <!-- Main Content -->
+  <div class="p-6 text-white bg-[#1e1f22] min-h-screen">
     <!-- Comparison Table -->
     <div class="overflow-x-auto">
       <table class="w-full bg-[#2b2d31] text-sm text-gray-300 border border-[#444] rounded shadow">
@@ -230,7 +242,11 @@ const filteredGrouped = computed(() => {
               </div>
             </td>
             <td class="p-2 border border-[#444] text-gray-400 font-medium">
-              {{ new Date(date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) }}
+              {{ new Date(date).toLocaleDateString('en-GB', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+              }) }}
             </td>
           </tr>
         </tbody>
@@ -238,5 +254,3 @@ const filteredGrouped = computed(() => {
     </div>
   </div>
 </template>
-
-
