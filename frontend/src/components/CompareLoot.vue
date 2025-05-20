@@ -53,6 +53,7 @@ watch(selectedClass, (cls) => {
 
 onMounted(async () => {
   const raw: FullLootHistoryRecord[] = await getAllLootHistory()
+  rawLootHistory.value = raw
   const allItems = await getAllItems()
   const members = await getAllMembers()
 
@@ -85,25 +86,69 @@ onMounted(async () => {
   items.value = allItems
 })
 
+const priorityFilters = ref<Record<string, boolean>>({
+  'BIS multiple phase': true,
+  'BIS current phase': true,
+  'Upgrade/MS': true,
+  PVP: false,
+})
+const rawLootHistory = ref<FullLootHistoryRecord[]>([])
+
 const filteredGrouped = computed(() => {
   const result: typeof grouped.value = {}
 
-  for (const [date, raidersItems] of Object.entries(grouped.value)) {
-    // Check if any selected raider has items for this date
-    const hasItems = selectedRaiders.value.some(raider => {
-      return raider && raidersItems[raider]?.length
-    })
+  const activePriorities = Object.keys(priorityFilters.value).filter(p => priorityFilters.value[p])
 
-    if (hasItems) {
-      result[date] = raidersItems
+  for (const [date, raidersItems] of Object.entries(grouped.value)) {
+    const filteredRaidersItems: typeof raidersItems = {}
+
+    for (const raider of selectedRaiders.value.filter(Boolean)) {
+      const items = raidersItems[raider] || []
+
+      const filteredItems = items.filter(item => {
+        const entry = rawLootHistory.value.find(e => e.raider === raider && e.item === item.name && e.date === date)
+        const note = entry?.priority_note?.trim()
+        return note && activePriorities.includes(note)
+      })
+
+      if (filteredItems.length) {
+        filteredRaidersItems[raider] = filteredItems
+      }
+    }
+
+    if (Object.keys(filteredRaidersItems).length) {
+      result[date] = filteredRaidersItems
     }
   }
 
   return result
 })
+
 </script>
 
 <template>
+  <!-- Priority Filters -->
+  <div class="flex justify-start mb-6 ml-6 flex-col gap-2">
+    <div
+      v-for="(checked, priority) in priorityFilters"
+      :key="priority"
+      class="flex items-center gap-2 cursor-pointer"
+    >
+      <input
+        type="checkbox"
+        v-model="priorityFilters[priority]"
+        :id="priority"
+        class="accent-[#5865F2] w-4 h-4 cursor-pointer"
+      />
+      <label
+        :for="priority"
+        class="text-sm text-gray-300 cursor-pointer"
+      >
+        {{ priority }}
+      </label>
+    </div>
+  </div>
+
   <div class="p-6 text-white bg-[#1e1f22] min-h-screen">
     <!-- Class Dropdown -->
     <div class="flex justify-center mb-6">

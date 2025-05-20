@@ -242,9 +242,9 @@ const priorityOptions = [
 
       <input v-model="filters.item" placeholder="Search Item" class="text-sm cursor-pointer bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1"/>
 
-      <label class="flex items-center gap-2 text-sm text-white">
+      <label class="flex items-center gap-2 text-sm text-white cursor-pointer">
         <input type="checkbox" v-model="filterDisenchantOnly" />
-        Only Disenchant
+        Show DE Loot
       </label>
       
       <input v-model="filters.date" type="date" class="bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer" @mousedown="handleDateClick" />

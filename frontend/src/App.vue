@@ -44,7 +44,7 @@ function logout() {
       class="bg-[#2b2d31] p-4 flex justify-between items-center rounded-b-lg shadow-md border-b border-[#3f4147]"
     >
       <!-- Left: Logo -->
-      <h1 class="text-3xl font-extrabold tracking-wide text-white drop-shadow-glow ml-2">
+      <h1 class="text-3xl font-extrabold tracking-wide text-white ml-2">
         HALO
       </h1>
 
@@ -106,9 +106,3 @@ function logout() {
     <Toast ref="toastRef" />
   </div>
 </template>
-
-<style>
-.drop-shadow-glow {
-  text-shadow: 0 0 8px rgba(0, 162, 255, 0.8);
-}
-</style>
