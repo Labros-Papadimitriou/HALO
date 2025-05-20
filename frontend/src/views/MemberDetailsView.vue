@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import type { Member } from '../types/member';
+import type { Member } from '@/types/member';
 import { onMounted, ref } from 'vue';
-import { getAllMembers } from '../api/memberApi';
-import { getAllItems } from '../api/itemApi';
-import type { Item } from '../types/item';
-import { rarityColors } from '../constants/colors'
+import { getAllMembers } from '@/api/memberApi';
+import { getAllItems } from '@/api/itemApi';
+import type { Item } from '@/types/item';
+import { rarityColors } from '@/constants/colors'
 
 const route = useRoute()
 const memberId = Number(route.params.id)

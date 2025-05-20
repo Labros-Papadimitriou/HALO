@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { getAllMembers } from '../api/memberApi'
-import type { Member } from '../types/member'
-import { classColors } from '../constants/colors'
+import { getAllMembers } from '@/api/memberApi'
+import type { Member } from '@/types/member'
+import { classColors } from '@/constants/colors'
 
 const members = ref<Member[]>([])
 const router = useRouter()
