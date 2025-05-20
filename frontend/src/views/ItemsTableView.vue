@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import { getAllItems } from '../api/itemApi'
-import type { Item } from '../types/item'
-import { rarityColors } from '../constants/colors'
+import { getAllItems } from '@/api/itemApi'
+import type { Item } from '@/types/item'
+import { rarityColors } from '@/constants/colors'
 
 // Reactive item data
 const items = ref<Item[]>([])

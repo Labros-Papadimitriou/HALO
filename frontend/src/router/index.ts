@@ -1,22 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LootHistory from '../components/LootHistory.vue'
-import MembersTable from '../components/MembersTable.vue'
-import ItemTable from '../components/ItemsTable.vue'
-import MemberDetails from '../components/MemberDetails.vue'
-import CompareLoot from '../components/CompareLoot.vue'
-import LoginPage from '../components/LoginPage.vue'
-import Callback from '../components/Callback.vue'
-import { useAuthStore } from '../stores/authStore'
+import LootHistoryView from '@/views/LootHistoryView.vue'
+import MembersTableView from '@/views/MembersTableView.vue'
+import ItemTableView from '@/views/ItemsTableView.vue'
+import MemberDetailsView from '@/views/MemberDetailsView.vue'
+import CompareLootView from '@/views/CompareLootView.vue'
+import LoginView from '@/views/LoginView.vue'
+import CallbackView from '@/views/CallbackView.vue'
+import { useAuthStore } from '@/stores/authStore'
 
 const routes = [
   { path: '/', redirect: '/loot' },
-  { path: '/loot', component: LootHistory },
-  { path: '/members', component: MembersTable },
-  { path: '/items', component: ItemTable },
-  { path: '/member/:id', component: MemberDetails, props: true },
-  { path: '/compare', component: CompareLoot },
-  { path: '/login', component: LoginPage },
-  { path: '/callback', component: Callback }
+  { path: '/loot', component: LootHistoryView },
+  { path: '/members', component: MembersTableView },
+  { path: '/items', component: ItemTableView },
+  { path: '/member/:id', component: MemberDetailsView, props: true },
+  { path: '/compare', component: CompareLootView },
+  { path: '/login', component: LoginView },
+  { path: '/callback', component: CallbackView }
 ];
 
 const router = createRouter({
@@ -24,7 +24,7 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   const auth = useAuthStore();
 
   if (auth.user?.username === 'everdark03') {
