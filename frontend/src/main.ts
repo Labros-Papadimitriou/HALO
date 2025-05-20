@@ -5,6 +5,7 @@ import router from '@/router'
 import { createPinia } from 'pinia'
 import { useAuthStore } from '@/stores/authStore'
 import clickOutside from '@/directives/clickOutside'
+import 'vue-multiselect/dist/vue-multiselect.css'
 
 const app = createApp(App)
 

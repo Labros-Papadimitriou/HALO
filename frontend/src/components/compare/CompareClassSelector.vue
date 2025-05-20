@@ -10,8 +10,8 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="flex justify-center mb-6">
-    <label class="mr-2 font-medium text-gray-300">Compare by Class:</label>
+  <div class="flex items-baseline justify-center mb-4 gap-2">
+    <label class="font-medium text-gray-300 leading-tight">Compare by Class:</label>
     <select
       :value="selectedClass"
       @change="e => emit('update:selectedClass', (e.target as HTMLSelectElement).value)"
