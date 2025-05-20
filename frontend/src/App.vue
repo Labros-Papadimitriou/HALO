@@ -37,7 +37,7 @@ function logout() {
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#1e1f22] text-white">
+  <div class="min-h-screen bg-[#1e1f22] text-white noselect">
     <!-- ✅ Show NAVBAR only if user is logged in and allowed -->
     <nav
       v-if="auth.user?.canEdit"
@@ -106,3 +106,11 @@ function logout() {
     <Toast ref="toastRef" />
   </div>
 </template>
+
+<style>
+  .noselect {
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none;     /* IE/Edge */
+  }
+</style>
