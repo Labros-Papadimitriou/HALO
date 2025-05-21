@@ -39,6 +39,7 @@ watch(
 )
 
 watch(selectedClass, (cls) => {
+  selectedRaiders.value = ['', '']
   if (!cls) return
   const raidersOfClass = allRaiders.value
     .filter(r => r.class === cls)
@@ -119,17 +120,17 @@ const filteredGrouped = computed(() => {
 
 <template>
   <!-- Filter and Selection Bar (Restored Layout) -->
-  <div class="relative w-full mb-6 px-6 min-h-[180px]">
-    <!-- Left: Priority Filters -->
-    <div class="absolute left-0 top-0 flex flex-col gap-2">
+  <div class="flex flex-wrap items-start gap-8 px-6 mb-1">
+    <!-- Left: Checkboxes -->
+    <div class="flex flex-col gap-2 min-w-[160px]">
       <ComparePriorityFilters
         :priority-filters="priorityFilters"
         @update:priorityFilters="priorityFilters = $event"
       />
     </div>
 
-    <!-- Center: Class + Raiders + Reset -->
-    <div class="absolute left-1/2 top-0 -translate-x-1/2 flex flex-col items-center">
+    <!-- Right: Centered Class + Raider Selectors -->
+    <div class="flex flex-col flex-1 items-center gap-1 -ml-[10rem]">
       <CompareClassSelector
         :selected-class="selectedClass"
         :classes="uniqueClasses"
@@ -144,6 +145,7 @@ const filteredGrouped = computed(() => {
       />
     </div>
   </div>
+
 
   <!-- Loot Table -->
   <div class="p-6 text-white bg-[#1e1f22] min-h-screen">

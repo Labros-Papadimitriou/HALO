@@ -65,17 +65,20 @@ const uniqueRaiders = computed(() => [...new Set(loot.value.map(l => l.raider))]
 const uniqueClasses = computed(() => [...new Set(loot.value.map(l => l.class))])
 const filteredLoot = computed(() => {
   let results = loot.value.filter(entry => {
-    return (
+    const matchesFilters =
       (!filters.value.raider || entry.raider === filters.value.raider) &&
       (!filters.value.item || entry.item.toLowerCase().includes(filters.value.item.toLowerCase())) &&
       (!filters.value.date || entry.date === filters.value.date) &&
       (!filters.value.class || entry.class === filters.value.class)
-    )
-  })
 
-  if (filterDisenchantOnly.value) {
-    results = results.filter(entry => entry.priority_note?.toLowerCase() === 'disenchant')
-  }
+    const priority = entry.priority_note?.toLowerCase() || ''
+
+    if (filterDisenchantOnly.value) {
+      return matchesFilters && (priority === 'disenchant' || priority === 'banking')
+    } else {
+      return matchesFilters && priority !== 'disenchant' && priority !== 'banking'
+    }
+  })
 
   results = results.slice().sort((a, b) => {
     const dateCompare = b.date.localeCompare(a.date)
