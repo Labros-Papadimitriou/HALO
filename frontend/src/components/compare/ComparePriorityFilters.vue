@@ -17,7 +17,7 @@ function togglePriority(priority: string) {
 
 <template>
   <div style="position: relative; z-index: 50;">
-    <div class="flex justify-start mb-6 ml-6 flex-col gap-2">
+    <div class="flex justify-start mb-6 ml-1 flex-col gap-2">
       <div
         v-for="(checked, priority) in priorityFilters"
         :key="priority"
