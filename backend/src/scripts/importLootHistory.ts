@@ -25,7 +25,7 @@ export const loadAndImportLoot = async (parsedJsonData: any) => {
       const item_id = itemRes.rows[0].id;
       const date = new Date(entry.date).toISOString().split('T')[0];
       const note = entry.note ?? null;
-      const priority_note = entry.priority_note ?? null;
+      const priority_note = entry.response ?? null;
 
       await db.query(
         `INSERT INTO loot_history (member_id, item_id, date, note, priority_note)
