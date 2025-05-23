@@ -19,7 +19,7 @@ defineProps<{
             v-for="raider in selectedRaiders.filter(Boolean)"
             :key="raider"
             class="p-2 border border-[#444]"
-            :style="{ color: classColors[memberMap[raider]?.class?.replace(' ', '')] || '#ccc' }"
+            :style="{ color: classColors[(memberMap[raider]?.class_name?.replace(' ', '') ?? '')] || '#ccc' }"
           >
             {{ raider }}
           </th>

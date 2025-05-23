@@ -1,8 +1,9 @@
 export interface Member {
-    id: number
-    name: string
-    class: string
-    spec: string
-    role: 'social' | 'raider' | 'council' | 'master'
-  }
-  
+  id?: number
+  discord_id: string
+  name: string
+  discord_role_id: string
+  class_role_id?: string
+  role_name?: string
+  class_name?: string
+}

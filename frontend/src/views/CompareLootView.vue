@@ -19,7 +19,8 @@ const items = ref<Item[]>([])
 const rawLootHistory = ref<FullLootHistoryRecord[]>([])
 
 const selectedRaiders = ref<string[]>(['', ''])
-const selectedClass = ref('')
+const selectedClasses = ref<string[]>([])
+
 const priorityFilters = ref<Record<string, boolean>>({
   'BIS multiple phase': true,
   'BIS current phase': true,
@@ -32,28 +33,39 @@ watch(
   () => [...selectedRaiders.value],
   (val) => {
     const nonEmptyCount = val.filter(Boolean).length
-    if (nonEmptyCount === val.length && val.length < 15) {
+    if (nonEmptyCount === val.length && val.length < 20) {
       selectedRaiders.value = [...val, '']
     }
   }
 )
 
-watch(selectedClass, (cls) => {
+watch(selectedClasses, (classes) => {
   selectedRaiders.value = ['', '']
-  if (!cls) return
-  const raidersOfClass = allRaiders.value
-    .filter(r => r.class === cls)
+  if (!classes.length) return
+  const raiders = allRaiders.value
+    .filter(r => classes.includes(r.class_name || ''))
     .map(r => r.name)
-  selectedRaiders.value = [...raidersOfClass, '']
+      selectedRaiders.value = [
+      ...raiders
+        .sort((a, b) => {
+          const classA = memberMap.value[a]?.class_name || ''
+          const classB = memberMap.value[b]?.class_name || ''
+          if (classA !== classB) return classA.localeCompare(classB)
+          return a.localeCompare(b)
+        }),
+      ''
+    ]
 })
 
 const resetRaiders = () => {
   selectedRaiders.value = ['', '']
-  selectedClass.value = ''
+  selectedClasses.value = []
 }
 
 const uniqueClasses = computed(() => {
-  const all = allRaiders.value.map(r => r.class?.trim()).filter(Boolean)
+  const all = allRaiders.value
+    .map(r => r.class_name?.trim())
+    .filter((cls): cls is string => Boolean(cls))
   return [...new Set(all)]
 })
 
@@ -119,7 +131,6 @@ const filteredGrouped = computed(() => {
 </script>
 
 <template>
-  <!-- Filter and Selection Bar (Restored Layout) -->
   <div class="flex flex-wrap items-start gap-8 px-6 mb-1">
     <!-- Left: Checkboxes -->
     <div class="flex flex-col gap-2 min-w-[160px]">
@@ -129,12 +140,12 @@ const filteredGrouped = computed(() => {
       />
     </div>
 
-    <!-- Right: Centered Class + Raider Selectors -->
+    <!-- Right: Class Selector + Raider Selector -->
     <div class="flex flex-col flex-1 items-center gap-1 -ml-[10rem]">
       <CompareClassSelector
-        :selected-class="selectedClass"
+        :selected-classes="selectedClasses"
         :classes="uniqueClasses"
-        @update:selectedClass="selectedClass = $event"
+        @update:selectedClasses="selectedClasses = $event"
       />
 
       <CompareRaidersPicker
@@ -145,7 +156,6 @@ const filteredGrouped = computed(() => {
       />
     </div>
   </div>
-
 
   <!-- Loot Table -->
   <div class="p-6 text-white bg-[#1e1f22] min-h-screen">
