@@ -37,19 +37,19 @@ export async function addMember(member: Member): Promise<number> {
   return result.rows[0].id
 }
 
-export async function syncMembers(): Promise<{ added: number; updated: number }> {
+export async function syncMembers(): Promise<{ added: number; updated: number; deleted: number }> {
   const {
     DISCORD_BOT_TOKEN,
     DISCORD_GUILD_ID,
     DISCORD_MEMBER_ROLE_IDS,
     DISCORD_CLASS_ROLE_IDS
-  } = process.env
+  } = process.env;
 
-  const memberRoleIds = DISCORD_MEMBER_ROLE_IDS!.split(',')
-  const classRoleIds = DISCORD_CLASS_ROLE_IDS!.split(',')
+  const memberRoleIds = DISCORD_MEMBER_ROLE_IDS!.split(',');
+  const classRoleIds = DISCORD_CLASS_ROLE_IDS!.split(',');
 
-  const allMembers: any[] = []
-  let after = '0'
+  const allMembers: any[] = [];
+  let after = '0';
 
   while (true) {
     const res = await axios.get(
@@ -58,56 +58,63 @@ export async function syncMembers(): Promise<{ added: number; updated: number }>
         headers: { Authorization: `Bot ${DISCORD_BOT_TOKEN}` },
         params: { limit: 1000, after },
       }
-    )
+    );
 
-    const batch = res.data
-    if (batch.length === 0) break
+    const batch = res.data;
+    if (batch.length === 0) break;
 
-    allMembers.push(...batch)
-    after = batch[batch.length - 1].user.id
+    allMembers.push(...batch);
+    after = batch[batch.length - 1].user.id;
   }
 
-  let added = 0
-  let updated = 0
+  let added = 0;
+  let updated = 0;
+  const syncedDiscordIds: string[] = [];
 
   for (const m of allMembers) {
-    // Check if the member has any valid member role
-    const hasValidRole = m.roles.some((r: string) => memberRoleIds.includes(r))
-    if (!hasValidRole) continue
+    const hasValidRole = m.roles.some((r: string) => memberRoleIds.includes(r));
+    if (!hasValidRole) continue;
 
-    const discordId = m.user.id
-    const name = m.nick || m.user.username
+    const discordId = m.user.id;
+    const name = m.nick || m.user.username;
 
-    // 🔁 Pick highest-priority member role
-    let discordRoleId: string | undefined
+    let discordRoleId: string | undefined;
     for (const allowedRole of memberRoleIds) {
       if (m.roles.includes(allowedRole)) {
-        discordRoleId = allowedRole
-        break
+        discordRoleId = allowedRole;
+        break;
       }
     }
 
-    if (!discordRoleId) continue
+    if (!discordRoleId) continue;
 
-    // 🔍 Find matching class role ID (first one that matches)
-    const classRoleId = m.roles.find((r: string) => classRoleIds.includes(r)) || null
+    const classRoleId = m.roles.find((r: string) => classRoleIds.includes(r)) || null;
 
-    const exists = await db.query(`SELECT 1 FROM members WHERE discord_id = $1`, [discordId])
+    syncedDiscordIds.push(discordId);
+
+    const exists = await db.query(`SELECT 1 FROM members WHERE discord_id = $1`, [discordId]);
 
     if ((exists.rowCount ?? 0) > 0) {
       await db.query(
         `UPDATE members SET name = $1, discord_role_id = $2, class_role_id = $3 WHERE discord_id = $4`,
         [name, discordRoleId, classRoleId, discordId]
-      )
-      updated++
+      );
+      updated++;
     } else {
       await db.query(
         `INSERT INTO members (discord_id, name, discord_role_id, class_role_id) VALUES ($1, $2, $3, $4)`,
         [discordId, name, discordRoleId, classRoleId]
-      )
-      added++
+      );
+      added++;
     }
   }
 
-  return { added, updated }
+  // 🔥 Delete members not in synced list
+  const deleteResult = await db.query(
+    `DELETE FROM members WHERE discord_id IS NOT NULL AND discord_id != ALL($1::text[])`,
+    [syncedDiscordIds]
+  );
+  const deleted = deleteResult.rowCount ?? 0;
+
+  return { added, updated, deleted };
 }

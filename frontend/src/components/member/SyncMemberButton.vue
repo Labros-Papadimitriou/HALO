@@ -13,7 +13,7 @@ const handleSync = async () => {
   loading.value = true
   try {
     const result = await syncMembers()
-    props.showToast(`Synced: ${result.added} added, ${result.updated} updated`)
+    props.showToast(`Synced: ${result.added} added, ${result.updated} updated, ${result.deleted} deleted`)
   } catch (error) {
     console.error('Sync error:', error)
     props.showToast('Failed to sync members')

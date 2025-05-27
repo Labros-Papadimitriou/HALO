@@ -20,7 +20,7 @@ export const addMember = async (member: Member): Promise<number> => {
   return res.data.id
 }
 
-export const syncMembers = async (): Promise<{ added: number; updated: number }> => {
+export const syncMembers = async (): Promise<{ added: number; updated: number, deleted: number }> => {
   const res = await axios.post(`${API_URL}/sync`, null, {
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_API_SECRET}`,
