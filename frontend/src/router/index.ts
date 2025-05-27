@@ -27,10 +27,6 @@ const router = createRouter({
 router.beforeEach((to, _from, next) => {
   const auth = useAuthStore();
 
-  if (auth.user?.username === 'everdark03') {
-    return next();
-  }
-
   // Allow login and callback pages through
   if (['/login', '/callback'].includes(to.path)) {
     return next();
