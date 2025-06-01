@@ -5,6 +5,12 @@ import { getAllMembers } from '@/api/memberApi'
 import type { Member } from '@/types/member'
 import { classColors } from '@/constants/colors'
 import SyncMemberButton from '@/components/member/SyncMemberButton.vue'
+import { getRecentReports, syncEnchants } from '@/api/enchantApi'
+
+const recentReports = ref<{ code: string; title: string; startTime: number }[]>([])
+const selectedReport = ref('')
+
+const syncing = ref(false)
 
 const rolePriority: Record<string, number> = {
   'Master': 1,
@@ -47,8 +53,31 @@ const filteredMembers = computed(() => {
     })
 })
 
+async function fetchReports() {
+  try {
+    recentReports.value = await getRecentReports()
+  } catch (err) {
+    props.showToast?.('Failed to load reports')
+  }
+}
+
+async function syncSelectedReport() {
+  if (!selectedReport.value) return
+  syncing.value = true
+  try {
+    console.log('Syncing report code:', selectedReport.value);
+    const result = await syncEnchants(selectedReport.value)
+    props.showToast?.(`Synced: ${result.processed} players`)
+  } catch (err) {
+    props.showToast?.('Sync failed')
+  } finally {
+    syncing.value = false
+  }
+}
+
 onMounted(async () => {
   members.value = await getAllMembers()
+  await fetchReports()
 })
 
 function goToDetails(id: number) {
@@ -75,6 +104,23 @@ function goToDetails(id: number) {
 
       <!-- Sync Button -->
       <SyncMemberButton :show-toast="props.showToast" />
+      
+      <!-- Report Sync Controls -->
+      <div class="flex gap-2 items-center">
+        <select v-model="selectedReport" class="text-sm bg-[#2b2d31] text-white border border-[#444] rounded px-2 py-1 cursor-pointer">
+          <option disabled value="">Select Report</option>
+          <option v-for="r in recentReports" :key="r.code" :value="r.code">
+            {{ new Date(r.startTime).toLocaleDateString() }} - {{ r.title || r.code }}
+          </option>
+        </select>
+        <button
+          :disabled="!selectedReport || syncing"
+          @click="syncSelectedReport"
+          class="text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded disabled:opacity-40"
+        >
+          {{ syncing ? 'Syncing...' : 'Sync Enchants' }}
+        </button>
+      </div>
     </div>
 
     <!-- Members Table -->

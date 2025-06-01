@@ -118,3 +118,48 @@ export async function syncMembers(): Promise<{ added: number; updated: number; d
 
   return { added, updated, deleted };
 }
+
+export async function getBisEnchantsByClass(
+  classRoleId: string,
+  onlyHardcore: boolean,
+  spec: string
+): Promise<{ slot_number: number; enchant_id: number; is_hardcore: boolean }[]> {
+  const sql = `
+    SELECT slot_number, enchant_id, is_hardcore
+      FROM bis_enchants
+     WHERE class_role_id = $1
+       AND (spec = $2 OR spec = 'Any')
+       ${onlyHardcore ? 'AND is_hardcore = TRUE' : ''}
+  `;
+  const params = [classRoleId, spec];
+  const { rows } = await db.query(sql, params);
+  return rows;
+}
+
+/**
+ * Given a member_id, returns that member’s current BIS enchant_ids (all classes).
+ */
+export async function getMemberEnchantIds(memberId: number): Promise<number[]> {
+  const result = await db.query(
+    `
+    SELECT b.enchant_id
+    FROM member_enchants me
+    JOIN bis_enchants b ON b.id = me.bis_enchant_id
+    WHERE me.member_id = $1
+  `,
+    [memberId]
+  );
+  return result.rows.map(r => r.enchant_id as number);
+}
+
+export async function getMembersWithSpec(): Promise<
+  Array<{ id: number; name: string; class_role_id: string; spec: string }>
+> {
+  const result = await db.query(`
+    SELECT m.id, m.name, m.class_role_id, ms.spec
+      FROM members m
+      JOIN member_specs ms ON ms.member_id = m.id
+     WHERE m.class_role_id IS NOT NULL
+  `);
+  return result.rows;
+}

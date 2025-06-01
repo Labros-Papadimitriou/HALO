@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { getAllMembers, addMember, syncMembers } from '../models/member.model.js'
+import { getAllMembers, addMember, syncMembers, getBisEnchantsByClass, getMemberEnchantIds } from '../models/member.model.js'
 import type { Member } from '../types/member.js'
 
 export async function getMembersHandler(_req: Request, res: Response): Promise<void> {
@@ -26,7 +26,6 @@ export async function addMemberHandler(
 
   res.json({ id })
 }
-
 
 export async function syncMembersHandler(req: Request, res: Response) {
   try {

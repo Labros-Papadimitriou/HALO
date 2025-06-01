@@ -12,6 +12,7 @@ import memberRoutes from './routes/member.routes.js'
 import itemRoutes from './routes/item.routes.js'
 import authRoutes from './auth.js'
 import { initDB } from './db.js'
+import enchantRoutes from './routes/enchant.routes.js'
 
 const app = express()
 const port = process.env.PORT || 3001
@@ -54,6 +55,7 @@ app.use('/api', requireAuth)
 app.use('/api/lootHistory', lootHistoryRoutes)
 app.use('/api/members', memberRoutes)
 app.use('/api/items', itemRoutes)
+app.use('/api/enchants', enchantRoutes);
 
 // === Serve Frontend ===
 const __filename = fileURLToPath(import.meta.url)
