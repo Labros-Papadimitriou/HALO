@@ -6,6 +6,7 @@ import MemberDetailsView from '@/views/MemberDetailsView.vue'
 import CompareLootView from '@/views/CompareLootView.vue'
 import LoginView from '@/views/LoginView.vue'
 import CallbackView from '@/views/CallbackView.vue'
+import AdminView from '@/views/AdminView.vue'
 import { useAuthStore } from '@/stores/authStore'
 
 const routes = [
@@ -16,7 +17,8 @@ const routes = [
   { path: '/member/:id', component: MemberDetailsView, props: true },
   { path: '/compare', component: CompareLootView },
   { path: '/login', component: LoginView },
-  { path: '/callback', component: CallbackView }
+  { path: '/callback', component: CallbackView },
+  { path: '/admin', component: AdminView }
 ];
 
 const router = createRouter({

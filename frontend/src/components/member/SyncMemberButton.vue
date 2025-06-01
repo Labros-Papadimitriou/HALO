@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import { syncMembers } from '@/api/memberApi'
 
-// Props
 const props = defineProps<{
   showToast: (msg: string) => void
 }>()
@@ -27,8 +26,13 @@ const handleSync = async () => {
   <button
     @click="handleSync"
     :disabled="loading"
-    class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
-  >
+    :class="[
+          'px-4 py-1 rounded font-medium cursor-pointer transition-colors',
+          loading
+            ? 'bg-gray-600 text-gray-300 cursor-not-allowed'
+            : 'bg-[#5865F2] hover:bg-[#4752C4] text-white'
+        ]"
+    >
     <span v-if="!loading">Sync Members</span>
     <span v-else>Syncing...</span>
   </button>

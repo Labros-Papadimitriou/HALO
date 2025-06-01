@@ -3,6 +3,7 @@ import { ref, onMounted, computed, watch } from 'vue'
 import { getAllLootHistory } from '@/api/lootHistoryApi'
 import { getAllItems } from '@/api/itemApi'
 import { getAllMembers } from '@/api/memberApi'
+import { getEnchantStatus } from '@/api/enchantApi'
 import type { Member } from '@/types/member'
 import type { Item } from '@/types/item'
 import type { FullLootHistoryRecord } from '@/types/lootHistory'
@@ -12,7 +13,7 @@ import CompareClassSelector from '@/components/compare/CompareClassSelector.vue'
 import CompareRaidersPicker from '@/components/compare/CompareRaidersPicker.vue'
 import CompareLootTable from '@/components/compare/CompareLootTable.vue'
 
-const memberMap = ref<Record<string, Member>>({})
+const memberMap = ref<Record<string, Member & { enchantStatus?: 'missing' | 'normal' | 'tryhard' }>>({})
 const grouped = ref<{ [date: string]: Record<string, Item[]> }>({})
 const allRaiders = ref<Member[]>([])
 const items = ref<Item[]>([])
@@ -45,16 +46,15 @@ watch(selectedClasses, (classes) => {
   const raiders = allRaiders.value
     .filter(r => classes.includes(r.class_name || ''))
     .map(r => r.name)
-      selectedRaiders.value = [
-      ...raiders
-        .sort((a, b) => {
-          const classA = memberMap.value[a]?.class_name || ''
-          const classB = memberMap.value[b]?.class_name || ''
-          if (classA !== classB) return classA.localeCompare(classB)
-          return a.localeCompare(b)
-        }),
-      ''
-    ]
+  selectedRaiders.value = [
+    ...raiders.sort((a, b) => {
+      const classA = memberMap.value[a]?.class_name || ''
+      const classB = memberMap.value[b]?.class_name || ''
+      if (classA !== classB) return classA.localeCompare(classB)
+      return a.localeCompare(b)
+    }),
+    ''
+  ]
 })
 
 const resetRaiders = () => {
@@ -73,14 +73,34 @@ onMounted(async () => {
   const raw: FullLootHistoryRecord[] = await getAllLootHistory()
   rawLootHistory.value = raw
   const allItems = await getAllItems()
-  const members = await getAllMembers()
 
-  const temp: typeof grouped.value = {}
-  const raiderSet = new Set<string>()
+  const [members, normalStatus, tryhardStatus] = await Promise.all([
+    getAllMembers(),
+    getEnchantStatus(false),
+    getEnchantStatus(true)
+  ])
 
-  members.forEach(m => {
+  const normalMap = Object.fromEntries(normalStatus.map((s: { id: any }) => [s.id, s]))
+  const tryhardMap = Object.fromEntries(tryhardStatus.map((s: { id: any }) => [s.id, s]))
+
+  members.forEach((m) => {
+    const id = m.id!
+    const normal = normalMap[id]
+    const tryhard = tryhardMap[id]
+
+    if (tryhard?.fullyEnchanted) {
+      m.enchantStatus = 'tryhard'
+    } else if (normal?.fullyEnchanted) {
+      m.enchantStatus = 'normal'
+    } else {
+      m.enchantStatus = 'missing'
+    }
+
     memberMap.value[m.name] = m
   })
+
+  const raiderSet = new Set<string>()
+  const temp: typeof grouped.value = {}
 
   const excludedPriorities = ['disenchant', 'banking', 'autopass', 'pass']
   for (const entry of raw) {
@@ -129,6 +149,7 @@ const filteredGrouped = computed(() => {
   return result
 })
 </script>
+
 
 <template>
   <div class="flex flex-wrap items-start gap-8 px-6 mb-1">

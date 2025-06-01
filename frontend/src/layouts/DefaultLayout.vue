@@ -90,6 +90,12 @@ function logout() {
           class="absolute right-0 top-12 mt-2 w-36 bg-[#2b2d31] text-white rounded-lg shadow-lg border border-[#3f4147] z-50"
         >
           <button
+            @click="router.push('/admin'); showDropdown = false"
+            class="block w-full text-left px-4 py-2 hover:bg-[#3f4147] text-blue-400"
+          >
+            Admin Page
+          </button>
+          <button
             @click="logout"
             class="block w-full text-left px-4 py-2 hover:bg-[#3f4147] text-red-400"
           >

@@ -6,4 +6,6 @@ export interface Member {
   class_role_id?: string
   role_name?: string
   class_name?: string
+  fullyEnchanted?: boolean
+  enchantStatus?: 'tryhard' | 'normal' | 'missing'
 }

@@ -21,7 +21,17 @@ defineProps<{
             class="p-2 border border-[#444]"
             :style="{ color: classColors[(memberMap[raider]?.class_name?.replace(' ', '') ?? '')] || '#ccc' }"
           >
-            {{ raider }}
+            <span>{{ raider }}</span>
+
+            <template v-if="memberMap[raider]?.enchantStatus === 'tryhard'">
+              <span title="Fully BIS enchanted">⭐</span>
+            </template>
+            <template v-else-if="memberMap[raider]?.enchantStatus === 'normal'">
+              <span title="Fully enchanted">✅</span>
+            </template>
+            <template v-else>
+              <span title="Missing enchants">❌</span>
+            </template>
           </th>
           <th class="p-2 border border-[#444] text-white">Date</th>
         </tr>
