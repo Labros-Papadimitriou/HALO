@@ -8,4 +8,5 @@ export interface Member {
   class_name?: string
   fullyEnchanted?: boolean
   enchantStatus?: 'tryhard' | 'normal' | 'missing'
+  missingEnchantSlots?: number[]
 }

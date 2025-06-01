@@ -94,6 +94,7 @@ onMounted(async () => {
       m.enchantStatus = 'normal'
     } else {
       m.enchantStatus = 'missing'
+      m.missingEnchantSlots = normal?.missingSlots || []
     }
 
     memberMap.value[m.name] = m

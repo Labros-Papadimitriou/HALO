@@ -2,6 +2,7 @@
 import { classColors, rarityColors } from '@/constants/colors'
 import type { Item } from '@/types/item'
 import type { Member } from '@/types/member'
+import {SLOT_NAMES} from '@/constants/enchantSlotsMapping'
 
 defineProps<{
   selectedRaiders: string[]
@@ -29,9 +30,15 @@ defineProps<{
             <template v-else-if="memberMap[raider]?.enchantStatus === 'normal'">
               <span title="Fully enchanted">✅</span>
             </template>
-            <template v-else>
-              <span title="Missing enchants">❌</span>
-            </template>
+           <template v-else>
+            <span
+              :title="memberMap[raider]?.missingEnchantSlots?.length
+                ? 'Missing: ' + memberMap[raider].missingEnchantSlots.map(s => SLOT_NAMES[s] || `Slot ${s}`).join(', ')
+                : 'Missing enchants'"
+            >
+              ❌
+            </span>
+          </template>
           </th>
           <th class="p-2 border border-[#444] text-white">Date</th>
         </tr>
