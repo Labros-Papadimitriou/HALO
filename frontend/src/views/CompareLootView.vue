@@ -88,7 +88,7 @@ onMounted(async () => {
     const normal = normalMap[id]
     const tryhard = tryhardMap[id]
 
-    if (tryhard?.fullyEnchanted) {
+    if (tryhard?.fullyEnchanted && normal?.fullyEnchanted) {
       m.enchantStatus = 'tryhard'
     } else if (normal?.fullyEnchanted) {
       m.enchantStatus = 'normal'
