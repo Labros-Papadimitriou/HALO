@@ -2,9 +2,9 @@ import fs from 'fs/promises';
 import axios from 'axios';
 import { db } from '../db.js';
 
-const NAMESPACE = 'static-classic1x-eu';
-const REGION = 'eu';
-const LOCALE = 'en_GB';
+const NAMESPACE = 'static-classic-us';
+const REGION = 'us';
+const LOCALE = 'en_US';
 const BASE_URL = `https://${REGION}.api.blizzard.com`;
 const TOKEN = process.env.BLIZZARD_TOKEN || 'YOUR_TOKEN_HERE';
 
@@ -29,7 +29,7 @@ async function fetchItemMedia(id: number) {
 }
 
 async function main() {
-  const raw = await fs.readFile('mc_items.json', 'utf-8');
+  const raw = await fs.readFile('naxxramas.json', 'utf-8');
   const items = JSON.parse(raw);
 
   for (const entry of items) {
@@ -49,7 +49,7 @@ async function main() {
           item_class, item_subclass, raid, boss
         )
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-        ON CONFLICT (wow_id) DO NOTHING`,
+        ON CONFLICT (wow_id, boss) DO NOTHING`,
         [
           entry.wowId,
           name.trim(),

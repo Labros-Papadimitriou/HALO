@@ -1,0 +1,687 @@
+[
+  {
+    "wowId": 21699,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21814,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21708,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21698,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21128,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21705,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21704,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21706,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21702,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21700,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21701,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21707,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21703,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21237,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21237,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21237,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21237,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 21237,
+    "raid": "Ahn'Qiraj",
+    "boss": "Viscidus"
+  },
+  {
+    "wowId": 21237,
+    "raid": "Ahn'Qiraj",
+    "boss": "Princess Huhuran"
+  },
+  {
+    "wowId": 21237,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21237,
+    "raid": "Ahn'Qiraj",
+    "boss": "Ouro"
+  },
+  {
+    "wowId": 21232,
+    "raid": "Ahn'Qiraj",
+    "boss": "The Prophet Skeram"
+  },
+  {
+    "wowId": 21232,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21232,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21232,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 21232,
+    "raid": "Ahn'Qiraj",
+    "boss": "Princess Huhuran"
+  },
+      {
+    "wowId": 21232,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21232,
+    "raid": "Ahn'Qiraj",
+    "boss": "Ouro"
+  },
+  {
+    "wowId": 21232,
+    "raid": "Ahn'Qiraj",
+    "boss": "Viscidus"
+  },
+  {
+    "wowId": 21693,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21694,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21697,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21696,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21692,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21695,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21680,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21681,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21685,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21603,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21690,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21689,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21691,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21688,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21686,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21684,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21683,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21682,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21687,
+    "raid": "Ahn'Qiraj",
+    "boss": "Bug Trio"
+  },
+  {
+    "wowId": 21669,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21678,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21671,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21672,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21674,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21675,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21676,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21668,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21667,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21648,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21670,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21666,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21673,
+    "raid": "Ahn'Qiraj",
+    "boss": "Battleguard Sartura"
+  },
+  {
+    "wowId": 21665,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 21639,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 21627,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 21663,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 21652,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 21651,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 21645,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 21650,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 21635,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 21664,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 21647,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 22402,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 22396,
+    "raid": "Ahn'Qiraj",
+    "boss": "Frankriss the Unyielding"
+  },
+  {
+    "wowId": 21624,
+    "raid": "Ahn'Qiraj",
+    "boss": "Viscidus"
+  },
+  {
+    "wowId": 21623,
+    "raid": "Ahn'Qiraj",
+    "boss": "Viscidus"
+  },
+  {
+    "wowId": 21626,
+    "raid": "Ahn'Qiraj",
+    "boss": "Viscidus"
+  },
+  {
+    "wowId": 21622,
+    "raid": "Ahn'Qiraj",
+    "boss": "Viscidus"
+  },
+  {
+    "wowId": 21677,
+    "raid": "Ahn'Qiraj",
+    "boss": "Viscidus"
+  },
+  {
+    "wowId": 21625,
+    "raid": "Ahn'Qiraj",
+    "boss": "Viscidus"
+  },
+  {
+    "wowId": 22395,
+    "raid": "Ahn'Qiraj",
+    "boss": "Viscidus"
+  },
+  {
+    "wowId": 20928,
+    "raid": "Ahn'Qiraj",
+    "boss": "Viscidus"
+  },
+  {
+    "wowId": 20932,
+    "raid": "Ahn'Qiraj",
+    "boss": "Viscidus"
+  },
+  {
+    "wowId": 20928,
+    "raid": "Ahn'Qiraj",
+    "boss": "Princess Huhuran"
+  },
+  {
+    "wowId": 20932,
+    "raid": "Ahn'Qiraj",
+    "boss": "Princess Huhuran"
+  },
+  {
+    "wowId": 21621,
+    "raid": "Ahn'Qiraj",
+    "boss": "Princess Huhuran"
+  },
+  {
+    "wowId": 21618,
+    "raid": "Ahn'Qiraj",
+    "boss": "Princess Huhuran"
+  },
+  {
+    "wowId": 21619,
+    "raid": "Ahn'Qiraj",
+    "boss": "Princess Huhuran"
+  },
+  {
+    "wowId": 21617,
+    "raid": "Ahn'Qiraj",
+    "boss": "Princess Huhuran"
+  },
+  {
+    "wowId": 21620,
+    "raid": "Ahn'Qiraj",
+    "boss": "Princess Huhuran"
+  },
+  {
+    "wowId": 21616,
+    "raid": "Ahn'Qiraj",
+    "boss": "Princess Huhuran"
+  },
+  {
+    "wowId": 20930,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21602,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21599,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21598,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21600,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21601,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21597,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 20926,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21608,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21604,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21605,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21609,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21607	,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21606,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21679	,
+    "raid": "Ahn'Qiraj",
+    "boss": "Twin Emperors"
+  },
+  {
+    "wowId": 21615,
+    "raid": "Ahn'Qiraj",
+    "boss": "Ouro"
+  },
+  {
+    "wowId": 21611,
+    "raid": "Ahn'Qiraj",
+    "boss": "Ouro"
+  },
+  {
+    "wowId": 23558,
+    "raid": "Ahn'Qiraj",
+    "boss": "Ouro"
+  },
+  {
+    "wowId": 23570,
+    "raid": "Ahn'Qiraj",
+    "boss": "Ouro"
+  },
+  {
+    "wowId": 21610,
+    "raid": "Ahn'Qiraj",
+    "boss": "Ouro"
+  },
+  {
+    "wowId": 23557,
+    "raid": "Ahn'Qiraj",
+    "boss": "Ouro"
+  },
+  {
+    "wowId": 20927,
+    "raid": "Ahn'Qiraj",
+    "boss": "Ouro"
+  },
+  {
+    "wowId": 20931,
+    "raid": "Ahn'Qiraj",
+    "boss": "Ouro"
+  },
+  {
+    "wowId": 22732,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 21583,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 22731,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 22730,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 21582,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 21586,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 21585,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 21581,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 21596,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 21579,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 21839,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 21126,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 21134,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 21929,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 20933,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 21221,
+    "raid": "Ahn'Qiraj",
+    "boss": "C'Thun"
+  },
+  {
+    "wowId": 21838,
+    "raid": "Ahn'Qiraj",
+    "boss": "Trash"
+  },
+  {
+    "wowId": 21888,
+    "raid": "Ahn'Qiraj",
+    "boss": "Trash"
+  },
+  {
+    "wowId": 21889,
+    "raid": "Ahn'Qiraj",
+    "boss": "Trash"
+  },
+  {
+    "wowId": 21856,
+    "raid": "Ahn'Qiraj",
+    "boss": "Trash"
+  },
+  {
+    "wowId": 21837,
+    "raid": "Ahn'Qiraj",
+    "boss": "Trash"
+  },
+  {
+    "wowId": 21836,
+    "raid": "Ahn'Qiraj",
+    "boss": "Trash"
+  },
+  {
+    "wowId": 21891,
+    "raid": "Ahn'Qiraj",
+    "boss": "Trash"
+  }
+]
