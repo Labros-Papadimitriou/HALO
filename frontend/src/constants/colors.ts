@@ -12,6 +12,7 @@ export const classColors: Record<string, string> = {
   }
   
 export const rarityColors: Record<string, string> = {
+    poor: '#a335ee', // Relic Idols in Naxx even though they are epic quality Blizzard has them as poor quality
     common: '#9d9d9d',
     uncommon: '#1eff00',
     rare: '#0070dd',
