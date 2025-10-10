@@ -96,7 +96,9 @@ const filteredLoot = computed(() => {
     })
   }
 
-  return results
+  console.log('Loot results:', results)
+
+  return results;
 })
 
 function resetFilters() {
