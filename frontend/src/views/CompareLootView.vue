@@ -3,7 +3,8 @@ import { ref, onMounted, computed, watch } from 'vue'
 import { getAllLootHistory } from '@/api/lootHistoryApi'
 import { getAllItems } from '@/api/itemApi'
 import { getAllMembers } from '@/api/memberApi'
-import { getEnchantStatus } from '@/api/enchantApi'
+// DISABLED: Enchant functionality temporarily disabled
+// import { getEnchantStatus } from '@/api/enchantApi'
 import type { Member } from '@/types/member'
 import type { Item } from '@/types/item'
 import type { FullLootHistoryRecord } from '@/types/lootHistory'
@@ -74,28 +75,32 @@ onMounted(async () => {
   rawLootHistory.value = raw
   const allItems = await getAllItems()
 
-  const [members, normalStatus, tryhardStatus] = await Promise.all([
-    getAllMembers(),
-    getEnchantStatus(false),
-    getEnchantStatus(true)
-  ])
+  // DISABLED: Enchant functionality temporarily disabled
+  // const [members, normalStatus, tryhardStatus] = await Promise.all([
+  //   getAllMembers(),
+  //   getEnchantStatus(false),
+  //   getEnchantStatus(true)
+  // ])
+  
+  // const normalMap = Object.fromEntries(normalStatus.map((s: { id: any }) => [s.id, s]))
+  // const tryhardMap = Object.fromEntries(tryhardStatus.map((s: { id: any }) => [s.id, s]))
 
-  const normalMap = Object.fromEntries(normalStatus.map((s: { id: any }) => [s.id, s]))
-  const tryhardMap = Object.fromEntries(tryhardStatus.map((s: { id: any }) => [s.id, s]))
+  const members = await getAllMembers()
 
   members.forEach((m) => {
-    const id = m.id!
-    const normal = normalMap[id]
-    const tryhard = tryhardMap[id]
+    // DISABLED: Enchant status processing temporarily disabled
+    // const id = m.id!
+    // const normal = normalMap[id]
+    // const tryhard = tryhardMap[id]
 
-    if (tryhard?.fullyEnchanted && normal?.fullyEnchanted) {
-      m.enchantStatus = 'tryhard'
-    } else if (normal?.fullyEnchanted) {
-      m.enchantStatus = 'normal'
-    } else {
-      m.enchantStatus = 'missing'
-      m.missingEnchantSlots = normal?.missingSlots || []
-    }
+    // if (tryhard?.fullyEnchanted && normal?.fullyEnchanted) {
+    //   m.enchantStatus = 'tryhard'
+    // } else if (normal?.fullyEnchanted) {
+    //   m.enchantStatus = 'normal'
+    // } else {
+    //   m.enchantStatus = 'missing'
+    //   m.missingEnchantSlots = normal?.missingSlots || []
+    // }
 
     memberMap.value[m.name] = m
   })

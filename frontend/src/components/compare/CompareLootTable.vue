@@ -2,7 +2,8 @@
 import { classColors, rarityColors } from '@/constants/colors'
 import type { Item } from '@/types/item'
 import type { Member } from '@/types/member'
-import {SLOT_NAMES} from '@/constants/enchantSlotsMapping'
+// DISABLED: Enchant functionality temporarily disabled
+// import {SLOT_NAMES} from '@/constants/enchantSlotsMapping'
 
 defineProps<{
   selectedRaiders: string[]
@@ -24,7 +25,8 @@ defineProps<{
           >
             <span>{{ raider }}</span>
 
-            <template v-if="memberMap[raider]?.enchantStatus === 'tryhard'">
+            <!-- DISABLED: Enchant status icons temporarily disabled -->
+            <!-- <template v-if="memberMap[raider]?.enchantStatus === 'tryhard'">
               <span title="Fully BIS enchanted">⭐</span>
             </template>
             <template v-else-if="memberMap[raider]?.enchantStatus === 'normal'">
@@ -38,7 +40,7 @@ defineProps<{
             >
               ❌
             </span>
-          </template>
+          </template> -->
           </th>
           <th class="p-2 border border-[#444] text-white">Date</th>
         </tr>
