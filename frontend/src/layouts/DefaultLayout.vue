@@ -25,6 +25,7 @@ const firstLetter = () => {
 }
 
 const showDropdown = ref(false)
+const avatarError = ref(false)
 
 function toggleDropdown() {
   showDropdown.value = !showDropdown.value
@@ -34,6 +35,10 @@ function logout() {
   auth.logout()
   router.push('/login')
   showDropdown.value = false
+}
+
+function handleAvatarError() {
+  avatarError.value = true
 }
 </script>
 
@@ -68,11 +73,12 @@ function logout() {
       <!-- Right: Avatar + Dropdown -->
       <div class="relative flex items-center gap-4" v-click-outside="() => (showDropdown = false)">
         <button @click="toggleDropdown" class="focus:outline-none">
-          <template v-if="auth.user?.avatar">
+          <template v-if="auth.user?.avatar && !avatarError">
             <img
-              :src="`https://cdn.discordapp.com/avatars/${auth.user.id}/${auth.user.avatar}.png`"
+              :src="`https://cdn.discordapp.com/avatars/${auth.user.id}/${auth.user.avatar}.${auth.user.avatar.startsWith('a_') ? 'gif' : 'png'}?size=128`"
               alt="Avatar"
               class="w-10 h-10 rounded-full border border-gray-300 object-cover"
+              @error="handleAvatarError"
             />
           </template>
           <template v-else>
