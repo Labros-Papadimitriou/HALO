@@ -29,7 +29,7 @@ async function fetchItemMedia(id: number) {
 }
 
 async function main() {
-  const raw = await fs.readFile('karazhan.json', 'utf-8');
+  const raw = await fs.readFile('gruuls_lair.json', 'utf-8');
   const items = JSON.parse(raw);
 
   for (const entry of items) {

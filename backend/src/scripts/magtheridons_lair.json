@@ -1,6 +1,86 @@
 [
   {
-    "wowId": 0,
+    "wowId": 28777,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 28780,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 28776,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 28778,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 28775,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 28779,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 28789,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 28781,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 28774,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 28782,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 29458,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 28783,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 29754,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 29753,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 29755,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 32385,
+    "raid": "Magtheridon's Lair",
+    "boss": "Magtheridon"
+  },
+  {
+    "wowId": 34845,
     "raid": "Magtheridon's Lair",
     "boss": "Magtheridon"
   }

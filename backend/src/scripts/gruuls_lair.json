@@ -1,11 +1,126 @@
 [
   {
-    "wowId": 0,
+    "wowId": 28797,
     "raid": "Gruul's Lair",
     "boss": "High King Maulgar"
   },
   {
-    "wowId": 0,
+    "wowId": 28799,
+    "raid": "Gruul's Lair",
+    "boss": "High King Maulgar"
+  },
+  {
+    "wowId": 28796,
+    "raid": "Gruul's Lair",
+    "boss": "High King Maulgar"
+  },
+  {
+    "wowId": 28801,
+    "raid": "Gruul's Lair",
+    "boss": "High King Maulgar"
+  },
+  {
+    "wowId": 28795,
+    "raid": "Gruul's Lair",
+    "boss": "High King Maulgar"
+  },
+  {
+    "wowId": 28800,
+    "raid": "Gruul's Lair",
+    "boss": "High King Maulgar"
+  },
+  {
+    "wowId": 29763,
+    "raid": "Gruul's Lair",
+    "boss": "High King Maulgar"
+  },
+  {
+    "wowId": 29764,
+    "raid": "Gruul's Lair",
+    "boss": "High King Maulgar"
+  },
+  {
+    "wowId": 29762,
+    "raid": "Gruul's Lair",
+    "boss": "High King Maulgar"
+  },
+  {
+    "wowId": 28804,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 28803,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 28828,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 28827,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 28810,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 28824,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 28822,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 28823,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 28830,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 29766,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 29767,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 29765,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 28802,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 28794,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 28825,
+    "raid": "Gruul's Lair",
+    "boss": "Gruul the Dragonkiller"
+  },
+  {
+    "wowId": 28826,
     "raid": "Gruul's Lair",
     "boss": "Gruul the Dragonkiller"
   }
