@@ -60,8 +60,8 @@ defineProps<{
             >
               <img :src="item.icon" class="w-5 h-5 border border-black rounded-sm" />
               <a
-                :href="`https://classic.wowhead.com/item=${item.wow_id}`"
-                :data-wowhead="`item=${item.wow_id}&domain=classic`"
+                :href="`https://tbc.wowhead.com/item=${item.wow_id}`"
+                :data-wowhead="`item=${item.wow_id}&domain=tbc`"
                 target="_blank"
                 class="hover:underline"
               >

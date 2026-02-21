@@ -14,8 +14,8 @@ defineProps<{
 const getWowheadHtml = (entry: FullLootHistoryRecord) => {
   return `
     <a 
-      href="https://classic.wowhead.com/item=${entry.wowid}"
-      data-wowhead="item=${entry.wowid}&domain=classic" 
+      href="https://tbc.wowhead.com/item=${entry.wowid}"
+      data-wowhead="item=${entry.wowid}&domain=tbc" 
       target="_blank"
       style="color: ${rarityColors[entry.quality?.toLowerCase()] || '#fff'}; display: flex; align-items: center; gap: 0.5rem;"
       onclick="event.stopPropagation();"

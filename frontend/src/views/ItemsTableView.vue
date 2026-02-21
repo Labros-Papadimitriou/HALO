@@ -122,8 +122,8 @@ const unique = (key: keyof Item) =>
             :style="{ color: rarityColors[item.quality?.toLowerCase()] || '#fff' }"
           >
             <a
-              :href="`https://classic.wowhead.com/item=${item.wow_id}`"
-              :data-wowhead="`item=${item.wow_id}&domain=classic`"
+              :href="`https://tbc.wowhead.com/item=${item.wow_id}`"
+              :data-wowhead="`item=${item.wow_id}&domain=tbc`"
               target="_blank"
               class="flex items-center gap-2 hover:underline"
             >
